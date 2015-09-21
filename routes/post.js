@@ -1,16 +1,21 @@
-
 module.exports = (function(){
+
 express = require ('express');
 
-var postRouter = express.Router();
-var PostHandler = require('../handlers/post');
-var postHandler = new PostHandler();
+
+    var UserHandler = require('../handlers/user');
+    var userHandler = new UserHandler();
+    var PostHandler = require('../handlers/post');
+    var postRouter = express.Router();
+    var postHandler = new PostHandler();
 
 
-    postRouter.get('/', postHandler.getAll);
-    postRouter.post('/create/:text', postHandler.create);
-    postRouter.post('/delete/:number', postHandler.delete);
-    postRouter.post('/edit/:number/:newtext', postHandler.edit);
+
+  postRouter.get('/:id', postHandler.showAll);
+   postRouter.post('/:id', postHandler.create);
+   postRouter.delete('/:id', postHandler.delete);
+   postRouter.post('/:id/edit', postHandler.edit);
+
 
 
 return postRouter;})();

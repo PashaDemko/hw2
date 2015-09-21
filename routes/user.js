@@ -4,17 +4,20 @@ module.exports = (function(){
     var UserHandler = require('../handlers/user');
     var userRouter = express.Router();
     var userHandler = new UserHandler();
-
-    
-
-    var postRouter = require ('./post');
+    var adminRouter = require('./admin')
+    var friend = '/:id/friend';
 
 
-    userRouter.use('/post', postRouter);
-    userRouter.get('/', userHandler.profile);
-    userRouter.post('/add/:friend', userHandler.addfriend);
-    userRouter.post('/:login/:password', userHandler.createUser);
-    userRouter.post('/delete', userHandler.delete);
+
+
+    userRouter.use('/a', adminRouter);
+    userRouter.get('/:id', userHandler.profile);
+    userRouter.post('/', userHandler.createUser);
+    userRouter.post('/:id', userHandler.edit);
+
+    userRouter.post(friend, userHandler.addfriend);
+    userRouter.delete(friend, userHandler.delfriend);
+    userRouter.get(friend, userHandler.friends);
 
     return userRouter;
 })();
