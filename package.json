@@ -13,18 +13,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.3",
+    "bootstrap": "^3.3.5",
     "express": "4.13.3",
     "jade": "^1.11.0",
     "mongodb": "^2.0.43",
     "mongoose": "^4.1.7"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PashaDemko/hw2.git"
-  },
-  "bugs": {
-    "url": "https://github.com/PashaDemko/hw2/issues"
-  },
-  "homepage": "https://github.com/PashaDemko/hw2#readme"
+  }
 }
