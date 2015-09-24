@@ -28,6 +28,9 @@ var User = function () {
                 if (err) {
                     return next(err);
                 }
+                if (!response)
+                    res.status(404).send("not found");
+                else
 
                 res.status(200).send(response);
             });
@@ -38,6 +41,7 @@ var User = function () {
                 if (err) {
                     return next(err);
                 }
+
                 res.status(200).send('friends :' + user.friends);
             })    }
     this.addfriend = function (req, res, next) {
@@ -95,7 +99,7 @@ var User = function () {
                     return next(err);
                 }
                 if (!details)
-                    res.status(404).send("not found")
+                    res.status(404).send("not found");
                 else
                 details.editable = req.body.editable;
                 details.save(function (err, edited) {
