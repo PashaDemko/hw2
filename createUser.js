@@ -1,5 +1,5 @@
 /**
- * Created by Паша on 24.09.2015.
+ * Created by ГЏГ ГёГ  on 24.09.2015.
  */
 var mongoose = require('mongoose');
 require('./models');
@@ -14,10 +14,10 @@ module.exports = function  () {
    Test1 = new _User({
         _id: 1,
             admin : true,
-        editable : { name :{first: "Vasya",
-                    last : "Dark"},
+        editable : { name :{first: "User",
+                    last : "New"},
             age: 18,
-            username: "Darkvas",
+            username: "Newuser",
             password: 123}});
     Test1.save()
     })} ();
