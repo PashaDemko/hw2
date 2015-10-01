@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 require('../models');
 
-var UserSchema = mongoose.schem.User;
+var UserSchema = mongoose.schemas.User;
 var _User = mongoose.model('user', UserSchema);
 var PostSchema = mongoose.schemas.Post;
 var _Post = mongoose.model('post', PostSchema);
