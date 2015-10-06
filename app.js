@@ -16,7 +16,7 @@ db.once('open', function (){
 });
 require('./routes')(app);
 require('./handlers/user');
-require('./createUser');
+
 
 app.listen(port, function(){
     console.log('Server start success = ' + port);
