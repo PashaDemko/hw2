@@ -1,4 +1,4 @@
-var jade = require('jade');
+
 module.exports = function(app){
     var myVar = 'ok Now you see me';
     var bodyParser = require('body-parser');
@@ -7,15 +7,13 @@ module.exports = function(app){
 
     var postRouter = require ('./post');
 
-    data = { page: 'Home',
-    content: 'VRakoshy'};
+
 
     app.use(bodyParser.json());
-    app.set('view engine','jade');
 
-       app.get('/', function(req, res, next){
-        console.log(myVar);
-        res.render('html/hello', data);
+    app.get('/', function(req, res, next){
+
+        res.sendFile("startpage.html", {root: __dirname + "/../public" })
     });
 
         app.use('/user',  userRouter);

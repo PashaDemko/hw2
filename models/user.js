@@ -10,19 +10,21 @@ var Schema = mongoose.Schema;
 var UserSchema = Schema({
     _id: {type : Number, unique: true  },
 
-   editable : {
-       name: {
-    first: {type: String, default: 'Name'},
-    last: {type: String, default: 'Surname'}},
-    age: Number,
+    name_first :{ type: String },
+    name_last :{ type: String },
 
     username: { type: String, required: true, unique: true },
-       email: { type: String,  default: 'Enter your mail adress'},
-       password: { type: String, required: true}
-    },
+    email: { type: String,  default: 'Enter your mail adress'},
+    password: { type: String, required: true},
+
+    photoUrl: { type: String },
+    biography: { type: String },
+    age :  {type : Number},
 
     posts: [{type: String, ref: 'post'}],
-    friends: [{type: String, ref: Array}],
+    friends: [{  type: String, ref: 'Array'
+
+    }],
     admin: [{type : Boolean, default: false}],
     location: String,
     meta: {

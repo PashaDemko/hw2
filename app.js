@@ -14,9 +14,10 @@ db.on("error", function (err){
 db.once('open', function (){
     console.log('connected');
 });
+app.use(express.static(__dirname + '/public'));
 require('./routes')(app);
 require('./handlers/user');
-require('./createUser');
+
 
 app.listen(port, function(){
     console.log('Server start success = ' + port);

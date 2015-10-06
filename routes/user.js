@@ -11,6 +11,7 @@ module.exports = (function(){
 
 
     userRouter.use('/a', adminRouter);
+    userRouter.get('/', userHandler.all);
     userRouter.get('/:id', userHandler.profile);
     userRouter.post('/', userHandler.createUser);
     userRouter.post('/:id', userHandler.edit);

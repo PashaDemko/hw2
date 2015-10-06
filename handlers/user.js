@@ -34,6 +34,20 @@ var User = function () {
 
                 res.status(200).send(response);
             });
+    };
+    this.all = function (req, res, next) {
+
+        _User
+            .find( function (err, response) {
+                if (err) {
+                    return next(err);
+                }
+                if (!response)
+                    res.status(404).send("not found");
+                else
+
+                    res.status(200).send(response);
+            });
     }
     this.friends = function (req, res, next) {
         _User
@@ -47,20 +61,29 @@ var User = function () {
     this.addfriend = function (req, res, next) {
 
             _User.findById(req.params.id, function (err, user) {
-
+                if (err) {
+                    return next(err);
+                }
                 _User.findById(req.body,function (err, newFriend) {
                 if (err) {
                     return next(err);
                 }
-                user.friends.push(newFriend.name['first']+" " + newFriend.name['last'])
-                    ;
-                user.save(function (err, user) {
-                    if (err) {
-                        return next(err);
-                    }
+                user.friends.push(newFriend.name_first +" " + newFriend.name_last)
+                user.save(function (err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            newFriend.friends.push(user.name_first +" " + user.name_last)
+                            newFriend.save(function (err) {
+                                if (err) {
+                                    return next(err);
+                                }
+                            res.status(200).send('You added ' +  newFriend.name_first+" " + newFriend.name_last);
 
-                    res.status(200).send('You added ' +  newFriend.name['first']+" " + newFriend.name['last']);
+                    });
+
                 });
+
 
             });
         });
@@ -101,13 +124,13 @@ var User = function () {
                 if (!details)
                     res.status(404).send("not found");
                 else
-                details.editable = req.body.editable;
+                details = req.body;
                 details.save(function (err, edited) {
                     if (err) {
                         return next(err);
                     }
 
-                    res.status(200).send('New user data ' +  edited.editable);
+                    res.status(200).send('New user data ' +  edited);
                 })
             })
     }
