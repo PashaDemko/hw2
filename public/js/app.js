@@ -1,16 +1,16 @@
-define( ['models/users', 'views/users'] , function(Users,viewUsers){
-	function gogo(){
-		usersd = new Users();
-		 usersd.fetch();
+define( ['router'] , function(){
+	function initial(){
+		window.vent = _.extend({}, Backbone.Events);
 
-		usersview = new viewUsers ({collection : usersd})
+		Backbone.history.start();
 
-		$(document.body).append(usersview.render().el);
+
+
 
 
 	}
 
 	return {
-		gogo : gogo
+		initial : initial
 	}
 });

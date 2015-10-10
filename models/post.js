@@ -5,8 +5,8 @@ require('./user');
 var Schema = mongoose.Schema;
 
 var PostSchema = Schema({
-    _id: Number,
-    head: {type: String, unique: true},
+
+    head: {type: String},
     creator: {type: Number, ref: 'user'},
 
     content: String,
@@ -20,19 +20,7 @@ PostSchema.pre('save', function(next) {
         this.updated_at = currentDate;
         if (!this.created_at)
             this.created_at = currentDate;
-        var currentPost = this;
-        User.findOne({_id : this.creator}, function (err, Friend) {
-                if (err) {
-                    return next(err);
-                }
-                Friend.posts.push(currentPost.head);
-
-                Friend.save(function (err, Friend) {
-                    if (err) {
-                        return next(err);
-                    }next()})
-            }
-        )
+        next();
     }
 )
 var Post = mongoose.model('post', PostSchema);

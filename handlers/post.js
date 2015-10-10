@@ -12,16 +12,10 @@ var Post = function () {
 
     this.create = function (req, res, next) {
 
-        _User.findById(req.params.id, function (err, user) {
-            if (err) {
-                return next(err);
-            }
-            var body = req.body;
+           var body = req.body;
 
             var post = new _Post(body);
 
-
-            post.creator = user._id;
 
             post.save(function (err, post) {
                 if (err) {
@@ -30,13 +24,22 @@ var Post = function () {
 
                 res.status(200).send(post);
             });
-        })
-
-    };
+           };
     this.showAll = function (req, res, next) {
-
         _Post
-            .find({creator: req.params.id}, function (err, response) {
+            .find(function (err, response) {
+                if (err) {
+                    return next(err);
+                }
+
+                res.status(200).send(response)
+
+
+            })
+    }
+    this.show = function (req, res, next) {
+       _Post
+            .findById(req.params.id, function (err, response) {
                 if (err) {
                     return next(err);
                 }
@@ -49,28 +52,12 @@ var Post = function () {
     this.delete = function (req, res, next) {
 
         _Post
-            .find({creator: req.params.id})
-            .findOne({head: req.body.head})
+            .findById(req.params.id)
             .remove(function (err) {
                             if (err) {
                                 return next(err);
                             }
-                        _User.findById(req.params.id, function (err,user){
-                            if (err) {
-                                return next(err)}
 
-                            for ( var i = user.posts.length; i > -1; i--)
-                                if (req.body.head == user.posts[i])
-                                var delpost =   user.posts.splice(i, 1);
-
-                            user.save(function (err, user) {
-                                if (err) {
-                                    return next(err);
-                                }
-
-                                res.status(200).send('You delete ' +  delpost);
-                            });
-                    })
 
 
 
@@ -80,8 +67,7 @@ var Post = function () {
     this.edit = function (req, res, next) {
 
         _Post
-            .find({creator: req.params.id})
-            .findOne({head: req.body.head},function (err, post)
+            .findById(req.params.id, function (err, post)
             {
                 if (err) {
                     return next(err);
@@ -89,6 +75,7 @@ var Post = function () {
                 if (!post)
                     res.status(404).send('Not Found')
                 else
+                post.head = req.body.head;
                 post.content = req.body.content;
                 post.save(function (err, edited) {
                     if (err) {

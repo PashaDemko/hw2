@@ -11,10 +11,11 @@ express = require ('express');
 
 
 
-  postRouter.get('/:id', postHandler.showAll);
-   postRouter.post('/:id', postHandler.create);
+  postRouter.get('/:id', postHandler.show);
+    postRouter.get('/', postHandler.showAll);
+   postRouter.post('/', postHandler.create);
    postRouter.delete('/:id', postHandler.delete);
-   postRouter.post('/:id/edit', postHandler.edit);
+   postRouter.put('/:id', postHandler.edit);
 
 
 

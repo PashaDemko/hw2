@@ -13,13 +13,13 @@ module.exports = function(app){
 
     app.get('/', function(req, res, next){
 
-        res.sendFile("startpage.html", {root: __dirname + "/../public" })
+        res.sendFile("startpage.html", {root: __dirname + "/../public/" })
     });
 
         app.use('/user',  userRouter);
         app.use('/post', postRouter);
         app.use(function(err, req, res, next){
-        var status = err.status || 500;
+        var status = err.status || 501;
 
         res.status(status).send(err);
     });

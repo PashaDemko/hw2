@@ -1,0 +1,14 @@
+<h2>Edit post: <%=model.head %></h2>
+<form  id="edit-post-form">
+    <div>
+        <label for="edit_head">Head:</label>
+        <input type="text" id="edit_head" name="edit_head" value="<%=model.head %>">
+    </div>
+    <div>
+        <label for="edit_content">Content:</label>
+        <input type="text" id="edit_content" name="edit_content" value="<%=model.content %>">
+    </div>
+            <input type="submit" value="Save">
+    <button type="button" class="cancel">Cancel</button>
+    </div>
+</form>

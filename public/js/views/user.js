@@ -5,7 +5,7 @@ define([], function(){
 
 		rendering: function() {
 			var self = this;
-			self.$el.html(this.model.get('username'));
+			self.$el.html(this.model.get('name_first')+" " +this.model.get('name_last'));
 			return self;
 		}
 	});

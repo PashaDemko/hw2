@@ -3,11 +3,16 @@
  */
 define([], function(){
     var Model = Backbone.Model.extend({
-        idAttributes: '_id',
+        idAttribute: '_id',
 
         urlRoot: function(){
             return '/post';
-        }
+        },
+        validate: function(attrs) {
+            if( !attrs.head ) {
+                return "Имя и фамилия обязательны для заполнения!";
+            }
+           }
     });
 
     return Model;
