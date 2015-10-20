@@ -16,21 +16,8 @@ var login = function(email, password, callback) {
     });
 };
 
-var register = function(email, password, firstName, lastName) {
-    var shaSum = crypto.createHash('sha256');
-    shaSum.update(password);
+var register = function(email, password, firstName, lastName, res) {
 
-    console.log('Registering ' + email);
-    var user = new Account({
-        email: email,
-        name: {
-            first: firstName,
-            last: lastName,
-            full: firstName + ' ' + lastName
-        },
-        password: shaSum.digest('hex')
-    });
-    user.save(registerCallback);
     console.log('Save command was sent');
 };
 var changePassword = function(accountId, newpassword) {
@@ -126,9 +113,27 @@ var Authent = function () {
             res.sendStatus(400);
             return;
         }
+        var shaSum = crypto.createHash('sha256');
+        shaSum.update(password);
 
-        register(email, password, firstName, lastName);
-        res.sendStatus(200);
+        console.log('Registering ' + email);
+        var user = new Account({
+            email: email,
+            name: {
+                first: firstName,
+                last: lastName,
+                full: firstName + ' ' + lastName
+            },
+            password: shaSum.digest('hex')
+        });
+        user.save(function (err, post) {
+            if (err) {
+                return next(err);
+            }
+            res.send(user);});
+
+
+
     };
 
     this.authenticated = function (req, res, next) {

@@ -14,8 +14,9 @@ define(['text!templates/register.html', 'models/coauth'], function(registerTempl
                 email: $('#email').val(),
                 password: $('#password').val()
                }
-                , {wait: true})
-            window.location.hash = 'login';
+                , {success: function (){  window.location.hash = 'login'},
+                    error: function(){alert("fill all fields")}},{wait: true})
+
          },
         cancel: function(){
             window.location.hash = 'login';
