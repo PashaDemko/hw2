@@ -1,0 +1,26 @@
+{
+  "name": "NODEBACKBONE",
+  "version": "0.0.0",
+  "authors": [
+    "���� <pasha.demko@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/js/libs/"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "jquery": "~2.1.4",
+    "text": "~2.0.14",
+    "requirejs": "*"
+  }
+}
