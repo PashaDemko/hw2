@@ -3,7 +3,7 @@ define(['text!templates/register.html', 'collections/authorise'], function(regis
 
         el: $('#content'),
         events: {
-            "submit form": "register",
+            "submit .register_form": "register",
             'click .cancelBtn': 'cancel'
         },
 

@@ -4,7 +4,7 @@ define(['models/authorise','text!templates/login.html'], function(Entry, loginTe
       el: '#content',
 
       events: {
-      "submit form": "login"
+      "submit .login_form": "login"
       },
 
 

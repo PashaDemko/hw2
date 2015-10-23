@@ -10,7 +10,7 @@ define(['text!templates/index.html','text!templates/post.html', 'models/post', '
         template: _.template(indexTemplate),
 
         events: {
-          "submit form": "addPost",
+          "submit .add_form": "addPost",
           "click .QuitBtn": 'quit'
         },
 

@@ -2,7 +2,6 @@
 define(['router', 'collections/authorise'], function(router, Entry) {
 
     var initialize = function() {
-        window.vent = _.extend({}, Backbone.Events);
         checkLogin(runApplication);
     };
 

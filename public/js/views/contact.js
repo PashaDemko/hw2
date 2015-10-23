@@ -68,8 +68,9 @@ define(['text!templates/contact.html', 'views/friendspost', 'models/Post', 'mode
                     _.each(postsCollection, function (idpost) {
                             var  post = new Post({_id: idpost});
                             post.fetch({success:function(){
-                                var statusHtml = new viewPost({ model: post }).render().el;
-                                $(statusHtml).appendTo('.posters');
+                                var postHtml = new viewPost({ model: post }).render().el;
+                                $(postHtml).appendTo('.'+ that.model.get('_id'));
+                                console.log(that.model.get('_id'));
                             }})
                         });
 

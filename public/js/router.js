@@ -24,10 +24,11 @@ define(['views/index', 'views/register', 'views/login','models/Account',
             },
 
             addcontact: function() {
-                this.changeView(new AddContactView());
+                new AddContactView().render();
             },
 
             index: function() {
+                
                 var that = this;
                 var model = new Account();
                 model.fetch({success: function(){
