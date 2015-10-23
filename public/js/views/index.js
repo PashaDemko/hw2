@@ -77,6 +77,7 @@ define(['text!templates/index.html','text!templates/post.html', 'models/post', '
 
         render: function() {
           var model = this.model.toJSON();
+          console.log(model)
           this.$el.html (this.template( {model: model}));
         }
       });

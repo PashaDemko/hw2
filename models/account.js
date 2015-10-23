@@ -11,13 +11,7 @@ var AccountSchema = new mongoose.Schema({
         last:    { type: String },
         full:    { type: String }
     },
-    birthday: {
-        day:     { type: Number, min: 1, max: 31, required: false },
-        month:   { type: Number, min: 1, max: 12, required: false },
-        year:    { type: Number }
-    },
-    photoUrl:  { type: String },
-    biography: { type: String },
+    admin: Boolean,
     contacts:   [{type: Schema.ObjectId, ref: 'account'}],      //!!!
     posts: [{type: Schema.ObjectId, ref: 'post'}]     //!!!
 });

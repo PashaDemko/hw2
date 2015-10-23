@@ -28,8 +28,9 @@ db.on("error", function (err){
 db.once('open', function (){
     console.log('connected to db');
 });
-
+require('./admin');
 require('./routes')(app);
+
 app.listen(port, function(){
     console.log('Server start success = ' + port);
 });

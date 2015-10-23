@@ -28,7 +28,7 @@ define(['views/index', 'views/register', 'views/login','models/Account',
             },
 
             index: function() {
-                
+
                 var that = this;
                 var model = new Account();
                 model.fetch({success: function(){
