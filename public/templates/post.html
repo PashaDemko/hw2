@@ -1,11 +1,12 @@
 
 <table cellspacing="5" >
 <tr id="<%= model._id%>">
-<td ><%= model.status %></td>
+<td ><%= model.content %></td>
 
 <div>
     <td><button class="editBtn">Edit</button></td>
     <td><button class="removeBtn">Delete</button></td>
 </div>
+    <div class="<%= model._id%>"> </div>
 </tr>
 </table>

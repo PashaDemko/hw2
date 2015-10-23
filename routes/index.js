@@ -1,24 +1,19 @@
-
 module.exports = function(app){
 
-    var bodyParser = require('body-parser');
-    var authentRouter = require('./accounter');
+    var accountRouter = require('./account');
+    var authRouter = require('./authorise');
 
 
-    app.use (bodyParser.urlencoded({
-        extended: false
-    }));
-
-    app.get('/', function(req, res){
+    app.get('/', function(req, res, next){
         res.render('index.jade');
     });
-    app.use('/', authentRouter);
+    app.use('/account', accountRouter);
+    app.use('/authorise', authRouter);
 
     app.use(function(err, req, res, next){
         var status = err.status || 500;
-
-
         res.status(status).send(err);
     });
+
 
 };

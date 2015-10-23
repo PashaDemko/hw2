@@ -1,12 +1,12 @@
 
-define(['views/index', 'views/register', 'views/login',
-        'models/Account',
-        'models/StatusCollection','views/contacts', 'models/ContactCollection',
-        'views/addcontact'],
-    function(IndexView, RegisterView, LoginView,
-             Account, StatusCollection,  ContactsView, ContactCollection, AddContactView) {
-        var SocialRouter = Backbone.Router.extend({
+define(['views/index', 'views/register', 'views/login','models/Account',
+        'views/contacts', 'collections/Contacts',  'views/addcontact'],
+    function(IndexView, RegisterView, LoginView, Account,
+             ContactsView, ContactCollection, AddContactView) {
+
+        var AppRouter = Backbone.Router.extend({
             currentView: null,
+
             routes: {
                 'addcontact': 'addcontact',
                 "index": "index",
@@ -22,19 +22,19 @@ define(['views/index', 'views/register', 'views/login',
                 this.currentView = view;
                 this.currentView.render();
             },
+
             addcontact: function() {
                 this.changeView(new AddContactView());
             },
+
             index: function() {
-
                 var that = this;
-                var model = new Account({id:'me'});
+                var model = new Account();
                 model.fetch({success: function(){
-
                     that.changeView(new IndexView({ model: model}))
+                }});
+            },
 
-                }})
-                ;       },
             login: function() {
                 this.changeView(new LoginView());
             },
@@ -53,5 +53,5 @@ define(['views/index', 'views/register', 'views/login',
                 );
             }
         });
-        return new SocialRouter();
+        return new AppRouter();
     });

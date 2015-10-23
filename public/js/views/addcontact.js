@@ -1,39 +1,44 @@
-define(['SocialNetView', 'models/Contact', 'views/contact', 'text!templates/addcontact.html'],
-function(SocialNetView, Contact, ContactView, addcontactTemplate)
+define(['models/Contact','collections/Contacts', 'views/contact', 'text!templates/addcontact.html'],
+function(Contact, Contacts, ContactView, addcontactTemplate)
 {
-  var addcontactView = SocialNetView.extend({
-    el: $('#content'),
+  var addcontactView = Backbone.View.extend({
+      el: $('#content'),
 
-    events: {
-      "submit form": "search"
-    },
+      events: {
+          "submit .search_form": "search"
+      },
 
 
-    search: function() {
-      var view = this;
+      search: function() {
+          var that = this;
+          var FindContact = new Contacts();
+          var body = {"searchStr" :  $('#searchStr').val() };
 
-      $.post('/contacts/find',
-        this.$('form').serialize(), function(data) {
-        view.render(data);
-      }).error(function(){
-        $("#results").text('No contacts found.');
-        $("#results").slideDown();
-      });
-      return false;
-    },
+          FindContact.create(body,{
+              success: function(data) {
+                  console.log(data);
+                  that.render(data.toJSON());
+              }, error :function(){
 
-    render: function(resultList) {
-      var view = this;
-      this.$el.html(_.template(addcontactTemplate));
-      if ( null != resultList ) {
-        _.each(resultList, function (contactJson) {
-          var contactModel = new Contact(contactJson);
-          var contactHtml = (new ContactView({ addButton: true, model: contactModel })).render().el;
-          $('#results').append(contactHtml);
-        });
-      }return this;
-    }
+                  $("#results").text('No contacts found.');
+              }
+          });
+
+          return false;
+      },
+
+      render: function(result) {
+
+          this.$el.html(_.template(addcontactTemplate));
+          if ( null != result ) {
+              var contactModel = new Contact(result);
+              var contactHtml = (new ContactView({ addButton: true, model: contactModel })).render().el;
+              $('#results').append(contactHtml);
+
+          }
+          return this;
+      }
   });
 
-  return addcontactView;
+    return addcontactView;
 });

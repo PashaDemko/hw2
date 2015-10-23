@@ -1,12 +1,13 @@
 
-define(['router', 'models/coauth'], function(router, Entry) {
+define(['router', 'collections/authorise'], function(router, Entry) {
 
     var initialize = function() {
         window.vent = _.extend({}, Backbone.Events);
         checkLogin(runApplication);
-
     };
+
     var checkLogin = function(callback) {
+
         var entry = new Entry();
         entry.fetch({success: function() {
             return callback(true);
@@ -14,8 +15,10 @@ define(['router', 'models/coauth'], function(router, Entry) {
         error: function(data) {
             return callback(false);
         }});
-      };
+    };
+
     var runApplication = function(authenticated) {
+
         if (!authenticated) {
             window.location.hash = 'login';
         } else {
@@ -23,6 +26,7 @@ define(['router', 'models/coauth'], function(router, Entry) {
         }
         Backbone.history.start();
     };
+
     return {
         initialize: initialize
     };

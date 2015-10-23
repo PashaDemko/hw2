@@ -1,6 +1,6 @@
 
 require('./account');
-require('./status');
+require('./post');
 
 
 

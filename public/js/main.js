@@ -1,6 +1,4 @@
-/**
- * Created by Паша on 10.10.2015.
- */
+
 require.config({
     paths: {
         Backbone: 'libs/backbone/backbone',
@@ -8,14 +6,13 @@ require.config({
         jQuery: 'libs/jquery/dist/jquery',
         text: 'libs/text/text',
         templates: '../templates'
-
     },
     shim: {
         'Backbone': ['Underscore', 'jQuery'],
-        'SocialNet': ['Backbone'],
-        router: ['Backbone']
+        'app': ['Backbone']
     }
 });
-require(['SocialNet'], function(SocialNet) {
-    SocialNet.initialize();
+
+require(['app'], function(app) {
+    app.initialize();
 });

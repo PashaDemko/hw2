@@ -1,16 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-require('./status');
-
-var Contact = new Schema({
-    name: {
-        first:   { type: String },
-        last:    { type: String },
-        full:    { type: String }
-    },
-    accountId: { type: mongoose.Schema.ObjectId }
-});
-
 
 
 
@@ -29,13 +18,9 @@ var AccountSchema = new mongoose.Schema({
     },
     photoUrl:  { type: String },
     biography: { type: String },
-    contacts:  [Contact],
-    status: [{type: String, ref: 'status'}]
-
+    contacts:   [{type: Schema.ObjectId, ref: 'account'}],      //!!!
+    posts: [{type: Schema.ObjectId, ref: 'post'}]     //!!!
 });
-
-
-
 
 
 var Account = mongoose.model('account', AccountSchema);
