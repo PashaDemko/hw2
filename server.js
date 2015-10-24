@@ -20,6 +20,8 @@ app.use(session(
      saveUninitialized: true,
      key: 'express.sid'}
 ));
+
+
 mongoose.connect('localhost/Vrakoshydb');
 db = mongoose.connection;
 db.on("error", function (err){

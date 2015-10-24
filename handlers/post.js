@@ -49,7 +49,7 @@ var _Post = function () {
                         return next(err);
 
                     }
-                    res.status(200).send(post);
+                    res.send(post);
                 }));
             }));
         });

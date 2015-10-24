@@ -5,11 +5,13 @@ var AccountSchema = mongoose.schemas.Account;
 var Admin = mongoose.model('account', AccountSchema);
 mongoose.connection.on('open', function() {
     console.log('OK');
+
     Admin.findOne({email: 'Administator' }, function (err, acc){
         if (!acc) {
-            shaSum = crypto.createHash('sha256');
+           var shaSum = crypto.createHash('sha256');
             shaSum.update("admin123");
             Test1 = new Admin({
+                    _id : "562b58d3a9ed25982e5f4a6c",
                     email:   "Administrator",
                     password: shaSum.digest('hex'),
                     name: {

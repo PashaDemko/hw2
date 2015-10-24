@@ -1,6 +1,6 @@
-define(['text!templates/index.html','text!templates/post.html', 'models/post', 'collections/posts',
+define(['text!templates/index.html', 'models/post', 'collections/posts',
     'views/post', 'models/authorise', 'collections/Contacts', 'views/contacts'],
-    function(indexTemplate, statusTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactsView) {
+    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactsView) {
 
 
       var indexView = Backbone.View.extend({
@@ -52,7 +52,6 @@ define(['text!templates/index.html','text!templates/post.html', 'models/post', '
           var newPost = new Posts();
 
           newPost.create(data,{success: function(){
-            console.log("new Post");
             that.undelegateEvents();
             Backbone.history.fragment = '';
             Backbone.history.navigate('#index', {trigger: true});
@@ -68,7 +67,7 @@ define(['text!templates/index.html','text!templates/post.html', 'models/post', '
           _.each(postCollection, function (idpost) {
             var postModel = new Post({_id : idpost});
             postModel.fetch({success: function(){
-              var postHtml = (new PostView({ model: postModel })).render().el;
+              var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
               $('.posts_list').append(postHtml);
             }},{wait: true});
           });
@@ -77,7 +76,6 @@ define(['text!templates/index.html','text!templates/post.html', 'models/post', '
 
         render: function() {
           var model = this.model.toJSON();
-          console.log(model)
           this.$el.html (this.template( {model: model}));
         }
       });

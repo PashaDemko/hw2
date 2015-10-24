@@ -48,6 +48,7 @@ var findByString = function(searchStr, callback) {
 var Contact = function () {
 
     this.allcontacts = function (req, res, next) {
+
         var accountId = req.session.accountId;
 
         Account.findById(accountId)
@@ -57,8 +58,7 @@ var Contact = function () {
                 res.send(user.contacts)
             });
 
-           // res.send( user.contacts);
-        };
+    };
 
 
 
@@ -106,7 +106,6 @@ var Contact = function () {
             }
         });
 
-
     };
 
     this.addcontact = function (req, res, next) {
@@ -129,7 +128,9 @@ var Contact = function () {
                 });
             }
         });
+
     };
+
 };
 module.exports = Contact;
 

@@ -1,4 +1,3 @@
-
 define(function() {
     var Post = Backbone.Model.extend({
         idAttribute: '_id',

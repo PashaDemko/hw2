@@ -35,7 +35,7 @@ var _Account = function () {
             }
             req.session.loggedIn = true;
             req.session.accountId = account._id;
-            res.status(200).send( account);
+            res.send( account);
         });
 
     };
@@ -56,8 +56,6 @@ var _Account = function () {
         shaSum = crypto.createHash('sha256');
         shaSum.update(password);
 
-        console.log('Registering ' + email);
-
         user = new Account({
             email: email,
             name: {
@@ -72,7 +70,7 @@ var _Account = function () {
             if (err) {
                 return next(err);
             }
-            res.status(200).send(post);
+            res.send(post);
         });
 
     };

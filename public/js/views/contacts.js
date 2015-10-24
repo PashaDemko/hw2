@@ -7,6 +7,13 @@ function( ContactView, contactsTemplate) {
       this.render();
       this.collection.on('change', this.render, this);
     },
+    events:{
+      'click .cancelBtn': 'cancel'
+    },
+
+    cancel: function(){
+      window.location.hash = 'index';
+    },
 
     render: function() {
       this.$el.html(contactsTemplate);
@@ -16,6 +23,7 @@ function( ContactView, contactsTemplate) {
       });
       return this;
     }
+
   });
 
   return contactsView;

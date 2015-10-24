@@ -10,26 +10,24 @@ var Admin = function () {
 
     this.AllUsers = function (req, res, next) {
 
-        Account.find()
-            .lean()
-            .populate('posts')
-            .exec(function(err, accs){
+        Account.find({admin: false},function(err, accs){
             if (err) return next (err);
-            res.status(200).send( accs);
-            })
-
+            res.send( accs);
+        });
     };
 
     this.deleteAcc = function (req, res, next) {
 
         var Acc = req.params.id;
-        Model.findByIdAndRemove(Acc, function (err){
+        Account.findByIdAndRemove(Acc, function (err, acc){
+
             if (err) return next(err);
             Post.find({creator: Acc})
                 .remove()
                 .exec(function(err){
+
                     if (err) return next(err);
-                    res.sendStatus(200);
+                    res.send(acc);
                 })
         })
 
@@ -37,7 +35,8 @@ var Admin = function () {
 
     this.admin = function (req, res, next) {
 
-        if (req.session.AccoutId == "562a85433f7ad4101b8ce6f1" ){
+        if (req.session.accountId == "562b58d3a9ed25982e5f4a6c" ){
+            console.log("ADMIN");
             next();
         } else {
             res.sendStatus(401);

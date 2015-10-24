@@ -1,8 +1,8 @@
 
 define(['views/index', 'views/register', 'views/login','models/Account',
-        'views/contacts', 'collections/Contacts',  'views/addcontact'],
+        'views/contacts', 'collections/Contacts',  'views/addcontact', 'views/admin'],
     function(IndexView, RegisterView, LoginView, Account,
-             ContactsView, ContactCollection, AddContactView) {
+             ContactsView, ContactCollection, AddContactView, Admin) {
 
         var AppRouter = Backbone.Router.extend({
             currentView: null,
@@ -24,7 +24,7 @@ define(['views/index', 'views/register', 'views/login','models/Account',
             },
 
             addcontact: function() {
-                new AddContactView().render();
+                this.changeView(new AddContactView());
             },
 
             index: function() {
@@ -32,6 +32,11 @@ define(['views/index', 'views/register', 'views/login','models/Account',
                 var that = this;
                 var model = new Account();
                 model.fetch({success: function(){
+                    var Model = model.toJSON();
+                    if (Model.admin == true){
+                        that.changeView(new Admin({model: model}))
+                    }
+                    else
                     that.changeView(new IndexView({ model: model}))
                 }});
             },

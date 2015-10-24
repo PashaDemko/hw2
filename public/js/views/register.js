@@ -11,19 +11,25 @@ define(['text!templates/register.html', 'collections/authorise'], function(regis
 
             e.preventDefault();
             var entry = new Entry();
-            entry.create({
-                    firstName: $('#firstName').val(),
-                    lastName: $('#lastName').val(),
-                    email: $('#email').val(),
-                    password: $('#password').val()
-                }
-                , {success: function (){  window.location.hash = 'login'},
-                    error: function(){alert("fill all fields")}},{wait: true}
+            var data = {
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                email: $('#email').val(),
+                password: $('#password').val()
+            }
+            entry.create( data,
+                {success: function (){  window.location.hash = 'login'},
+                    error: function(){
+                        if (!data.email && !data.firstName && !data.lastName && !data.password )
+                        alert("fill all fields pls")
+                    else alert('this email is already used')}},
+                {wait: true}
             )
 
         },
 
         cancel: function(){
+            this.undelegateEvents();
             window.location.hash = 'login';
         },
 
