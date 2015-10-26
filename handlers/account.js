@@ -15,7 +15,6 @@ var _Account = function () {
 
             next();
         } else {
-            console.log('not authorize')
             res.sendStatus(401);
         }
 

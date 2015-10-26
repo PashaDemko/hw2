@@ -43,6 +43,7 @@ define(['text!templates/admin.html', 'collections/users', 'views/user',  'models
                 var model = this.model.toJSON();
                 this.$el.html (this.template( {model: model}));
             }
+
         });
 
         return adminView

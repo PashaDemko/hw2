@@ -1,5 +1,6 @@
 define(function() {
     var Post = Backbone.Model.extend({
+
         idAttribute: '_id',
         urlRoot: '/account/posts',
         validate: function(attrs) {
@@ -8,6 +9,7 @@ define(function() {
                 return "Nothing input"
             }
         }
+
     });
 
     return Post;

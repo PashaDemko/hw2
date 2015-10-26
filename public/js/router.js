@@ -5,6 +5,7 @@ define(['views/index', 'views/register', 'views/login','models/Account',
              ContactsView, ContactCollection, AddContactView, Admin) {
 
         var AppRouter = Backbone.Router.extend({
+
             currentView: null,
 
             routes: {
@@ -54,10 +55,11 @@ define(['views/index', 'views/register', 'views/login','models/Account',
                 var contactsCollection = new ContactCollection();
 
                 contactsCollection.fetch({success: function(){
-                   new ContactsView({collection: contactsCollection}
-                   )}}
+                   new ContactsView({collection: contactsCollection})
+                    }}
                 );
             }
+
         });
         return new AppRouter();
     });

@@ -26,11 +26,9 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
           var contactsCollection = new ContactCollection();
 
           contactsCollection.fetch({success: function (){
-            var viewContact =  new ContactsView({
-                  removeButton: true,
-                  collection: contactsCollection}
-            ).render().el;
-            $('.friends').append(viewContact);}})
+            var viewContact =  new ContactsView({collection: contactsCollection}).render().el;
+            $('.friends').append(viewContact);
+          }})
 
         },
 

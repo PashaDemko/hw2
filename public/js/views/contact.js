@@ -69,7 +69,8 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
                 }));
                 return this;
 
-            }});
+            }
+        });
 
         return contactView;
     });

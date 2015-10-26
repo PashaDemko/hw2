@@ -11,7 +11,7 @@ module.exports = (function(){
     var contactRouter = require('./contact');
 
     accountRouter.use('/', accountHandler.access);
-   accountRouter.get('/', accountHandler.me);
+    accountRouter.get('/', accountHandler.me);
 
     accountRouter.use('/contacts', contactRouter);
     accountRouter.use('/posts', postRouter);

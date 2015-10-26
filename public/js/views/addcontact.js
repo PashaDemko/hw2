@@ -2,12 +2,12 @@ define(['models/Contact','collections/Contacts', 'views/contact', 'text!template
 function(Contact, Contacts, ContactView, addcontactTemplate)
 {
   var addcontactView = Backbone.View.extend({
+
       el: $('#content'),
 
       events: {
           "submit .search_form": "search"
       },
-
 
       search: function() {
           var that = this;
@@ -38,6 +38,7 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
           }
           return this;
       }
+
   });
 
     return addcontactView;

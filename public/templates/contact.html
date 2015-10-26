@@ -1,9 +1,9 @@
 <div style="text-align: center;width: 200px;border: 5px solid #21c66d;">
   <h2><%=model.name.full%></h2>
   <div class="actionarea">
+
   <% if ( addButton ) { %>
     <p><button class="addbutton">Add Contact</p>
-
     <% } %>
 
     <% if ( removeButton ) { %>
@@ -11,5 +11,6 @@
     <div class="post<%=model._id%>"> </div>
     <p><button class="removebutton">Remove Contact</p>
     <% } %>
+
   </div>
 </div>
