@@ -9,7 +9,6 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
-app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use (bodyParser.urlencoded({extended: false}));

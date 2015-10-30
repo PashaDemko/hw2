@@ -16,9 +16,7 @@
     "express-session": "1.11.3",
     "crypto": "0.0.3",
     "cookie-parser": "1.4.0",
-    "bootstrap": "^3.3.5",
     "express": "4.13.3",
-    "jade": "^1.11.0",
     "mongodb": "^2.0.43",
     "mongoose": "^4.1.7"
   },

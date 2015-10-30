@@ -5,7 +5,8 @@ module.exports = function(app){
     var adminRouter = require('./admin');
 
     app.get('/', function(req, res, next){
-        res.render('index.jade');
+
+        res.sendFile("index.html", {root: __dirname + "/../public/" })
     });
     app.use('/account', accountRouter);
     app.use('/authorise', authRouter);
