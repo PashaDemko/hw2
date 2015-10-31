@@ -1,8 +1,8 @@
 
 define(['views/index', 'views/register', 'views/login','models/Account',
-        'views/contacts', 'collections/Contacts',  'views/addcontact', 'views/admin'],
+         'collections/Contacts',  'views/addcontact', 'views/admin'],
     function(IndexView, RegisterView, LoginView, Account,
-             ContactsView, ContactCollection, AddContactView, Admin) {
+             ContactCollection, AddContactView, Admin) {
 
         var AppRouter = Backbone.Router.extend({
 
@@ -48,16 +48,6 @@ define(['views/index', 'views/register', 'views/login','models/Account',
 
             register: function() {
                 this.changeView(new RegisterView());
-            },
-
-            contacts: function() {
-
-                var contactsCollection = new ContactCollection();
-
-                contactsCollection.fetch({success: function(){
-                   new ContactsView({collection: contactsCollection})
-                    }}
-                );
             }
 
         });

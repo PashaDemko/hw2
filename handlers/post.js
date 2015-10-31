@@ -15,7 +15,6 @@ var _Post = function () {
         var accountId = req.params.id == 'me'
             ? req.session.accountId
             : req.params.id;
-        console.log(accountId);
 
         Post.find({creator: accountId}, function (err, collection){
             if (!collection) res.sendStatus(404);

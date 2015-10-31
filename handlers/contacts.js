@@ -35,7 +35,6 @@ var removeContact = function(account, contactId) {
 var findByString = function(searchStr, callback) {
 
     var searchRegex = new RegExp(searchStr, 'i');
-    console.log();
     Account.findOne({
         $or: [
             { 'name.full': { $regex: searchRegex } },
@@ -123,7 +122,6 @@ var Contact = function () {
 
                     addContact(account, contact);
                     addContact(contact, account);
-
                     res.send(contact);
                 });
             }

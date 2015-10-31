@@ -2,7 +2,6 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
     function(contactTemplate, viewPost, Post, Contact) {
         var contactView = Backbone.View.extend({
 
-
             addButton: false,
             removeButton: false,
             template: _.template(contactTemplate),
@@ -30,6 +29,7 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
                 var contact = new Contact({_id: this.model.get('_id')});
                 contact.destroy({success:function () {
                     $responseArea.text('Contact Removed');
+
                 }, error: function () {
                     $responseArea.text('Could not remove contact');
                 }});
@@ -61,7 +61,6 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
             },
 
             render: function() {
-
                 $(this.el).html(this.template({
                     model: this.model.toJSON(),
                     addButton: this.addButton,

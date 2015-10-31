@@ -16,20 +16,17 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
 
         initialize: function (options) {
 
-          this.renderCollection();
+          this.ContactCollection();
           this.renderPosts();
 
         },
 
-        renderCollection: function (){
+        ContactCollection: function (){
 
           var contactsCollection = new ContactCollection();
-
           contactsCollection.fetch({success: function (){
-            var viewContact =  new ContactsView({collection: contactsCollection}).render().el;
-            $('.friends').append(viewContact);
+            var viewContact =  new ContactsView({collection: contactsCollection}).render();
           }})
-
         },
 
         quit: function(){
