@@ -20,7 +20,7 @@ var _Account = function () {
 
     };
 
-    this.me = function (req, res, next) {
+    this.profile = function (req, res, next) {
 
         var accountId =  req.session.accountId;
 

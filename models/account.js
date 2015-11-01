@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
-
 var AccountSchema = new mongoose.Schema({
     email:     { type: String, unique: true },
     password:  { type: String },
@@ -16,9 +14,7 @@ var AccountSchema = new mongoose.Schema({
     posts: [{type: Schema.ObjectId, ref: 'post'}]
 });
 
-
 var Account = mongoose.model('account', AccountSchema);
-
 
 mongoose.schemas = {};
 mongoose.schemas.Account = AccountSchema;

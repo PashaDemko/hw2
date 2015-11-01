@@ -1,4 +1,3 @@
-
 define(['views/index', 'views/register', 'views/login','models/Account',
          'collections/Contacts',  'views/addcontact', 'views/admin'],
     function(IndexView, RegisterView, LoginView, Account,
@@ -12,8 +11,7 @@ define(['views/index', 'views/register', 'views/login','models/Account',
                 'addcontact': 'addcontact',
                 "index": "index",
                 "login": "login",
-                "register": "register",
-                'contacts': 'contacts'
+                "register": "register"
             },
 
             changeView: function(view) {
@@ -51,5 +49,6 @@ define(['views/index', 'views/register', 'views/login','models/Account',
             }
 
         });
+
         return new AppRouter();
     });

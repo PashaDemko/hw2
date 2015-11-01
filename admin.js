@@ -5,7 +5,7 @@ var AccountSchema = mongoose.schemas.Account;
 var Admin = mongoose.model('account', AccountSchema);
 mongoose.connection.on('open', function() {
 
-    Admin.findOne({email: 'Administator' }, function (err, acc){
+    Admin.findOne({email: 'Administrator' }, function (err, acc){
         if (!acc) {
 
            var shaSum = crypto.createHash('sha256');

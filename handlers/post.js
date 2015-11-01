@@ -12,15 +12,15 @@ var _Post = function () {
 
     this.allposts = function (req, res, next) {
 
-        var accountId = req.params.id == 'me'
-            ? req.session.accountId
-            : req.params.id;
+        var accountId = req.params.id == 'me' ? req.session.accountId : req.params.id;
 
         Post.find({creator: accountId}, function (err, collection){
+
             if (!collection) res.sendStatus(404);
 
             if(err) return next(err);
             res.send(collection);
+
         });
 
     };
@@ -29,7 +29,6 @@ var _Post = function () {
 
         var accountId = req.session.accountId;
         var body = req.body;
-
         var post = new Post(body);
 
         Account.findById(accountId, function(err, account) {
@@ -37,7 +36,6 @@ var _Post = function () {
 
             post.save((function (err, post) {
                 if (err) {
-
                     return next(err);
                 }
 
@@ -48,6 +46,7 @@ var _Post = function () {
                         return next(err);
 
                     }
+
                     res.send(post);
                 }));
             }));
@@ -58,7 +57,6 @@ var _Post = function () {
     this.post = function (req, res, next) {
 
         var postId = req.params.id;
-
 
         Post.findById(postId, function(err, post) {
             res.send(post);
@@ -80,6 +78,7 @@ var _Post = function () {
                      if (err) {
                         return next(err);
                      }
+
                      res.send(edited);
                  });
         });
@@ -95,10 +94,12 @@ var _Post = function () {
 
                  if (!user){
                      res.send("not found");
-                 } else
-                     for ( var i = user.posts.length - 1; i >= 0; i--)
+                 } else {
+                     for ( var i = user.posts.length - 1; i >= 0; i-- )
                          if (req.params.id == user.posts[i])
                              delpost =   user.posts.splice(i, 1);
+                 }
+
                  user.save(function (err, user) {
                      if (err) {
                          return next(err);

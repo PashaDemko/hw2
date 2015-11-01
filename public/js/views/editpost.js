@@ -26,7 +26,6 @@ define(['text!templates/editpost.html'], function(editpost){
        },
 
        render: function () {
-           var model = this.model;
            this.$el.html(this.template({ model  : this.model }));
            return this;
        }

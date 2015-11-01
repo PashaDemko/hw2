@@ -8,7 +8,7 @@ var Post = mongoose.model('post', PostShema);
 
 var Admin = function () {
 
-    this.AllUsers = function (req, res, next) {
+    this.allUsers = function (req, res, next) {
 
         Account.find({admin: false},function(err, accs){
             if (err) return next (err);
@@ -16,12 +16,13 @@ var Admin = function () {
         });
     };
 
-    this.deleteAcc = function (req, res, next) {
+    this.deleteUser = function (req, res, next) {
 
         var Acc = req.params.id;
         Account.findByIdAndRemove(Acc, function (err, acc){
 
             if (err) return next(err);
+
             Post.find({creator: Acc})
                 .remove()
                 .exec(function(err){

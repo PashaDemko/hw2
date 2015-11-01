@@ -5,6 +5,7 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
             addButton: false,
             removeButton: false,
             template: _.template(contactTemplate),
+
             events: {
                 "click .addbutton": "addContact",
                 "click .removebutton": "removeContact"
@@ -66,8 +67,8 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
                     addButton: this.addButton,
                     removeButton: this.removeButton
                 }));
-                return this;
 
+                return this;
             }
         });
 

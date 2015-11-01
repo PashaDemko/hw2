@@ -5,18 +5,17 @@ define(['models/authorise','text!templates/login.html'], function(Entry, loginTe
 
       events: {
       "submit .login_form": "login"
-
       },
-
 
       login: function() {
 
           var  data = {
-         _id: "me",
+              _id: "me",
               email: this.$el.find('#email').val(),
               password: this.$el.find('#password').val()
           };
           var  entry = new Entry(data);
+
           entry.save( {}
               ,{success : function(data) {
                   window.location.hash = 'index';

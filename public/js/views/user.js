@@ -15,7 +15,6 @@ define(['text!templates/user.html', 'models/user', 'views/post', 'models/Post'],
 
         },
 
-
         remove: function(e){
 
             var targetEl = $(e.target);
@@ -34,6 +33,7 @@ define(['text!templates/user.html', 'models/user', 'views/post', 'models/Post'],
         renderPosts: function (){
             var that = this;
             var postsCollection = this.model.posts;
+
             _.each(postsCollection, function (idpost) {
                 console.log(idpost);
                 var  post = new Post({_id: idpost});
@@ -44,13 +44,12 @@ define(['text!templates/user.html', 'models/user', 'views/post', 'models/Post'],
             });
         },
 
-
         render: function() {
 
             var model = this.model;
             this.$el.html(this.template({ model: model }));
-            return this;
 
+            return this;
         }
 
     });

@@ -57,6 +57,7 @@ define(['text!templates/post.html', 'models/Post', 'views/editpost'], function(p
       this.$el.html(this.template({ model: model,
         editButton: this.editButton,
         removeButton: this.removeButton}));
+
       return this;
 
     }

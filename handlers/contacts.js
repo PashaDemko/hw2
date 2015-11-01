@@ -20,12 +20,10 @@ var addContact = function(account, addcontact) {
 
 var removeContact = function(account, contactId) {
 
-    var i;
-
     if (!account)
         res.sendStatus(404);
     else
-        for (i = account.contacts.length - 1; i >= 0; i--)
+        for ( var i = account.contacts.length - 1; i >= 0; i-- )
             if (contactId == account.contacts[i])
                 delpost =   account.contacts.splice(i, 1);
     account.save();
@@ -35,6 +33,7 @@ var removeContact = function(account, contactId) {
 var findByString = function(searchStr, callback) {
 
     var searchRegex = new RegExp(searchStr, 'i');
+
     Account.findOne({
         $or: [
             { 'name.full': { $regex: searchRegex } },
@@ -64,7 +63,6 @@ var Contact = function () {
     this.delcontact = function(req,res, next) {
 
         var accountId = req.session.accountId;
-
         var contactId = req.params.id;
 
         if ( null == contactId ) {
@@ -110,18 +108,20 @@ var Contact = function () {
     this.addcontact = function (req, res, next) {
 
         var accountId = req.session.accountId;
-
         var contactId = req.params.id;
+
         if ( null == contactId ) {
             res.sendStatus(400);
             return;
         }
+
         Account.findById(accountId, function(err, account) {
             if ( account ) {
                 Account.findById(contactId, function(err, contact) {
 
                     addContact(account, contact);
                     addContact(contact, account);
+
                     res.send(contact);
                 });
             }

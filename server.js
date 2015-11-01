@@ -14,12 +14,12 @@ app.use(bodyParser.json());
 app.use (bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session(
-    {secret: "Vrakoshysecretkey",
-     resave: false,
-     saveUninitialized: true,
-     key: 'express.sid'}
+    {
+        secret: "Vrakoshysecretkey",
+        resave: false,
+        saveUninitialized: true
+    }
 ));
-
 
 mongoose.connect('localhost/Vrakoshydb');
 db = mongoose.connection;
@@ -29,6 +29,7 @@ db.on("error", function (err){
 db.once('open', function (){
     console.log('connected to db');
 });
+
 require('./admin');
 require('./routes')(app);
 

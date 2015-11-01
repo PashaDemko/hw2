@@ -24,17 +24,18 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
         ContactCollection: function (){
 
           var contactsCollection = new ContactCollection();
+
           contactsCollection.fetch({success: function (){
             var viewContact =  new ContactsView({collection: contactsCollection}).render();
           }})
+
         },
 
         quit: function(){
-
           var entry = new Entry({_id: "me"});
+
           entry.destroy();
           window.location.hash = 'login';
-
         },
 
         addPost: function() {
@@ -61,6 +62,7 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
           var postCollection = this.model.get('posts');
           _.each(postCollection, function (idpost) {
             var postModel = new Post({_id : idpost});
+
             postModel.fetch({success: function(){
               var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
               $('.posts_list').append(postHtml);
@@ -71,6 +73,7 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
 
         render: function() {
           var model = this.model.toJSON();
+
           this.$el.html (this.template( {model: model}));
         }
       });

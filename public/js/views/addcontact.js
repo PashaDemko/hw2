@@ -34,8 +34,8 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
               var contactModel = new Contact(result);
               var contactHtml = (new ContactView({ addButton: true, model: contactModel })).render().el;
               $('#results').append(contactHtml);
-
           }
+
           return this;
       }
 

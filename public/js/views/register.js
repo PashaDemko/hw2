@@ -16,14 +16,14 @@ define(['text!templates/register.html', 'collections/authorise'], function(regis
                 lastName: $('#lastName').val(),
                 email: $('#email').val(),
                 password: $('#password').val()
-            }
-            entry.create( data,
+            };
+
+            entry.create(data,
                 {success: function (){  window.location.hash = 'login'},
                     error: function(){
                         if (!data.email && !data.firstName && !data.lastName && !data.password )
-                        alert("fill all fields pls")
-                    else alert('this email is already used')}},
-                {wait: true}
+                        alert("fill all fields pls");
+                    else alert('this email is already used')}}
             )
 
         },
