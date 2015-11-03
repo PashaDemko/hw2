@@ -1,4 +1,4 @@
-define(['text!templates/editpost.html'], function(editpost){
+define(['text!templates/posts/editpost.html'], function(editpost){
 
    var EditPost = Backbone.View.extend({
 
@@ -6,8 +6,6 @@ define(['text!templates/editpost.html'], function(editpost){
 
        initialize: function () {
            this.render();
-           this.form = this.$('form');
-           this.status = this.form.find('#edit_content');
        },
 
        events: {
@@ -26,7 +24,7 @@ define(['text!templates/editpost.html'], function(editpost){
        },
 
        render: function () {
-           this.$el.html(this.template({ model  : this.model }));
+           this.$el.html(this.template({ model  : this.model.toJSON() }));
            return this;
        }
 

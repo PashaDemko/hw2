@@ -1,6 +1,14 @@
-define(['text!templates/index.html', 'models/post', 'collections/posts',
-    'views/post', 'models/authorise', 'collections/Contacts', 'views/contacts'],
-    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactsView) {
+define([
+      'text!templates/index.html',
+      'models/post',
+      'collections/posts',
+      'views/post/post',
+      'models/authorise',
+      'collections/Contacts',
+      'views/contacts/contacts',
+      'views/editprofile'
+    ],
+    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactsView, editProfile) {
 
 
       var indexView = Backbone.View.extend({
@@ -11,13 +19,23 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
 
         events: {
           "submit .add_form": "addPost",
-          "click .QuitBtn": 'quit'
+          "click .QuitBtn": 'quit',
+          "click .editProfileBtn": 'editProfile'
         },
 
-        initialize: function (options) {
+        initialize: function () {
 
           this.ContactCollection();
           this.renderPosts();
+
+        },
+
+        editProfile : function() {
+
+          var model = this.model.toJSON();
+          console.log(model)
+          var editProfileView = new editProfile({ model: this.model });
+          $('.editProf').html(editProfileView.el);
 
         },
 
@@ -35,12 +53,12 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
           var entry = new Entry({_id: "me"});
 
           entry.destroy();
-          window.location.hash = 'login';
+          Backbone.history.fragment = '';
+          Backbone.history.navigate('#login', {trigger: true});
         },
 
         addPost: function() {
 
-          var that = this;
           var data = {
             creator : this.model.get('_id'),
             content : $('#post').val()
@@ -48,7 +66,7 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
           var newPost = new Posts();
 
           newPost.create(data,{success: function(){
-            that.undelegateEvents();
+
             Backbone.history.fragment = '';
             Backbone.history.navigate('#index', {trigger: true});
           }});
@@ -65,13 +83,15 @@ define(['text!templates/index.html', 'models/post', 'collections/posts',
 
             postModel.fetch({success: function(){
               var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
-              $('.posts_list').append(postHtml);
+
+              $(postHtml).appendTo('.posts_list');
             }},{wait: true});
           });
 
         },
 
         render: function() {
+
           var model = this.model.toJSON();
 
           this.$el.html (this.template( {model: model}));

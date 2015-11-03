@@ -1,5 +1,9 @@
-define(['text!templates/admin.html', 'collections/users', 'views/user',  'models/authorise'],
-    function(indexTemplate,  Users, UserView,  Entry) {
+define([
+        'text!templates/admin.html',
+        'collections/users',
+        'views/admin/user',
+        'models/authorise'
+    ], function(indexTemplate,  Users, UserView,  Entry) {
 
 
         var adminView = Backbone.View.extend({

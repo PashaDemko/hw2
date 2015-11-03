@@ -4,10 +4,10 @@ module.exports = function(app){
     var authRouter = require('./authorise');
     var adminRouter = require('./admin');
 
-    app.get('/', function(req, res, next){
-
-        res.sendFile("index.html", {root: __dirname + "/../public/" })
+    app.get('/', function (req, res, next) {
+        res.sendfile('index.html');
     });
+
     app.use('/account', accountRouter);
     app.use('/authorise', authRouter);
     app.use('/admin', adminRouter);

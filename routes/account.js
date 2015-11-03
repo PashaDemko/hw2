@@ -12,6 +12,8 @@ module.exports = (function(){
 
     accountRouter.use('/', accountHandler.access);
     accountRouter.get('/', accountHandler.profile);
+    accountRouter.post('/', accountHandler.editprofile);
+
 
     accountRouter.use('/contacts', contactRouter);
     accountRouter.use('/posts', postRouter);

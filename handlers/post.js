@@ -10,20 +10,6 @@ var Post = mongoose.model('post', PostShema);
 
 var _Post = function () {
 
-    this.allposts = function (req, res, next) {
-
-        var accountId = req.params.id == 'me' ? req.session.accountId : req.params.id;
-
-        Post.find({creator: accountId}, function (err, collection){
-
-            if (!collection) res.sendStatus(404);
-
-            if(err) return next(err);
-            res.send(collection);
-
-        });
-
-    };
 
     this.create = function (req, res, next) {
 

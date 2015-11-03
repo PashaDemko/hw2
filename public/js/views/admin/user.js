@@ -1,4 +1,9 @@
-define(['text!templates/user.html', 'models/user', 'views/post', 'models/Post'], function(userTemplate, User, viewPost, Post) {
+define([
+    'text!templates/user.html',
+    'models/user',
+    'views/post/post',
+    'models/Post'
+], function(userTemplate, User, viewPost, Post) {
     var userView = Backbone.View.extend({
 
         template: _.template(userTemplate),

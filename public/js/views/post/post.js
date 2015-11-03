@@ -1,4 +1,8 @@
-define(['text!templates/post.html', 'models/Post', 'views/editpost'], function(postTemplate, Post, editPost) {
+define([
+  'text!templates/posts/post.html',
+  'models/Post',
+  'views/post/editpost'
+], function(postTemplate, Post, editPost) {
   var postView = Backbone.View.extend({
 
     editButton: false,
@@ -8,14 +12,16 @@ define(['text!templates/post.html', 'models/Post', 'views/editpost'], function(p
 
     events: {
       'click .removeBtn': 'remove',
-      'click .editBtn': 'editPost'
+      'click .editBtn': 'editPost',
+      'click td': 'showbuttons'
+
     },
 
 
     initialize: function(options){
 
       this.model.on('change', this.render, this);
-      this.render();
+      //this.render();
       this.options = options;
       if ( this.options.editButton ) {
         this.editButton = this.options.editButton;
@@ -43,20 +49,20 @@ define(['text!templates/post.html', 'models/Post', 'views/editpost'], function(p
     },
 
     editPost: function() {
-
-      var model =this.model.toJSON();
-      console.log(model);
+      var model = this.model.toJSON();
       var editPostView = new editPost({ model: this.model });
       $('.'+ model._id).html(editPostView.el);
-
     },
 
     render: function() {
 
       var model = this.model.toJSON();
-      this.$el.html(this.template({ model: model,
+
+      this.$el.html(this.template({
+        model: model,
         editButton: this.editButton,
-        removeButton: this.removeButton}));
+        removeButton: this.removeButton
+      }));
 
       return this;
 

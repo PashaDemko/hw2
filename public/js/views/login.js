@@ -1,4 +1,7 @@
-define(['models/authorise','text!templates/login.html'], function(Entry, loginTemplate) {
+define([
+    'models/authorise',
+    'text!templates/login.html'
+], function(Entry, loginTemplate) {
   var loginView = Backbone.View.extend({
 
       el: '#content',
@@ -8,6 +11,7 @@ define(['models/authorise','text!templates/login.html'], function(Entry, loginTe
       },
 
       login: function() {
+          var that = this;
 
           var  data = {
               _id: "me",
@@ -18,7 +22,9 @@ define(['models/authorise','text!templates/login.html'], function(Entry, loginTe
 
           entry.save( {}
               ,{success : function(data) {
-                  window.location.hash = 'index';
+                  that.undelegateEvents();
+                  Backbone.history.fragment = '';
+                  Backbone.history.navigate('#index', {trigger: true});
               },error: function(){
                   $("#error").text('Unable to login.');
               }} );
@@ -28,6 +34,7 @@ define(['models/authorise','text!templates/login.html'], function(Entry, loginTe
 
       render: function() {
           this.$el.html(loginTemplate);
+
           $("#error").hide();
       }
   });

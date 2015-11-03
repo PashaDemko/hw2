@@ -8,6 +8,9 @@ define(function() {
                 alert ("Please write something!");
                 return "Nothing input"
             }
+        },
+        initialize: function () {
+            this.id = this.attributes._id;
         }
 
     });

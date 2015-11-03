@@ -1,4 +1,7 @@
-define(['text!templates/register.html', 'collections/authorise'], function(registerTemplate, Entry) {
+define([
+    'text!templates/register.html',
+    'collections/authorise'
+], function(registerTemplate, Entry) {
     var registerView = Backbone.View.extend({
 
         el: $('#content'),
@@ -19,18 +22,24 @@ define(['text!templates/register.html', 'collections/authorise'], function(regis
             };
 
             entry.create(data,
-                {success: function (){  window.location.hash = 'login'},
+                {success: function (){
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#login', {trigger: true});
+                },
                     error: function(){
                         if (!data.email && !data.firstName && !data.lastName && !data.password )
                         alert("fill all fields pls");
-                    else alert('this email is already used')}}
+                    else alert('this email is already used')
+                    }
+                }
             )
 
         },
 
         cancel: function(){
             this.undelegateEvents();
-            window.location.hash = 'login';
+            Backbone.history.fragment = '';
+            Backbone.history.navigate('#login', {trigger: true});
         },
 
         render: function() {

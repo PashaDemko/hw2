@@ -1,0 +1,19 @@
+
+<table cellspacing="5" >
+<tr id="<%= model._id%>" >
+
+<td style="width:300px;text-align:center">
+    <textarea readonly><%= model.content %></textarea>
+
+    <% if ( editButton ) { %>
+    <button class="editBtn">Edit</button>
+    <% } %>
+    <% if ( removeButton ) { %>
+    <button class="removeBtn">Delete</button>
+    <% } %>
+
+</td>
+    <div class="<%= model._id%>"> </div>
+
+</tr>
+</table>

@@ -1,29 +1,19 @@
-
-define(['router', 'collections/authorise'], function(router, Entry) {
+define(['router'], function(AppRouter) {
 
     var initialize = function() {
-        checkLogin(runApplication);
-    };
 
-    var checkLogin = function(callback) {
+        var router = new AppRouter();
+        var fragment = Backbone.history.fragment;
+        var url = window.location.hash;
 
-        var entry = new Entry();
-        entry.fetch({success: function() {
-            return callback(true);
-        },
-        error: function(data) {
-            return callback(false);
-        }});
-    };
-
-    var runApplication = function(authenticated) {
-
-        if (!authenticated) {
-            window.location.hash = 'login';
-        } else {
-            window.location.hash = 'index';
-        }
         Backbone.history.start();
+
+        if (fragment){
+            Backbone.history.fragment = '';
+        } else {
+            Backbone.history.navigate(url, {trigger: true});
+        }
+
     };
 
     return {

@@ -75,15 +75,6 @@ var _Account = function () {
 
     };
 
-    this.authenticated = function (req, res, next) {
-
-        if ( req.session && req.session.loggedIn ) {
-            res.send({session : req.session.accountId});
-        } else {
-            res.sendStatus(401);
-        }
-    };
-
     this.outauth = function (req, res, next){
 
         req.session.destroy(function() {

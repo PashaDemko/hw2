@@ -1,24 +1,31 @@
-define(['views/index', 'views/register', 'views/login','models/Account',
-         'collections/Contacts',  'views/addcontact', 'views/admin'],
-    function(IndexView, RegisterView, LoginView, Account,
+define([
+        'views/index',
+        'views/register',
+        'views/login',
+        'models/Account',
+        'collections/Contacts',
+        'views/contacts/addcontact',
+        'views/admin/admin'
+    ], function(IndexView, RegisterView, LoginView, Account,
              ContactCollection, AddContactView, Admin) {
 
         var AppRouter = Backbone.Router.extend({
 
-            currentView: null,
-
             routes: {
+                '': 'login',
                 'addcontact': 'addcontact',
                 "index": "index",
                 "login": "login",
-                "register": "register"
+                "register": "register",
+                "*any": "any"
             },
 
             changeView: function(view) {
-                if ( null != this.currentView ) {
+                if (this.currentView ) {
                     this.currentView.undelegateEvents();
                 }
                 this.currentView = view;
+
                 this.currentView.render();
             },
 
@@ -37,6 +44,7 @@ define(['views/index', 'views/register', 'views/login','models/Account',
                     }
                     else
                     that.changeView(new IndexView({ model: model}))
+
                 }});
             },
 
@@ -46,9 +54,13 @@ define(['views/index', 'views/register', 'views/login','models/Account',
 
             register: function() {
                 this.changeView(new RegisterView());
+            },
+
+            any: function(){
+                alert('404');
             }
 
         });
 
-        return new AppRouter();
+        return AppRouter;
     });

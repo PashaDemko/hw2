@@ -1,5 +1,9 @@
-define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Contact'],
-    function(contactTemplate, viewPost, Post, Contact) {
+define([
+        'text!templates/contacts/contact.html',
+        'views/post/post',
+        'models/Post',
+        'models/Contact'
+    ], function(contactTemplate, viewPost, Post, Contact) {
         var contactView = Backbone.View.extend({
 
             addButton: false,
@@ -17,7 +21,8 @@ define(['text!templates/contact.html', 'views/post', 'models/Post', 'models/Cont
 
                 contact.fetch({success:function () {
                     $responseArea.text('Contact Added');
-                    window.location.hash = 'index';
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#index', {trigger: true});
                 }, error: function () {
                     $responseArea.text('Could not add contact');
                 }});

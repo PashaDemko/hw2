@@ -1,4 +1,4 @@
-define(['views/contact'],
+define(['views/contacts/contact'],
 function( ContactView) {
   var contactsView = Backbone.View.extend({
 
@@ -11,7 +11,8 @@ function( ContactView) {
     },
 
     cancel: function(){
-      window.location.hash = 'index';
+      Backbone.history.fragment = '';
+      Backbone.history.navigate('#index', {trigger: true});
     },
 
     render: function() {
