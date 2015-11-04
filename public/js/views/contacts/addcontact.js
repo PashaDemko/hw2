@@ -11,7 +11,8 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
       el: $('#content'),
 
       events: {
-          "submit .search_form": "search"
+          "submit .search_form": "search",
+          'click .cancelBtn': 'cancel'
       },
 
       search: function() {
@@ -30,6 +31,12 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
           });
 
           return false;
+      },
+
+      cancel: function(){
+          this.undelegateEvents();
+          Backbone.history.fragment = '';
+          Backbone.history.navigate('#index', {trigger: true});
       },
 
       render: function(result) {

@@ -16,11 +16,10 @@ define([
             },
 
             addContact: function() {
-                var $responseArea = this.$('.actionArea');
+                var $responseArea = this.$('.actionarea');
                 var contact = new Contact({_id: this.model.get('_id')});
 
                 contact.fetch({success:function () {
-                    $responseArea.text('Contact Added');
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#index', {trigger: true});
                 }, error: function () {
@@ -31,15 +30,15 @@ define([
             removeContact: function(e) {
 
                 var $responseArea = this.$('.actionarea');
-                $responseArea.text('Removing contact...');
+
                 var contact = new Contact({_id: this.model.get('_id')});
                 contact.destroy({success:function () {
-                    $responseArea.text('Contact Removed');
-
-                }, error: function () {
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#index', {trigger: true});
+                },
+                    error: function () {
                     $responseArea.text('Could not remove contact');
                 }});
-
             },
 
             initialize: function(options) {

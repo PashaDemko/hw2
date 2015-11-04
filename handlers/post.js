@@ -33,7 +33,7 @@ var _Post = function () {
 
                     }
 
-                    res.send(post);
+                    res.status(200).send(post);
                 }));
             }));
         });
@@ -64,8 +64,7 @@ var _Post = function () {
                      if (err) {
                         return next(err);
                      }
-
-                     res.send(edited);
+                     res.status(200).send(edited);
                  });
         });
 
@@ -91,7 +90,7 @@ var _Post = function () {
                          return next(err);
                      }
                      post.remove(function (){
-                         res.send(delpost)
+                         res.status(200).send(delpost);
                      });
                  });
              })

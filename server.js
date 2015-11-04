@@ -36,7 +36,7 @@ db.once('open', function (){
     console.log('connected to db');
 });
 
-require('./admin');
+require('./data/admin');
 require('./routes')(app);
 
 app.listen(port, function(){

@@ -7,7 +7,7 @@ module.exports = (function(){
 
 
     authRouter.put('/:id', authHandler.login);
-    authRouter.delete('/:id', authHandler.outauth);
+    authRouter.delete('/:id', authHandler.exit);
     authRouter.post('/', authHandler.register);
 
     return authRouter;

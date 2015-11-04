@@ -33,7 +33,6 @@ define([
         editProfile : function() {
 
           var model = this.model.toJSON();
-          console.log(model)
           var editProfileView = new editProfile({ model: this.model });
           $('.editProf').html(editProfileView.el);
 

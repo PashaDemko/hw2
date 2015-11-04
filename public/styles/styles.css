@@ -3,3 +3,40 @@ body { font-family:  Georgia}
 form {
   width: 300px;
 }
+
+div {
+  text-align: center;
+}
+
+h3.label {
+  position: absolute;
+  top: 45px;
+  left: 500px;
+}
+
+button.QuitBtn {
+  position: absolute;
+  top: 25px;
+  left: 780px;
+}
+button.editProfileBtn {
+position: absolute;
+top: 65px;
+left: 740px;
+}
+div.edit {
+  width: auto;
+  border: 4px solid #abff39;
+}
+
+div.show {
+  width: 300px;
+  border: 5px solid #8086c6;
+  position:absolute;
+  top: 100px;
+  left: 500px;
+}
+
+div.forelement {
+  border: 5px solid #45c6b6;
+}

@@ -16,7 +16,6 @@ var login = function(email, password, callback) {
 
 };
 
-
 var _Account = function () {
 
     this.login = function (req, res, next) {
@@ -35,7 +34,7 @@ var _Account = function () {
             }
             req.session.loggedIn = true;
             req.session.accountId = account._id;
-            res.send( account);
+            res.status(200).send(account);
         });
 
     };
@@ -66,16 +65,16 @@ var _Account = function () {
             password: shaSum.digest('hex')
         });
 
-        user.save(function (err, post) {
+        user.save(function (err, account) {
             if (err) {
                 return next(err);
             }
-            res.send(post);
+            res.status(200).send(account);
         });
 
     };
 
-    this.outauth = function (req, res, next){
+    this.exit = function (req, res, next){
 
         req.session.destroy(function() {
             res.sendStatus(401);

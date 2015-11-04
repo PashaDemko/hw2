@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-require('./models');
+require('../models');
 var crypto = require('crypto');
 var AccountSchema = mongoose.schemas.Account;
 var Admin = mongoose.model('account', AccountSchema);

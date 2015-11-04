@@ -1,6 +1,6 @@
 define(['text!templates/editprofile.html'], function(editprofile){
 
-    var EditProfile = Backbone.View.extend({
+    var editProfile = Backbone.View.extend({
 
         template: _.template(editprofile),
 
@@ -27,8 +27,6 @@ define(['text!templates/editprofile.html'], function(editprofile){
 
             e.preventDefault();
 
-            if (!data.password) data.password = model.password;
-
             this.model.save(data, {
                 success: function (){
                     console.log('WTF')
@@ -54,6 +52,6 @@ define(['text!templates/editprofile.html'], function(editprofile){
 
     });
 
-    return EditProfile;
+    return editProfile;
 
 });

@@ -22,25 +22,38 @@ var _Account = function () {
     };
     this.editprofile = function (req, res, next) {
 
-        var shaSum = crypto.createHash('sha256');
+        var shaSum;
         var firstName = req.body.firstname;
         var lastName = req.body.lastname;
         var password = req.body.password;
         var email = req.body.email;
-        shaSum = crypto.createHash('sha256');
-        shaSum.update(password);
-        var data = {
-            name: {
-                first : firstName,
-                last : lastName,
-                full : firstName + ' ' + lastName
-            },
-            password:  shaSum.digest('hex'),
-            email: email
-        };
+        var data;
+        if (password) {
+            shaSum = crypto.createHash('sha256');
+            shaSum.update(password);
+            data = {
+                name: {
+                    first : firstName,
+                    last : lastName,
+                    full : firstName + ' ' + lastName
+                },
+                password: shaSum.digest('hex') ,
+                email: email
+            }
+        } else {
+            data = {
+                name: {
+                    first : firstName,
+                    last : lastName,
+                    full : firstName + ' ' + lastName
+                },
+                email: email
+            }
+        }
 
         Account.update({_id: req.session.accountId}, {$set : data}, function(err,account){
             if (err){ return next(err);}
+
             res.status(200).send(account);
         });
 
@@ -55,7 +68,7 @@ var _Account = function () {
         if (err) {
             return next(err);
         }
-            res.send(account);
+            res.status(200).send(account);
     });
 };
 

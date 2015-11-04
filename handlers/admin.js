@@ -12,7 +12,7 @@ var Admin = function () {
 
         Account.find({admin: false},function(err, accs){
             if (err) return next (err);
-            res.send( accs);
+            res.status(200).send(accs);
         });
     };
 
@@ -28,7 +28,7 @@ var Admin = function () {
                 .exec(function(err){
 
                     if (err) return next(err);
-                    res.send(acc);
+                    res.status(200).send(acc);
                 })
         })
 

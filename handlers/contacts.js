@@ -26,7 +26,15 @@ var removeContact = function(account, contactId) {
         for ( var i = account.contacts.length - 1; i >= 0; i-- )
             if (contactId == account.contacts[i])
                 delpost =   account.contacts.splice(i, 1);
-    account.save();
+    account.save(
+        function (err) {
+            if (err) {
+                console.log('Error deleting contact: ' + err);
+                return next(err);
+            }
+        }
+
+    );
 
 };
 
@@ -53,7 +61,7 @@ var Contact = function () {
             .lean()
             .populate('contacts')
             .exec(function(err, user){
-                res.send(user.contacts)
+                res.status(200).send(user.contacts);
             });
 
     };
@@ -79,7 +87,7 @@ var Contact = function () {
                 removeContact(contact, accountId);
 
                 account.save( function(){
-                    res.send(contact);
+                    res.status(200).send(account);
                 });
 
             });
@@ -99,10 +107,9 @@ var Contact = function () {
             if (err || !accounts) {
                 res.sendStatus(404);
             } else {
-                res.send( accounts);
+                res.status(200).send(accounts);
             }
         });
-
     };
 
     this.addcontact = function (req, res, next) {
@@ -110,7 +117,7 @@ var Contact = function () {
         var accountId = req.session.accountId;
         var contactId = req.params.id;
 
-        if ( null == contactId ) {
+        if (!contactId || contactId == accountId  ) {
             res.sendStatus(400);
             return;
         }
@@ -122,7 +129,7 @@ var Contact = function () {
                     addContact(account, contact);
                     addContact(contact, account);
 
-                    res.send(contact);
+                    res.status(200).send(account);
                 });
             }
         });
@@ -130,6 +137,7 @@ var Contact = function () {
     };
 
 };
+
 module.exports = Contact;
 
 

@@ -18,6 +18,7 @@ define([
               email: this.$el.find('#email').val(),
               password: this.$el.find('#password').val()
           };
+
           var  entry = new Entry(data);
 
           entry.save( {}

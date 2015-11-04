@@ -3,11 +3,9 @@ define([
         'views/register',
         'views/login',
         'models/Account',
-        'collections/Contacts',
         'views/contacts/addcontact',
         'views/admin/admin'
-    ], function(IndexView, RegisterView, LoginView, Account,
-             ContactCollection, AddContactView, Admin) {
+    ], function(IndexView, RegisterView, LoginView, Account, AddContactView, Admin) {
 
         var AppRouter = Backbone.Router.extend({
 
