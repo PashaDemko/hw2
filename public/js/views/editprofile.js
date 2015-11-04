@@ -29,8 +29,6 @@ define(['text!templates/editprofile.html'], function(editprofile){
 
             this.model.save(data, {
                 success: function (){
-                    console.log('WTF')
-                    that.remove();
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#index', {trigger: true});
                     },

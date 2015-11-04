@@ -20,6 +20,7 @@ var _Account = function () {
         }
 
     };
+
     this.editprofile = function (req, res, next) {
 
         var shaSum;
@@ -28,27 +29,23 @@ var _Account = function () {
         var password = req.body.password;
         var email = req.body.email;
         var data;
+
+        if ( !email ||  !lastName || !firstName ) {
+            res.sendStatus(400);
+            return;
+        }
+        data = {
+            name: {
+                first : firstName,
+                last : lastName,
+                full : firstName + ' ' + lastName
+            },
+            email: email
+        };
         if (password) {
             shaSum = crypto.createHash('sha256');
             shaSum.update(password);
-            data = {
-                name: {
-                    first : firstName,
-                    last : lastName,
-                    full : firstName + ' ' + lastName
-                },
-                password: shaSum.digest('hex') ,
-                email: email
-            }
-        } else {
-            data = {
-                name: {
-                    first : firstName,
-                    last : lastName,
-                    full : firstName + ' ' + lastName
-                },
-                email: email
-            }
+            data.password = shaSum.digest('hex')
         }
 
         Account.update({_id: req.session.accountId}, {$set : data}, function(err,account){

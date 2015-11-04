@@ -4,6 +4,7 @@ define(['models/Contact'], function(Contact) {
       model: Contact,
       url:  '/account/contacts'
 
+
   });
 
   return ContactCollection;

@@ -48,7 +48,7 @@ var _Account = function () {
         var shaSum;
         var user;
 
-        if ( null == email || email.length < 1 || null == password || password.length < 1 ) {
+        if ( !email  ||  !password || !firstName || !lastName ) {
             res.sendStatus(400);
             return;
         }

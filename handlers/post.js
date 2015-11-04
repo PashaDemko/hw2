@@ -18,8 +18,10 @@ var _Post = function () {
         var post = new Post(body);
 
         Account.findById(accountId, function(err, account) {
-            if (!account) res.sendStatus(404);
-
+            if (!account) {
+                res.sendStatus(404)
+                return;
+            }
             post.save((function (err, post) {
                 if (err) {
                     return next(err);
@@ -73,7 +75,9 @@ var _Post = function () {
     this.delete = function (req, res, next) {
 
          Post.findById(req.params.id, function (err, post){
-             if (!post) res.sendStatus(404);
+             if (!post) {
+                 res.sendStatus(404);
+                 return}
              Account.findById(post.creator, function (err,user){
                  var delpost;
 

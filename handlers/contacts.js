@@ -20,8 +20,11 @@ var addContact = function(account, addcontact) {
 
 var removeContact = function(account, contactId) {
 
-    if (!account)
+    if (!account){
         res.sendStatus(404);
+        return;
+    }
+
     else
         for ( var i = account.contacts.length - 1; i >= 0; i-- )
             if (contactId == account.contacts[i])
@@ -73,7 +76,7 @@ var Contact = function () {
         var accountId = req.session.accountId;
         var contactId = req.params.id;
 
-        if ( null == contactId ) {
+        if ( !contactId ) {
             res.sendStatus(400);
             return;
         }
@@ -98,14 +101,16 @@ var Contact = function () {
     this.findContact = function (req, res, next) {
 
         var searchStr = req.body.searchStr;
-
-        if ( null == searchStr ) {
+        console.log(searchStr)
+        if ( !searchStr ) {
             res.sendStatus(400);
+            return;
         }
-        findByString(searchStr, function (err,accounts) {
+        findByString(searchStr, function (err, accounts) {
 
             if (err || !accounts) {
                 res.sendStatus(404);
+                return;
             } else {
                 res.status(200).send(accounts);
             }
