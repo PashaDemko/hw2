@@ -4,6 +4,7 @@ define([
     'views/post/post',
     'models/Post'
 ], function(userTemplate, User, viewPost, Post) {
+
     var userView = Backbone.View.extend({
 
         template: _.template(userTemplate),
@@ -23,12 +24,12 @@ define([
         remove: function(e){
 
             var targetEl = $(e.target);
-            var tr = targetEl.closest('table');
-            var id = tr.attr('id');
+            var table = targetEl.closest('table');
+            var id = table.attr('id');
             var user = new User({_id: id});
 
             user.destroy({
-                success: function(){tr.remove();},
+                success: function(){table.remove();},
                 error: function(){alert('error');}
             });
 

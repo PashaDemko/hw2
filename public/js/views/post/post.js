@@ -3,6 +3,7 @@ define([
   'models/Post',
   'views/post/editpost'
 ], function(postTemplate, Post, editPost) {
+
   var postView = Backbone.View.extend({
 
     editButton: false,

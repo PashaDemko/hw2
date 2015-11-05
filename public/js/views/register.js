@@ -2,6 +2,7 @@ define([
     'text!templates/register.html',
     'collections/authorise'
 ], function(registerTemplate, Entry) {
+
     var registerView = Backbone.View.extend({
 
         el: $('#content'),

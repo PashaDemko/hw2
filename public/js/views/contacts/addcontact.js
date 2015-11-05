@@ -17,10 +17,10 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
 
       search: function() {
           var that = this;
-          var FindContact = new Contacts();
+          var findContact = new Contacts();
           var body = {"searchStr" :  $('#searchStr').val() };
 
-          FindContact.create(body,{
+          findContact.create(body,{
               success: function(data) {
                   console.log(data);
                   that.render(data.toJSON());

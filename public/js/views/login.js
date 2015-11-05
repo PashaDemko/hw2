@@ -2,6 +2,7 @@ define([
     'models/authorise',
     'text!templates/login.html'
 ], function(Entry, loginTemplate) {
+
   var loginView = Backbone.View.extend({
 
       el: '#content',

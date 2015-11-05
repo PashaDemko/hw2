@@ -10,7 +10,6 @@ define([
     ],
     function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactView, editProfile) {
 
-
       var indexView = Backbone.View.extend({
 
         el: $('#content'),

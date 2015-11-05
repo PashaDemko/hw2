@@ -4,6 +4,7 @@ define([
         'models/Post',
         'models/Contact'
     ], function(contactTemplate, viewPost, Post, Contact) {
+
         var contactView = Backbone.View.extend({
 
             addButton: false,
