@@ -19,5 +19,4 @@ module.exports = (function(){
     accountRouter.use('/posts', postRouter);
 
     return accountRouter;
-
 })();

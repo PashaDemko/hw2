@@ -1,0 +1,17 @@
+<table id="<%= model._id%>" cellspacing="5" style="width: 200px;border: 5px solid #21c66d;" >
+    <p></p>
+    <tr  >
+        <td >
+            <div class="cell">
+                Account :<b><%= model.name.full %></b>
+                <p>  <button class="removeBtn">Delete</button> </p>
+            </div>
+        </td>
+        <td>
+            <div class="cell">
+                Posts
+                <div class="post<%=model._id%>"> </div>
+            </div>
+        </td>
+    </tr>
+</table>

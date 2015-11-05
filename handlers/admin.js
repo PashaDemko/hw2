@@ -37,7 +37,6 @@ var Admin = function () {
     this.admin = function (req, res, next) {
 
         if (req.session.accountId == "562b58d3a9ed25982e5f4a6c" ){
-            console.log("ADMIN");
             next();
         } else {
             res.sendStatus(401);

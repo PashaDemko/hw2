@@ -1,5 +1,5 @@
 define([
-        'text!templates/admin.html',
+        'text!templates/admin/admin.html',
         'collections/users',
         'views/admin/user',
         'models/authorise'

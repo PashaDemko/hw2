@@ -10,7 +10,6 @@ define(function() {
             }
         }
 
-
     });
 
     return Post;

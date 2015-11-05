@@ -5,7 +5,7 @@ module.exports = function(app){
     var adminRouter = require('./admin');
 
     app.get('/', function (req, res, next) {
-        res.sendfile('index.html');
+        res.sendfile('startpage.html');
     });
 
     app.use('/account', accountRouter);
@@ -16,6 +16,5 @@ module.exports = function(app){
         var status = err.status || 500;
         res.status(status).send(err);
     });
-
 
 };

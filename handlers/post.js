@@ -10,7 +10,6 @@ var Post = mongoose.model('post', PostShema);
 
 var _Post = function () {
 
-
     this.create = function (req, res, next) {
 
         var accountId = req.session.accountId;

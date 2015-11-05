@@ -23,12 +23,11 @@ var removeContact = function(account, contactId) {
     if (!account){
         res.sendStatus(404);
         return;
-    }
-
-    else
+    } else {
         for ( var i = account.contacts.length - 1; i >= 0; i-- )
-            if (contactId == account.contacts[i])
-                delpost =   account.contacts.splice(i, 1);
+        if (contactId == account.contacts[i])
+            delpost =   account.contacts.splice(i, 1);
+    }
     account.save(
         function (err) {
             if (err) {
@@ -101,7 +100,7 @@ var Contact = function () {
     this.findContact = function (req, res, next) {
 
         var searchStr = req.body.searchStr;
-        console.log(searchStr)
+
         if ( !searchStr ) {
             res.sendStatus(400);
             return;
@@ -110,7 +109,6 @@ var Contact = function () {
 
             if (err || !accounts) {
                 res.sendStatus(404);
-                return;
             } else {
                 res.status(200).send(accounts);
             }

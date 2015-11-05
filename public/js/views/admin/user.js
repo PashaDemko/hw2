@@ -1,5 +1,5 @@
 define([
-    'text!templates/user.html',
+    'text!templates/admin/user.html',
     'models/user',
     'views/post/post',
     'models/Post'
@@ -23,7 +23,7 @@ define([
         remove: function(e){
 
             var targetEl = $(e.target);
-            var tr = targetEl.closest('tr');
+            var tr = targetEl.closest('table');
             var id = tr.attr('id');
             var user = new User({_id: id});
 
