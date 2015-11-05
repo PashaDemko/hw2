@@ -5,10 +5,10 @@ define([
       'views/post/post',
       'models/authorise',
       'collections/Contacts',
-      'views/contacts/contacts',
-      'views/editprofile'
+      'views/contacts/contact',
+      'views/editProfile'
     ],
-    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactsView, editProfile) {
+    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactView, editProfile) {
 
 
       var indexView = Backbone.View.extend({
@@ -43,7 +43,10 @@ define([
           var contactsCollection = new ContactCollection();
 
           contactsCollection.fetch({success: function (){
-            var viewContact =  new ContactsView({collection: contactsCollection}).render();
+            contactsCollection.each(function(contact){
+              var contactHtml = new ContactView({removeButton: true,  model: contact}).render().el;
+              $('.contacts_list').append(contactHtml);
+            });
           }})
 
         },
@@ -52,8 +55,7 @@ define([
           var entry = new Entry({_id: "me"});
 
           entry.destroy();
-          Backbone.history.fragment = '';
-          Backbone.history.navigate('#login', {trigger: true});
+          window.location.hash = 'login';
         },
 
         addPost: function() {

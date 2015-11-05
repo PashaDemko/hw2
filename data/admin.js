@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 require('../models');
 var crypto = require('crypto');
+
 var AccountSchema = mongoose.schemas.Account;
 var Admin = mongoose.model('account', AccountSchema);
+
 mongoose.connection.on('open', function() {
 
     Admin.findOne({email: 'Administrator' }, function (err, acc){

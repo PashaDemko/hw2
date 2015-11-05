@@ -68,8 +68,6 @@ var Contact = function () {
 
     };
 
-
-
     this.delcontact = function(req,res, next) {
 
         var accountId = req.session.accountId;

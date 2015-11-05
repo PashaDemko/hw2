@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 require('../models');
 var crypto = require('crypto');
+
 var AccountSchema = mongoose.schemas.Account;
 var Account = mongoose.model('account', AccountSchema);
 
@@ -37,6 +38,14 @@ var _Account = function () {
             res.status(200).send(account);
         });
 
+    };
+
+    this.authenticated = function (req, res, next) {
+        if ( req.session && req.session.loggedIn ) {
+            res.send({session : req.session.accountId});
+        } else {
+            res.sendStatus(401);
+        }
     };
 
     this.register = function (req, res, next) {

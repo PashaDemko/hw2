@@ -9,6 +9,7 @@ module.exports = (function(){
     authRouter.put('/:id', authHandler.login);
     authRouter.delete('/:id', authHandler.exit);
     authRouter.post('/', authHandler.register);
+    authRouter.get('/', authHandler.authenticated);
 
     return authRouter;
 })();
