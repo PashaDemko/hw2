@@ -103,6 +103,7 @@ var Contact = function () {
             res.sendStatus(400);
             return;
         }
+
         findByString(searchStr, function (err, accounts) {
 
             if (err || !accounts) {

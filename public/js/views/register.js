@@ -24,8 +24,7 @@ define([
 
             entry.create(data,
                 {success: function (){
-                    Backbone.history.fragment = '';
-                    Backbone.history.navigate('#login', {trigger: true});
+                    window.location.hash = 'login';
                 },
                     error: function(){
                         if (!data.email || !data.firstName || !data.lastName || !data.password )
@@ -39,8 +38,7 @@ define([
 
         cancel: function(){
             this.undelegateEvents();
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('#login', {trigger: true});
+            window.location.hash = 'login';
         },
 
         render: function() {

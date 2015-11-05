@@ -28,6 +28,7 @@ var _Account = function () {
             res.sendStatus(400);
             return;
         }
+
         login(email, password, function(account) {
             if ( !account ) {
                 res.sendStatus(401);
@@ -61,6 +62,7 @@ var _Account = function () {
             res.sendStatus(400);
             return;
         }
+
         shaSum = crypto.createHash('sha256');
         shaSum.update(password);
 

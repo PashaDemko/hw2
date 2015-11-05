@@ -66,7 +66,6 @@ define([
           var newPost = new Posts();
 
           newPost.create(data,{success: function(){
-
             Backbone.history.fragment = '';
             Backbone.history.navigate('#index', {trigger: true});
           }});

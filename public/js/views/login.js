@@ -24,9 +24,7 @@ define([
 
           entry.save( {}
               ,{success : function(data) {
-                  that.undelegateEvents();
-                  Backbone.history.fragment = '';
-                  Backbone.history.navigate('#index', {trigger: true});
+                  window.location.hash = 'index';
               },error: function(){
                   $("#error").text('Unable to login.');
               }} );
