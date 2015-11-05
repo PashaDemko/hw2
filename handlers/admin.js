@@ -20,16 +20,32 @@ var Admin = function () {
 
         var Acc = req.params.id;
         Account.findByIdAndRemove(Acc, function (err, acc){
-
             if (err) return next(err);
-
-            Post.find({creator: Acc})
-                .remove()
-                .exec(function(err){
-
-                    if (err) return next(err);
-                    res.status(200).send(acc);
+            acc.contacts.forEach(function (id){
+                Account.findById(id, function (err, contact){
+                    for ( var i = contact.contacts.length - 1; i >= 0; i-- )
+                        if (Acc == contact.contacts[i])
+                            delpost =   contact.contacts.splice(i, 1);
+                    contact.save(
+                        function (err) {
+                            if (err) {
+                                console.log('Error deleting contact: ' + err);
+                                return next(err);
+                            }
+                            Post.find({creator: Acc})
+                                .remove()
+                                .exec(function(err){
+                                    if (err) return next(err);
+                                    res.status(200).send(acc);
+                                })
+                        }
+                    );
                 })
+            })
+
+
+
+
         })
 
     };

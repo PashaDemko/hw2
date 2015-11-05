@@ -24,7 +24,7 @@ var _Account = function () {
         var password = req.body.password;
         var email = req.body.email;
 
-        if ( null == email || email.length < 1 || null == password || password.length < 1 ) {
+        if ( !email ||!password ) {
             res.sendStatus(400);
             return;
         }

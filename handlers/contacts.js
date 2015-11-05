@@ -28,6 +28,7 @@ var removeContact = function(account, contactId) {
         if (contactId == account.contacts[i])
             delpost =   account.contacts.splice(i, 1);
     }
+
     account.save(
         function (err) {
             if (err) {
@@ -35,7 +36,6 @@ var removeContact = function(account, contactId) {
                 return next(err);
             }
         }
-
     );
 
 };
