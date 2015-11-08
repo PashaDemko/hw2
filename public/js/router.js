@@ -1,13 +1,13 @@
 define([
-    'views/index',
+    'views/account/index',
     'views/register',
     'views/login',
     'models/Account',
     'models/authorise',
-    'views/contacts/addcontact',
+    'views/contacts/addContact',
     'views/admin/admin',
-    'views/editprofile',
-    'views/main',
+    'views/account/editprofile',
+    'views/menu',
     'views/home'
 ], function(IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin, editProfile, Menu, Home) {
 
@@ -15,8 +15,7 @@ define([
 
         routes: {
             '': 'check',
-            'addcontact': 'addcontact',
-            'main': "main",
+            'addcontact': 'addContact',
             "index": "index",
             "login": "login",
             "home" : "home",
@@ -73,7 +72,7 @@ define([
             this.currentView.render();
         },
 
-        addcontact: function() {
+        addContact: function() {
             new AddContactView().render();
         },
 

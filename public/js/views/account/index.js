@@ -1,59 +1,49 @@
 define([
-      'text!templates/index.html',
+      'text!templates/account/index.html',
       'models/post',
       'collections/posts',
       'views/post/post',
       'models/authorise',
       'collections/Contacts',
-      'views/contacts/contact',
-      'views/editProfile'
+      'views/contacts/contact'
     ],
-    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactView, editProfile) {
+    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactView) {
 
       var indexView = Backbone.View.extend({
 
-        el: '#cont',
+        el: '#contents',
 
         template: _.template(indexTemplate),
 
         events: {
           "submit .add_form": "addPost",
           "click .editProfileBtn": 'editProfile',
-          'click .posts': 'showposts',
-          'click .contacts': 'showcontacts'
+          'click .posts': 'showPosts',
+          'click .contacts': 'showContacts'
         },
 
         initialize: function () {
 
-          this.ContactCollection();
+          this.contactCollection();
           this.renderPosts();
 
         },
 
-        showposts: function() {
+        showPosts: function() {
           var db = $(this.el).find(".posts_list");
           var dt = $(this.el).find(".showposts");
           db.fadeToggle();
           dt.toggle();
         },
 
-        showcontacts: function() {
+        showContacts: function() {
           var db = $(this.el).find(".contacts_list");
           var dt = $(this.el).find(".showcontacts");
           db.fadeToggle();
           dt.toggle();
         },
 
-
-        editProfile : function() {
-
-          var model = this.model.toJSON();
-          var editProfileView = new editProfile({ model: this.model });
-          $('.editProf').html(editProfileView.el);
-
-        },
-
-        ContactCollection: function (){
+        contactCollection: function (){
 
           var contactsCollection = new ContactCollection();
 
@@ -88,6 +78,7 @@ define([
         renderPosts: function (){
 
           var postCollection = this.model.get('posts');
+
           _.each(postCollection, function (idpost) {
             var postModel = new Post({_id : idpost});
 
@@ -116,5 +107,5 @@ define([
         }
       });
 
-      return indexView
+      return indexView;
 });

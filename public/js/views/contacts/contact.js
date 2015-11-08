@@ -14,10 +14,10 @@ define([
             events: {
                 "click .addbutton": "addContact",
                 "click .removebutton": "removeContact",
-                'click .list-group-item': 'showbuttons'
+                'click .list-group-item': 'showButtons'
             },
 
-            showbuttons: function (e){
+            showButtons: function (e){
 
                 $(".list-group-item").removeClass("active");
 

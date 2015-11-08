@@ -1,9 +1,9 @@
 define([
-        'text!templates/main.html',
+        'text!templates/menu.html',
 
         'models/authorise'
     ],
-    function(indexTemplate, Entry) {
+    function(menuTemplate, Entry) {
 
         var mainView = Backbone.View.extend({
 
@@ -12,7 +12,7 @@ define([
             authenticated: false,
 
 
-            template: _.template(indexTemplate),
+            template: _.template(menuTemplate),
 
             render: function() {
                 var entry = new Entry();
@@ -28,5 +28,5 @@ define([
             }
         });
 
-        return mainView
+        return mainView;
     });

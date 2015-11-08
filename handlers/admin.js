@@ -24,9 +24,11 @@ var Admin = function () {
             acc.contacts.forEach(function (id){
                 Account.findById(id, function (err, contact){
 
+                    var delAccount;
+
                     for ( var i = contact.contacts.length - 1; i >= 0; i-- ) {
                         if (Acc == contact.contacts[i]){
-                            delpost =   contact.contacts.splice(i, 1);
+                            delAccount =   contact.contacts.splice(i, 1);
                         }
                     }
 

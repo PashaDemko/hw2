@@ -19,14 +19,17 @@ var addContact = function(account, addcontact) {
 };
 
 var removeContact = function(account, contactId) {
+    var delAccount;
 
     if (!account){
         res.sendStatus(404);
         return;
     } else {
-        for ( var i = account.contacts.length - 1; i >= 0; i-- )
-        if (contactId == account.contacts[i])
-            delpost =   account.contacts.splice(i, 1);
+        for ( var i = account.contacts.length - 1; i >= 0; i-- ){
+            if (contactId == account.contacts[i]){
+                delAccount =   account.contacts.splice(i, 1);
+            }
+        }
     }
 
     account.save(

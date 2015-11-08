@@ -78,14 +78,17 @@ var _Post = function () {
                  res.sendStatus(404);
                  return}
              Account.findById(post.creator, function (err,user){
-                 var delpost;
+
+                 var delPost;
 
                  if (!user){
                      res.send("not found");
                  } else {
-                     for ( var i = user.posts.length - 1; i >= 0; i-- )
-                         if (req.params.id == user.posts[i])
-                             delpost =   user.posts.splice(i, 1);
+                     for ( var i = user.posts.length - 1; i >= 0; i-- ){
+                         if (req.params.id == user.posts[i]){
+                             delPost =   user.posts.splice(i, 1);
+                         }
+                     }
                  }
 
                  user.save(function (err, user) {

@@ -5,7 +5,7 @@ define([
 
         var mainView = Backbone.View.extend({
 
-            el: '#cont',
+            el: '#contents',
 
 
             initialize: function(){
@@ -19,5 +19,5 @@ define([
             }
         });
 
-        return mainView
+        return mainView;
     });

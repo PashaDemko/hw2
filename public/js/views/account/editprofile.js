@@ -1,9 +1,10 @@
-define(['text!templates/editProfile.html'], function(editprofile){
+define(['text!templates/account/editProfile.html'], function(editProfile){
 
     var editProfile = Backbone.View.extend({
-        el: '#cont',
 
-        template: _.template(editprofile),
+        el: '#contents',
+
+        template: _.template(editProfile),
 
         events: {
             'click #saveBtn'  : 'saveItem'
@@ -22,6 +23,7 @@ define(['text!templates/editProfile.html'], function(editprofile){
             };
 
             this.model.save(data, {
+
                 success: function (){
                     that.undelegateEvents();
                     Backbone.history.fragment = '';

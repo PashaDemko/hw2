@@ -15,17 +15,18 @@ define([
     events: {
       'click .removeBtn': 'remove',
       'click .editBtn': 'editPost',
-      'click table': 'showbuttons',
-      'click .hides': 'hidebuttons'
+      'click table': 'showButtons',
+      'click .hides': 'hideButtons'
 
     },
-    hidebuttons: function (){
+
+    hideButtons: function (){
       Backbone.history.fragment = '';
       Backbone.history.navigate('#index', {trigger: true});
 
     },
 
-    showbuttons: function (e){
+    showButtons: function (e){
       e.preventDefault();
       var targetEl = $(e.target);
       var table = targetEl.closest('table');
@@ -40,7 +41,6 @@ define([
     },
 
     initialize: function(options){
-
 
       this.model.on('change', this.render, this);
       this.options = options;
@@ -81,7 +81,6 @@ define([
     },
 
     render: function() {
-
 
       var model = this.model.toJSON();
       var buttons;

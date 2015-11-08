@@ -5,7 +5,7 @@ define([
 
   var loginView = Backbone.View.extend({
 
-      el: '#cont',
+      el: '#contents',
 
       events: {
       "submit .login_form": "login"

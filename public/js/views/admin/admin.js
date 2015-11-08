@@ -16,10 +16,8 @@ define([
                 "click .QuitBtn": 'quit'
             },
 
-            initialize: function (options) {
-
+            initialize: function () {
                 this.renderUsers();
-
             },
 
             renderUsers: function (){
@@ -51,5 +49,5 @@ define([
 
         });
 
-        return adminView
+        return adminView;
     });

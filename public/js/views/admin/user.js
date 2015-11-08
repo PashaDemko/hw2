@@ -41,8 +41,8 @@ define([
             var postsCollection = this.model.posts;
 
             _.each(postsCollection, function (idpost) {
-                console.log(idpost);
                 var  post = new Post({_id: idpost});
+
                 post.fetch({success:function(){
                     var postHtml = new viewPost({removeButton: true, model: post }).render().el;
                     $(postHtml).appendTo('.post'+ that.model._id);
@@ -51,8 +51,8 @@ define([
         },
 
         render: function() {
-
             var model = this.model;
+
             this.$el.html(this.template({ model: model }));
 
             return this;

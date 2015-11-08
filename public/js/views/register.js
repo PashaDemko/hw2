@@ -5,7 +5,7 @@ define([
 
     var registerView = Backbone.View.extend({
 
-        el: '#cont',
+        el: '#contents',
 
         events: {
             "submit .register_form": "register"
