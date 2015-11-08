@@ -16,11 +16,15 @@ define(['text!templates/posts/editpost.html'], function(editpost){
        submit: function(e) {
            e.preventDefault();
            this.model.save({content: $('#edit_content').val()});
-           this.remove();
+
+           Backbone.history.fragment = '';
+           Backbone.history.navigate('#index', {trigger: true})
        },
 
-       cancel: function() {
-           this.remove();
+       cancel: function(e) {
+           e.preventDefault();
+           Backbone.history.fragment = '';
+           Backbone.history.navigate('#index', {trigger: true});
        },
 
        render: function () {

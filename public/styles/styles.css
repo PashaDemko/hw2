@@ -10,17 +10,13 @@ h2.vr {
   left: 500px;
 }
 
-h3.label {
+h3.label1 {
   position: absolute;
   top: 45px;
-  left: 500px;
+  left: 45%;
 }
 
-button.QuitBtn {
-  position: absolute;
-  top: 25px;
-  left: 780px;
-}
+
 button.editProfileBtn {
 position: absolute;
 top: 65px;
@@ -37,12 +33,12 @@ div.edit {
 }
 
 div.show {
-  width: 300px;
-  border: 5px solid #8086c6;
+  width: auto;
   position:absolute;
   top: 100px;
-  left: 500px;
+  left: 43%;
 }
+
 
 div.forelement {
   border: 5px solid #45c6b6;

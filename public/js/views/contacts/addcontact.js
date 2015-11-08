@@ -8,14 +8,14 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
 {
   var addcontactView = Backbone.View.extend({
 
-      el: $('#content'),
+      el: '#cont',
 
       events: {
-          "submit .search_form": "search",
-          'click .cancelBtn': 'cancel'
+          "submit .search_form": "search"
       },
 
       search: function() {
+
           var that = this;
           var findContact = new Contacts();
           var body = {"searchStr" :  $('#searchStr').val() };
@@ -31,12 +31,6 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
           });
 
           return false;
-      },
-
-      cancel: function(){
-          this.undelegateEvents();
-          Backbone.history.fragment = '';
-          Backbone.history.navigate('#index', {trigger: true});
       },
 
       render: function(result) {

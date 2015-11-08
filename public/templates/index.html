@@ -1,33 +1,43 @@
-<h3 class="label" > Hello <%= model.name.full %></h3>
-<button class="editProfileBtn"> Edit Profile </button>
-<div class="editProf"> </div>
-<button class="QuitBtn"> Quit </button>
 
-<div  class="show" style="top: 150px;left: 350px;">
-    <h3 >Posts</h3>
-    <div class="edit">
+<h3 class="label1" > Hello <%= model.name.full %></h3>
 
+    <div  class="panel panel-info " style=" width: auto;position:absolute;top: 150px;left: 350px;">
+    <div class="panel-heading posts">
+        <h3 class="panel-title ">Posts <span class="badge"><%= model.posts.length %></span> <span class="showposts">  (Hide)</span></h3>
+
+
+    </div>
+    <div class="panel-body postCreate">
         <form class="add_form">
+            <h3>Add a Post</h3>
             <p></p>
-            <textarea type="text"  name="post" id="post" cols="30"/>
-
-            <input type="submit" value="addPost" />
+            <textarea class="form-control" name="post" id="post"></textarea>
+            <p></p>
+            <input class="removeBtn btn btn-success" type="submit" value="Create" />
 
         </form>
         <p></p>
 
     </div>
+    <div class="posts_list list-group"></div>
 
-    <div class="posts_list"></div>
+</div>
+<div  class="panel panel-primary " style=" width: 340px;position:absolute;top: 150px;left: 700px;">
+
+    <div class="panel-heading contacts">
+        <h3 class="panel-title">
+            Contacts
+            <span class="badge"><%= model.contacts.length %></span>
+            <span class="showcontacts">  (Hide)</span>
+        </h3>
+    </div>
+    <div class="panel-body">
+    <a href="#addcontact"> <h3>Add a Contact</h3></a>
+    <p></p>
+    <div class="contacts_list list-group"></div>
+        </div>
 </div>
 
-<div class="show" style="top: 150px;left: 700px;">
-    <p></p>
-    <h3> Contacts</h3>
-    <p></p>
-    <a href="#addcontact">Add a Contact</a>
-    <p></p>
-    <div class="contacts_list"></div>
-</div>
+
 
 

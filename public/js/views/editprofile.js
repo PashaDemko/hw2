@@ -1,55 +1,52 @@
-define(['text!templates/editprofile.html'], function(editprofile){
+define(['text!templates/editProfile.html'], function(editprofile){
 
     var editProfile = Backbone.View.extend({
+        el: '#cont',
 
         template: _.template(editprofile),
 
-        initialize: function () {
-            this.render();
-        },
-
         events: {
-            'submit .edit-profile-form'  : 'submit',
-            'click button.cancel' : 'cancel'
+            'click #saveBtn'  : 'saveItem'
         },
 
-        submit: function(e) {
-
+        saveItem: function() {
             var model = this.model.toJSON();
             var that = this;
+            var thisEl = this.$el;
 
             var data = {
-                firstname : $('#edit_firstName').val(),
-                lastname: $('#edit_lastName').val(),
-                password: $('#edit_password').val(),
-                email: $('#edit_mail').val()
+                firstname : thisEl.find('#edit_firstName').val(),
+                lastname: thisEl.find('#edit_lastName').val(),
+                password: thisEl.find('#edit_password').val(),
+                email: thisEl.find('#edit_mail').val()
             };
-
-            e.preventDefault();
 
             this.model.save(data, {
                 success: function (){
+                    that.undelegateEvents();
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#index', {trigger: true});
                     },
                 error: function (){
-                    console.log('error')
+                    alert("error");
                     }});
 
         },
 
         cancel: function() {
-            this.remove();
+            Backbone.history.fragment = '';
+            Backbone.history.navigate('/', {trigger: true});
         },
 
         render: function () {
-            console.log(this.model);
-            this.$el.html(this.template({ model  : this.model.toJSON() }));
+            var model = this.model.toJSON();
+
+            this.$el.html (this.template( {model: model}));
+
             return this;
         }
 
     });
 
     return editProfile;
-
 });

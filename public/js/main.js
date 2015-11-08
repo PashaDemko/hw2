@@ -3,11 +3,13 @@ require.config({
         Backbone: 'libs/backbone/backbone',
         Underscore: 'libs/underscore/underscore',
         jQuery: 'libs/jquery/dist/jquery',
+        jQueryUi: 'libs/jquery-ui/jquery-ui',
         text: 'libs/text/text',
         templates: '../templates'
     },
     shim: {
-        'Backbone': ['Underscore', 'jQuery'],
+        jQueryUi: ['jQuery'],
+        Backbone: ['Underscore', 'jQueryUi'],
         'app': ['Backbone']
     }
 });

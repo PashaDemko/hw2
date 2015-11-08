@@ -1,18 +1,21 @@
-<table cellspacing="5" >
-<tr id="<%= model._id%>" >
+
+<table id="<%= model._id%>" cellspacing="5" class="list-group-item" >
 
 <td style="width:300px">
-    <textarea readonly><%= model.content %></textarea>
 
+    <h4 class="list-group-item-text" ><%= model.content %></h4>
+    <div class="buttons" >
     <% if ( editButton ) { %>
-    <button class="editBtn">Edit</button>
+    <span class="editBtn glyphicon glyphicon-pencil" aria-hidden="true"></span>
+
     <% } %>
     <% if ( removeButton ) { %>
-    <button class="removeBtn">Delete</button>
+    <span class="removeBtn glyphicon glyphicon-trash"  ></span>
+        <span class="hides glyphicon glyphicon-minus" ></span>
     <% } %>
 
+    </div>
 </td>
     <div class="<%= model._id%>"> </div>
 
-</tr>
 </table>

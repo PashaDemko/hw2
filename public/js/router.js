@@ -5,17 +5,48 @@ define([
     'models/Account',
     'models/authorise',
     'views/contacts/addcontact',
-    'views/admin/admin'
-], function(IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin) {
+    'views/admin/admin',
+    'views/editprofile',
+    'views/main',
+    'views/home'
+], function(IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin, editProfile, Menu, Home) {
 
     var AppRouter = Backbone.Router.extend({
 
         routes: {
             '': 'check',
             'addcontact': 'addcontact',
+            'main': "main",
             "index": "index",
             "login": "login",
-            "register": "register"
+            "home" : "home",
+            "register": "register",
+            "quit" : "quit",
+            "editProfile" : "editProfile"
+        },
+
+        initialize: function(){
+            this.changeView(new Menu());
+        },
+
+        home : function (){
+            new Home().render();
+        },
+
+        editProfile: function (){
+            var that = this;
+            var model = new Account();
+            model.fetch({success: function(){
+                that.changeView(new editProfile({ model: model}) );
+            }});
+        },
+
+        quit: function (){
+            var entry = new Entry({_id: "me"});
+            entry.destroy();
+            this.initialize();
+            Backbone.history.fragment = '';
+            Backbone.history.navigate('#home', {trigger: true});
         },
 
         check: function () {
@@ -23,10 +54,12 @@ define([
             var entry = new Entry();
             entry.fetch({
                 success: function() {
-                    window.location.hash = 'index';
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#index', {trigger: true});
                 },
                 error: function() {
-                    window.location.hash = 'login';
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#home', {trigger: true});
                 }});
 
         },
@@ -41,11 +74,11 @@ define([
         },
 
         addcontact: function() {
-            this.changeView(new AddContactView());
+            new AddContactView().render();
         },
 
         index: function() {
-
+            this.initialize();
             var that = this;
             var model = new Account();
             model.fetch({success: function(){
@@ -60,6 +93,7 @@ define([
 
         login: function() {
             this.changeView(new LoginView());
+
         },
 
         register: function() {

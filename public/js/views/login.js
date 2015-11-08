@@ -5,7 +5,7 @@ define([
 
   var loginView = Backbone.View.extend({
 
-      el: '#content',
+      el: '#cont',
 
       events: {
       "submit .login_form": "login"
@@ -24,9 +24,11 @@ define([
 
           entry.save( {}
               ,{success : function(data) {
-                  window.location.hash = 'index';
+                  that.undelegateEvents();
+                  Backbone.history.fragment = '';
+                  Backbone.history.navigate('#index', {trigger: true});
               },error: function(){
-                  $("#error").text('Unable to login.');
+                  $("#error").text('Unable to login');
               }} );
 
           return false;
@@ -34,8 +36,6 @@ define([
 
       render: function() {
           this.$el.html(loginTemplate);
-
-          $("#error").hide();
       }
   });
 

@@ -12,14 +12,15 @@ define([
 
       var indexView = Backbone.View.extend({
 
-        el: $('#content'),
+        el: '#cont',
 
         template: _.template(indexTemplate),
 
         events: {
           "submit .add_form": "addPost",
-          "click .QuitBtn": 'quit',
-          "click .editProfileBtn": 'editProfile'
+          "click .editProfileBtn": 'editProfile',
+          'click .posts': 'showposts',
+          'click .contacts': 'showcontacts'
         },
 
         initialize: function () {
@@ -28,6 +29,21 @@ define([
           this.renderPosts();
 
         },
+
+        showposts: function() {
+          var db = $(this.el).find(".posts_list");
+          var dt = $(this.el).find(".showposts");
+          db.fadeToggle();
+          dt.toggle();
+        },
+
+        showcontacts: function() {
+          var db = $(this.el).find(".contacts_list");
+          var dt = $(this.el).find(".showcontacts");
+          db.fadeToggle();
+          dt.toggle();
+        },
+
 
         editProfile : function() {
 
@@ -50,12 +66,6 @@ define([
 
         },
 
-        quit: function(){
-          var entry = new Entry({_id: "me"});
-
-          entry.destroy();
-          window.location.hash = 'login';
-        },
 
         addPost: function() {
 
@@ -63,6 +73,7 @@ define([
             creator : this.model.get('_id'),
             content : $('#post').val()
           };
+
           var newPost = new Posts();
 
           newPost.create(data,{success: function(){
@@ -83,7 +94,7 @@ define([
             postModel.fetch({success: function(){
               var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
 
-              $(postHtml).appendTo('.posts_list');
+              $('.posts_list').prepend(postHtml);
             }},{wait: true});
           });
 
@@ -92,8 +103,16 @@ define([
         render: function() {
 
           var model = this.model.toJSON();
+          var db;
+          var dt;
 
           this.$el.html (this.template( {model: model}));
+          db = $(this.el).find(".contacts_list");
+          dt = $(this.el).find(".showcontacts");
+          db.hide();
+          dt.hide();
+
+          return this;
         }
       });
 

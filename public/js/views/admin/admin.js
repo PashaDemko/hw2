@@ -39,7 +39,8 @@ define([
 
                 var entry = new Entry({_id: "me"});
                 entry.destroy();
-                window.location.hash = 'login';
+                Backbone.history.fragment = '';
+                Backbone.history.navigate('#login', {trigger: true});
 
             },
 

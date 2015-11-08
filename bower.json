@@ -18,9 +18,11 @@
     "public/js/libs/"
   ],
   "dependencies": {
+    "bootstrap" : "~3.3.5",
     "backbone": "~1.2.3",
     "jquery": "~2.1.4",
     "text": "~2.0.14",
-    "requirejs": "*"
+    "requirejs": "*",
+    "jquery-ui": "~1.11.4"
   }
 }

@@ -5,10 +5,10 @@ define([
 
     var registerView = Backbone.View.extend({
 
-        el: $('#content'),
+        el: '#cont',
+
         events: {
-            "submit .register_form": "register",
-            'click .cancelBtn': 'cancel'
+            "submit .register_form": "register"
         },
 
         register: function(e) {
@@ -34,11 +34,6 @@ define([
                 }
             )
 
-        },
-
-        cancel: function(){
-            this.undelegateEvents();
-            window.location.hash = 'login';
         },
 
         render: function() {

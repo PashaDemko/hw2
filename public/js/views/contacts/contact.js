@@ -13,10 +13,21 @@ define([
 
             events: {
                 "click .addbutton": "addContact",
-                "click .removebutton": "removeContact"
+                "click .removebutton": "removeContact",
+                'click .list-group-item': 'showbuttons'
+            },
+
+            showbuttons: function (e){
+
+                $(".list-group-item").removeClass("active");
+
+                var db = $(this.el).find(".postarea");
+                db.toggle();
+
             },
 
             addContact: function() {
+
                 var $responseArea = this.$('.actionarea');
                 var contact = new Contact({_id: this.model.get('_id')});
 
@@ -31,8 +42,8 @@ define([
             removeContact: function(e) {
 
                 var $responseArea = this.$('.actionarea');
-
                 var contact = new Contact({_id: this.model.get('_id')});
+
                 contact.destroy({success:function () {
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#index', {trigger: true});
@@ -40,6 +51,7 @@ define([
                     error: function () {
                     $responseArea.text('Could not remove contact');
                 }});
+
             },
 
             initialize: function(options) {
@@ -67,11 +79,15 @@ define([
             },
 
             render: function() {
+                var postarea;
+
                 $(this.el).html(this.template({
                     model: this.model.toJSON(),
                     addButton: this.addButton,
                     removeButton: this.removeButton
                 }));
+                postarea = $(this.el).find(".postarea");
+                postarea.hide();
 
                 return this;
             }
