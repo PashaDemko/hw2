@@ -1,7 +1,8 @@
 <div class="list-group-item show " >
-    <div>
+
 
     <h3 >Edit : <%= model.name.full %> </h3>
+
     <dl>
         <dd>FirstName</dd>
         <dt><input type="text" class="form-control"  name="edit_firstName" id="edit_firstName" value="<%=model.name.first %>" ></dt>
@@ -11,7 +12,7 @@
         <dt><input type="password" class="form-control"  name="edit_password" id="edit_password" value="" >
         <dd>Email</dd>
         <dt>  <input type="text" class="form-control"  name="edit_mail" id="edit_mail" value="<%=model.email %>" ></dt></dl>
-    </div>
+
     <button class="btn btn-success" id="saveBtn">Save</button>
 
 </div>

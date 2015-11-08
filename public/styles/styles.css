@@ -4,11 +4,6 @@ form {
   width: 300px;
 }
 
-h2.vr {
-  position: absolute;
-  top: 1%;
-  left: 500px;
-}
 
 h3.label1 {
   position: absolute;
@@ -17,19 +12,8 @@ h3.label1 {
 }
 
 
-button.editProfileBtn {
-position: absolute;
-top: 65px;
-left: 740px;
-}
-
 div {
   text-align: center;
-}
-
-div.edit {
-  width: auto;
-  border: 4px solid #abff39;
 }
 
 div.show {
@@ -39,14 +23,10 @@ div.show {
   left: 43%;
 }
 
-
-div.forelement {
-  border: 5px solid #45c6b6;
-}
 div.cell {
   text-align: center;
   width: 190px;
-  border: 2px solid #49a0c6;
+
 }
 
 

@@ -46,10 +46,6 @@ var Admin = function () {
                     );
                 })
             })
-
-
-
-
         })
 
     };
