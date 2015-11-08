@@ -21,35 +21,44 @@ var Admin = function () {
         var Acc = req.params.id;
         Account.findByIdAndRemove(Acc, function (err, acc){
             if (err) return next(err);
-            acc.contacts.forEach(function (id){
-                Account.findById(id, function (err, contact){
+            if (acc.contacts.length > 0){
+                acc.contacts.forEach(function (id){
+                    Account.findById(id, function (err, contact){
 
-                    var delAccount;
+                        var delAccount;
 
-                    for ( var i = contact.contacts.length - 1; i >= 0; i-- ) {
-                        if (Acc == contact.contacts[i]){
-                            delAccount =   contact.contacts.splice(i, 1);
-                        }
-                    }
-
-                    contact.save(
-                        function (err) {
-                            if (err) {
-                                console.log('Error deleting contact: ' + err);
-                                return next(err);
+                        for ( var i = contact.contacts.length - 1; i >= 0; i-- ) {
+                            if (Acc == contact.contacts[i]){
+                                delAccount =   contact.contacts.splice(i, 1);
                             }
-                            Post.find({creator: Acc})
-                                .remove()
-                                .exec(function(err){
-                                    if (err) return next(err);
-                                    res.status(200).send(acc);
-                                })
                         }
-                    );
-                })
-            })
-        })
 
+                        contact.save(
+                            function (err) {
+                                if (err) {
+                                    console.log('Error deleting contact: ' + err);
+                                    return next(err);
+                                }
+                                Post.find({creator: Acc})
+                                    .remove()
+                                    .exec(function(err){
+                                        if (err) return next(err);
+                                        res.status(200).send(acc);
+                                    })
+                            }
+                        );
+                    })
+                })
+            } else {
+                Post.find({creator: Acc})
+                    .remove()
+                    .exec(function(err){
+                        if (err) return next(err);
+                        res.status(200).send(acc);
+                    })
+            }
+
+        })
     };
 
     this.admin = function (req, res, next) {

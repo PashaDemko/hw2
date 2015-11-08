@@ -4,7 +4,7 @@ define([
     'views/login',
     'models/Account',
     'models/authorise',
-    'views/contacts/addContact',
+    'views/contacts/addcontact',
     'views/admin/admin',
     'views/account/editprofile',
     'views/menu',
@@ -42,8 +42,10 @@ define([
 
         quit: function (){
             var entry = new Entry({_id: "me"});
+
             entry.destroy();
             this.initialize();
+
             Backbone.history.fragment = '';
             Backbone.history.navigate('#home', {trigger: true});
         },
@@ -64,6 +66,7 @@ define([
         },
 
         changeView: function(view) {
+
             if (this.currentView ) {
                 this.currentView.undelegateEvents();
             }
@@ -77,16 +80,17 @@ define([
         },
 
         index: function() {
-            this.initialize();
+
             var that = this;
             var model = new Account();
+
+            this.initialize();
             model.fetch({success: function(){
                 var Model = model.toJSON();
                 if (Model.admin == true){
                     that.changeView(new Admin({model: model}))
                 }
-                else
-                    that.changeView(new IndexView({ model: model}))
+                else that.changeView(new IndexView({ model: model}))
             }});
         },
 

@@ -1,32 +1,29 @@
 define([
-        'text!templates/menu.html',
+    'text!templates/menu.html',
+    'models/authorise'
+    ], function(menuTemplate, Entry) {
 
-        'models/authorise'
-    ],
-    function(menuTemplate, Entry) {
+    var menuView = Backbone.View.extend({
 
-        var mainView = Backbone.View.extend({
+        el: $('#content'),
 
-            el: $('#content'),
-
-            authenticated: false,
+        authenticated: false,
 
 
-            template: _.template(menuTemplate),
+        template: _.template(menuTemplate),
 
-            render: function() {
-                var entry = new Entry();
-                var that = this;
-                entry.fetch({
-                        success: function() {
-                            that.$el.html (that.template({authenticated:  true}));
-                        }
+        render: function() {
+            var entry = new Entry();
+            var that = this;
+            entry.fetch({
+                success: function() {
+                    that.$el.html (that.template({authenticated:  true}));
+                }
+            });
+            that.$el.html (that.template({authenticated:  that.authenticated}));
 
-                });
-                that.$el.html (that.template({authenticated:  that.authenticated}));
-
-            }
-        });
-
-        return mainView;
+        }
     });
+
+    return menuView;
+});

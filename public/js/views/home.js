@@ -1,23 +1,14 @@
-define([
-        'text!templates/home.html'
-    ],
-    function(homeTemplate) {
+define(['text!templates/home.html'], function(homeTemplate) {
+    var homeView = Backbone.View.extend({
 
-        var mainView = Backbone.View.extend({
+        el: '#contents',
 
-            el: '#contents',
+        template: _.template(homeTemplate),
 
-
-            initialize: function(){
-
-            },
-
-            template: _.template(homeTemplate),
-
-            render: function() {
-                this.$el.html (this.template());
-            }
-        });
-
-        return mainView;
+        render: function() {
+            this.$el.html (this.template());
+        }
     });
+
+    return homeView;
+});

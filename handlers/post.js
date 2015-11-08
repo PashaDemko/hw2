@@ -18,7 +18,7 @@ var _Post = function () {
 
         Account.findById(accountId, function(err, account) {
             if (!account) {
-                res.sendStatus(404)
+                res.sendStatus(404);
                 return;
             }
             post.save((function (err, post) {
@@ -96,7 +96,7 @@ var _Post = function () {
                          return next(err);
                      }
                      post.remove(function (){
-                         res.status(200).send(delpost);
+                         res.status(200).send(delPost);
                      });
                  });
              })

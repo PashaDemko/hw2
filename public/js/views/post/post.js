@@ -5,6 +5,7 @@ define([
 ], function(postTemplate, Post, editPost) {
 
   var postView = Backbone.View.extend({
+
     show: false,
     editButton: false,
     removeButton: false,
@@ -17,10 +18,10 @@ define([
       'click .editBtn': 'editPost',
       'click table': 'showButtons',
       'click .hides': 'hideButtons'
-
     },
 
     hideButtons: function (){
+
       Backbone.history.fragment = '';
       Backbone.history.navigate('#index', {trigger: true});
 
@@ -37,7 +38,6 @@ define([
 
       table.addClass("active");
       buttons.show();
-
     },
 
     initialize: function(options){
@@ -51,9 +51,7 @@ define([
         this.removeButton = this.options.removeButton;
       }
 
-
     },
-
 
     remove: function(e){
 
@@ -95,7 +93,6 @@ define([
       buttons.hide();
 
       return this;
-
     }
 
   });

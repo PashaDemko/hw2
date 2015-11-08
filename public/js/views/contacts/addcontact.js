@@ -4,11 +4,11 @@ define([
         'views/contacts/contact',
         'text!templates/contacts/addcontact.html'
     ],
-function(Contact, Contacts, ContactView, addcontactTemplate)
-{
-  var addcontactView = Backbone.View.extend({
+function(Contact, Contacts, ContactView, addcontactTemplate) {
 
-      el: '#cont',
+    var addcontactView = Backbone.View.extend({
+
+      el: '#contents',
 
       events: {
           "submit .search_form": "search"
@@ -22,11 +22,9 @@ function(Contact, Contacts, ContactView, addcontactTemplate)
 
           findContact.create(body,{
               success: function(data) {
-                  console.log(data);
                   that.render(data.toJSON());
               }, error :function(){
-
-                  $("#results").text('No contacts found.');
+                  $("#results").text('No contacts found');
               }
           });
 

@@ -29,11 +29,11 @@ define(['text!templates/posts/editpost.html'], function(editpost){
 
        render: function () {
            this.$el.html(this.template({ model  : this.model.toJSON() }));
+
            return this;
        }
 
    });
 
     return EditPost;
-
 });

@@ -3,7 +3,7 @@ define([
     'text!templates/login.html'
 ], function(Entry, loginTemplate) {
 
-  var loginView = Backbone.View.extend({
+    var loginView = Backbone.View.extend({
 
       el: '#contents',
 
