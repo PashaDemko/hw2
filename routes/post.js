@@ -1,12 +1,10 @@
-
-module.exports = (function(){
+module.exports = (function () {
 
 
     var express = require('express');
     var PostHandler = require('../handlers/post');
     var postRouter = express.Router();
     var postHandler = new PostHandler();
-
 
 
     postRouter.post('/', postHandler.create);

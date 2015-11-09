@@ -9,7 +9,7 @@ define([
     'views/account/editprofile',
     'views/menu',
     'views/home'
-], function(IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin, editProfile, Menu, Home) {
+], function (IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin, editProfile, Menu, Home) {
 
     var AppRouter = Backbone.Router.extend({
 
@@ -18,29 +18,43 @@ define([
             'addcontact': 'addContact',
             "index": "index",
             "login": "login",
-            "home" : "home",
+            "home": "home",
             "register": "register",
-            "quit" : "quit",
-            "editProfile" : "editProfile"
+            "quit": "quit",
+            "editProfile": "editProfile"
         },
 
-        initialize: function(){
-            this.changeView(new Menu());
+        initialize: function () {
+
+            this.entry = new Entry();
+            this.fetchEntry = this.entry.fetch({
+                success: function () {
+                    new Menu({authenticated: true}).render();
+                },
+                error: function () {
+                    new Menu({authenticated: false}).render();
+                }
+            });
+
         },
 
-        home : function (){
-            new Home().render();
+        home: function () {
+            this.fetchEntry.complete(function () {
+                new Home().render();
+            });
         },
 
-        editProfile: function (){
+        editProfile: function () {
             var that = this;
             var model = new Account();
-            model.fetch({success: function(){
-                that.changeView(new editProfile({ model: model}) );
-            }});
+            model.fetch({
+                success: function () {
+                    that.changeView(new editProfile({model: model}));
+                }
+            });
         },
 
-        quit: function (){
+        quit: function () {
             var entry = new Entry({_id: "me"});
 
             entry.destroy();
@@ -51,56 +65,70 @@ define([
         },
 
         check: function () {
-
             var entry = new Entry();
+
             entry.fetch({
-                success: function() {
+                success: function () {
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#index', {trigger: true});
                 },
-                error: function() {
+                error: function () {
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#home', {trigger: true});
-                }});
-
+                }
+            });
         },
 
-        changeView: function(view) {
+        changeView: function (view) {
 
-            if (this.currentView ) {
+            if (this.currentView) {
                 this.currentView.undelegateEvents();
             }
             this.currentView = view;
-
             this.currentView.render();
+
         },
 
-        addContact: function() {
-            new AddContactView().render();
+
+        addContact: function () {
+            var that = this;
+            this.fetchEntry.complete(function () {
+                that.changeView(new AddContactView());
+            })
         },
 
-        index: function() {
+        index: function () {
 
             var that = this;
             var model = new Account();
 
             this.initialize();
-            model.fetch({success: function(){
-                var Model = model.toJSON();
-                if (Model.admin == true){
-                    that.changeView(new Admin({model: model}))
-                }
-                else that.changeView(new IndexView({ model: model}))
-            }});
+
+            this.fetchEntry.complete(function () {
+                model.fetch({
+                    success: function () {
+                        var Model = model.toJSON();
+                        if (Model.admin == true) {
+                            that.changeView(new Admin({model: model}))
+                        }
+                        else that.changeView(new IndexView({model: model}))
+                    }
+                });
+            });
+
         },
 
-        login: function() {
-            this.changeView(new LoginView());
-
+        login: function () {
+            this.fetchEntry.complete(function () {
+                new LoginView().render();
+            });
         },
 
-        register: function() {
-            this.changeView(new RegisterView());
+        register: function () {
+            var that = this;
+            this.fetchEntry.complete(function () {
+                that.changeView(new RegisterView());
+            });
         }
     });
 

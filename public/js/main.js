@@ -3,17 +3,15 @@ require.config({
         Backbone: 'libs/backbone/backbone',
         Underscore: 'libs/underscore/underscore',
         jQuery: 'libs/jquery/dist/jquery',
-        jQueryUi: 'libs/jquery-ui/jquery-ui',
         text: 'libs/text/text',
         templates: '../templates'
     },
     shim: {
-        jQueryUi: ['jQuery'],
-        Backbone: ['Underscore', 'jQueryUi'],
+        Backbone: ['Underscore', 'jQuery'],
         'app': ['Backbone']
     }
 });
 
-require(['app'], function(app) {
+require(['app'], function (app) {
     app.initialize();
 });

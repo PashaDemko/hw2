@@ -11,7 +11,7 @@ var db;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-app.use (bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(session(
@@ -29,16 +29,16 @@ app.use(express.static(__dirname + '/public'));
 
 mongoose.connect('localhost/Vrakoshydb');
 db = mongoose.connection;
-db.on("error", function (err){
+db.on("error", function (err) {
     console.error(err)
 });
-db.once('open', function (){
+db.once('open', function () {
     console.log('connected to db');
 });
 
 require('./data/admin');
 require('./routes')(app);
 
-app.listen(port, function(){
+app.listen(port, function () {
     console.log('Server start success = ' + port);
 });

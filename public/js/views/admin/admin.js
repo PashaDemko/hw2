@@ -1,9 +1,9 @@
 define([
-        'text!templates/admin/admin.html',
-        'collections/users',
-        'views/admin/user',
-        'models/authorise'
-    ], function(indexTemplate,  Users, UserView,  Entry) {
+    'text!templates/admin/admin.html',
+    'collections/users',
+    'views/admin/user',
+    'models/authorise'
+], function (indexTemplate, Users, UserView, Entry) {
 
     var adminView = Backbone.View.extend({
 
@@ -19,20 +19,22 @@ define([
             this.renderUsers();
         },
 
-        renderUsers: function (){
+        renderUsers: function () {
 
             var usersCollection = new Users();
 
-            usersCollection.fetch({success: function (){
-                _.each(usersCollection.toJSON(), function(user){
-                    var viewUser =  new UserView({model: user}).render().el;
-                    $('.users_list').append(viewUser);
-                })
-            }})
+            usersCollection.fetch({
+                success: function () {
+                    _.each(usersCollection.toJSON(), function (user) {
+                        var viewUser = new UserView({model: user}).render().el;
+                        $('.users_list').append(viewUser);
+                    })
+                }
+            })
 
         },
 
-        quit: function(){
+        quit: function () {
 
             var entry = new Entry({_id: "me"});
             entry.destroy();
@@ -41,9 +43,9 @@ define([
 
         },
 
-        render: function() {
+        render: function () {
             var model = this.model.toJSON();
-            this.$el.html (this.template( {model: model}));
+            this.$el.html(this.template({model: model}));
         }
 
     });

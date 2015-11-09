@@ -22,7 +22,6 @@
     "backbone": "~1.2.3",
     "jquery": "~2.1.4",
     "text": "~2.0.14",
-    "requirejs": "*",
-    "jquery-ui": "~1.11.4"
+    "requirejs": "*"
   }
 }

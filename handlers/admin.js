@@ -10,8 +10,8 @@ var Admin = function () {
 
     this.allUsers = function (req, res, next) {
 
-        Account.find({admin: false},function(err, accs){
-            if (err) return next (err);
+        Account.find({admin: false}, function (err, accs) {
+            if (err) return next(err);
             res.status(200).send(accs);
         });
     };
@@ -19,17 +19,18 @@ var Admin = function () {
     this.deleteUser = function (req, res, next) {
 
         var Acc = req.params.id;
-        Account.findByIdAndRemove(Acc, function (err, acc){
+
+        Account.findByIdAndRemove(Acc, function (err, acc) {
             if (err) return next(err);
-            if (acc.contacts.length > 0){
-                acc.contacts.forEach(function (id){
-                    Account.findById(id, function (err, contact){
+            if (acc.contacts.length > 0) {
+                acc.contacts.forEach(function (id) {
+                    Account.findById(id, function (err, contact) {
 
                         var delAccount;
 
-                        for ( var i = contact.contacts.length - 1; i >= 0; i-- ) {
-                            if (Acc == contact.contacts[i]){
-                                delAccount =   contact.contacts.splice(i, 1);
+                        for (var i = contact.contacts.length - 1; i >= 0; i--) {
+                            if (Acc == contact.contacts[i]) {
+                                delAccount = contact.contacts.splice(i, 1);
                             }
                         }
 
@@ -41,7 +42,7 @@ var Admin = function () {
                                 }
                                 Post.find({creator: Acc})
                                     .remove()
-                                    .exec(function(err){
+                                    .exec(function (err) {
                                         if (err) return next(err);
                                         res.status(200).send(acc);
                                     })
@@ -52,7 +53,7 @@ var Admin = function () {
             } else {
                 Post.find({creator: Acc})
                     .remove()
-                    .exec(function(err){
+                    .exec(function (err) {
                         if (err) return next(err);
                         res.status(200).send(acc);
                     })
@@ -63,7 +64,7 @@ var Admin = function () {
 
     this.admin = function (req, res, next) {
 
-        if (req.session.accountId == "562b58d3a9ed25982e5f4a6c" ){
+        if (req.session.accountId == "562b58d3a9ed25982e5f4a6c") {
             next();
         } else {
             res.sendStatus(401);

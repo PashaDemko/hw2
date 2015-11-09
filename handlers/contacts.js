@@ -5,7 +5,7 @@ var AccountSchema = mongoose.schemas.Account;
 var Account = mongoose.model('account', AccountSchema);
 
 
-var addContact = function(account, addcontact) {
+var addContact = function (account, addcontact) {
 
     account.contacts.push(addcontact._id);
 
@@ -18,16 +18,16 @@ var addContact = function(account, addcontact) {
 
 };
 
-var removeContact = function(account, contactId) {
+var removeContact = function (account, contactId) {
     var delAccount;
 
-    if (!account){
+    if (!account) {
         res.sendStatus(404);
         return;
     } else {
-        for ( var i = account.contacts.length - 1; i >= 0; i-- ){
-            if (contactId == account.contacts[i]){
-                delAccount =   account.contacts.splice(i, 1);
+        for (var i = account.contacts.length - 1; i >= 0; i--) {
+            if (contactId == account.contacts[i]) {
+                delAccount = account.contacts.splice(i, 1);
             }
         }
     }
@@ -43,14 +43,14 @@ var removeContact = function(account, contactId) {
 
 };
 
-var findByString = function(searchStr, callback) {
+var findByString = function (searchStr, callback) {
 
     var searchRegex = new RegExp(searchStr, 'i');
 
     Account.findOne({
         $or: [
-            { 'name.full': { $regex: searchRegex } },
-            { email: { $regex: searchRegex } }
+            {'name.full': {$regex: searchRegex}},
+            {email: {$regex: searchRegex}}
         ]
     }, callback);
 
@@ -65,31 +65,31 @@ var Contact = function () {
         Account.findById(accountId)
             .lean()
             .populate('contacts')
-            .exec(function(err, user){
+            .exec(function (err, user) {
                 res.status(200).send(user.contacts);
             });
 
     };
 
-    this.delcontact = function(req,res, next) {
+    this.delcontact = function (req, res, next) {
 
         var accountId = req.session.accountId;
         var contactId = req.params.id;
 
-        if ( !contactId ) {
+        if (!contactId) {
             res.sendStatus(400);
             return;
         }
 
-        Account.findById(accountId, function(err, account) {
-            Account.findById(contactId, function(err, contact) {
+        Account.findById(accountId, function (err, account) {
+            Account.findById(contactId, function (err, contact) {
 
-                if ( !contact ) return;
+                if (!contact) return;
 
                 removeContact(account, contactId);
                 removeContact(contact, accountId);
 
-                account.save( function(){
+                account.save(function () {
                     res.status(200).send(account);
                 });
 
@@ -102,7 +102,7 @@ var Contact = function () {
 
         var searchStr = req.body.searchStr;
 
-        if ( !searchStr ) {
+        if (!searchStr) {
             res.sendStatus(400);
             return;
         }
@@ -122,14 +122,14 @@ var Contact = function () {
         var accountId = req.session.accountId;
         var contactId = req.params.id;
 
-        if (!contactId || contactId == accountId  ) {
+        if (!contactId || contactId == accountId) {
             res.sendStatus(400);
             return;
         }
 
-        Account.findById(accountId, function(err, account) {
-            if ( account ) {
-                Account.findById(contactId, function(err, contact) {
+        Account.findById(accountId, function (err, account) {
+            if (account) {
+                Account.findById(contactId, function (err, contact) {
 
                     addContact(account, contact);
                     addContact(contact, account);

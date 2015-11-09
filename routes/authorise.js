@@ -1,7 +1,7 @@
-module.exports = (function(){
+module.exports = (function () {
 
-    var express = require ('express');
-    var AuthHandler =  require('../handlers/authorise');
+    var express = require('express');
+    var AuthHandler = require('../handlers/authorise');
     var authRouter = express.Router();
     var authHandler = new AuthHandler();
 

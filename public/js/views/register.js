@@ -1,7 +1,7 @@
 define([
     'text!templates/register.html',
     'collections/authorise'
-], function(registerTemplate, Entry) {
+], function (registerTemplate, Entry) {
 
     var registerView = Backbone.View.extend({
 
@@ -11,7 +11,7 @@ define([
             "submit .register_form": "register"
         },
 
-        register: function(e) {
+        register: function (e) {
 
             e.preventDefault();
             var entry = new Entry();
@@ -23,11 +23,12 @@ define([
             };
 
             entry.create(data,
-                {success: function (){
-                    window.location.hash = 'login';
-                },
-                    error: function(){
-                        if (!data.email || !data.firstName || !data.lastName || !data.password ){
+                {
+                    success: function () {
+                        window.location.hash = 'login';
+                    },
+                    error: function () {
+                        if (!data.email || !data.firstName || !data.lastName || !data.password) {
                             alert("fill all fields pls");
                         }
                         else alert('this email is already used')
@@ -37,7 +38,7 @@ define([
 
         },
 
-        render: function() {
+        render: function () {
             this.$el.html(registerTemplate);
         }
 

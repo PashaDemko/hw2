@@ -1,31 +1,31 @@
-body { font-family:  Georgia}
+body {
+    font-family: Georgia
+}
 
 form {
-  width: 300px;
+    width: 300px;
 }
-
 
 h3.label1 {
-  position: absolute;
-  top: 45px;
-  left: 45%;
+    position: absolute;
+    top: 45px;
+    left: 45%;
 }
 
-
 div {
-  text-align: center;
+    text-align: center;
 }
 
 div.show {
-  width: auto;
-  position:absolute;
-  top: 100px;
-  left: 43%;
+    width: auto;
+    position: absolute;
+    top: 100px;
+    left: 43%;
 }
 
 div.cell {
-  text-align: center;
-  width: 190px;
+    text-align: center;
+    width: 190px;
 
 }
 

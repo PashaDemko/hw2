@@ -105,6 +105,7 @@ define([
 
           return this;
         }
+
       });
 
       return indexView;

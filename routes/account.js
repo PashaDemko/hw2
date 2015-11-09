@@ -1,5 +1,4 @@
-
-module.exports = (function(){
+module.exports = (function () {
 
     var express = require('express');
     var AccountHandler = require('../handlers/account');
@@ -13,7 +12,6 @@ module.exports = (function(){
     accountRouter.use('/', accountHandler.access);
     accountRouter.get('/', accountHandler.profile);
     accountRouter.post('/', accountHandler.editprofile);
-
 
 
     accountRouter.use('/contacts', contactRouter);

@@ -1,4 +1,3 @@
-
 require('./account');
 require('./post');
 

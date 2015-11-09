@@ -5,11 +5,11 @@ var crypto = require('crypto');
 var AccountSchema = mongoose.schemas.Account;
 var Account = mongoose.model('account', AccountSchema);
 
-var login = function(email, password, callback) {
+var login = function (email, password, callback) {
 
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
-    Account.findOne({email:email, password:shaSum.digest('hex')},function(err,doc){
+    Account.findOne({email: email, password: shaSum.digest('hex')}, function (err, doc) {
         if (err) console.log(err);
 
         callback(doc);
@@ -24,13 +24,13 @@ var _Account = function () {
         var password = req.body.password;
         var email = req.body.email;
 
-        if ( !email ||!password ) {
+        if (!email || !password) {
             res.sendStatus(400);
             return;
         }
 
-        login(email, password, function(account) {
-            if ( !account ) {
+        login(email, password, function (account) {
+            if (!account) {
                 res.sendStatus(401);
                 return;
             }
@@ -42,8 +42,8 @@ var _Account = function () {
     };
 
     this.authenticated = function (req, res, next) {
-        if ( req.session && req.session.loggedIn ) {
-            res.send({session : req.session.accountId});
+        if (req.session && req.session.loggedIn) {
+            res.send({session: req.session.accountId});
         } else {
             res.sendStatus(401);
         }
@@ -58,7 +58,7 @@ var _Account = function () {
         var shaSum;
         var user;
 
-        if ( !email  ||  !password || !firstName || !lastName ) {
+        if (!email || !password || !firstName || !lastName) {
             res.sendStatus(400);
             return;
         }
@@ -85,9 +85,9 @@ var _Account = function () {
 
     };
 
-    this.exit = function (req, res, next){
+    this.exit = function (req, res, next) {
 
-        req.session.destroy(function() {
+        req.session.destroy(function () {
             res.sendStatus(401);
         });
 

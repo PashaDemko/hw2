@@ -1,9 +1,9 @@
 define([
-        'text!templates/contacts/contact.html',
-        'views/post/post',
-        'models/Post',
-        'models/Contact'
-    ], function(contactTemplate, viewPost, Post, Contact) {
+    'text!templates/contacts/contact.html',
+    'views/post/post',
+    'models/Post',
+    'models/Contact'
+], function (contactTemplate, viewPost, Post, Contact) {
 
     var contactView = Backbone.View.extend({
 
@@ -17,7 +17,7 @@ define([
             'click .list-group-item': "showButtons"
         },
 
-        showButtons: function (e){
+        showButtons: function (e) {
             var db;
 
             $(".list-group-item").removeClass("active");
@@ -27,60 +27,66 @@ define([
 
         },
 
-        addContact: function() {
+        addContact: function () {
 
             var $responseArea = this.$('.actionarea');
             var contact = new Contact({_id: this.model.get('_id')});
 
-            contact.fetch({success:function () {
-                Backbone.history.fragment = '';
-                Backbone.history.navigate('#index', {trigger: true});
-            }, error: function () {
-                $responseArea.text('Could not add contact');
-            }});
+            contact.fetch({
+                success: function () {
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#index', {trigger: true});
+                }, error: function () {
+                    $responseArea.text('Could not add contact');
+                }
+            });
         },
 
-        removeContact: function(e) {
-                
+        removeContact: function (e) {
+
             var responseArea = this.$('.actionarea');
             var contact = new Contact({_id: this.model.get('_id')});
 
-            contact.destroy({success:function () {
-                Backbone.history.fragment = '';
-                Backbone.history.navigate('#index', {trigger: true});
-            },
+            contact.destroy({
+                success: function () {
+                    Backbone.history.fragment = '';
+                    Backbone.history.navigate('#index', {trigger: true});
+                },
                 error: function () {
                     responseArea.text('Could not remove contact');
-                }});
+                }
+            });
 
         },
 
-        initialize: function(options) {
+        initialize: function (options) {
             this.model.on('change', this.render, this);
             this.options = options;
             this.renderPosts();
-            if ( this.options.addButton ) {
+            if (this.options.addButton) {
                 this.addButton = this.options.addButton;
             }
-            if ( this.options.removeButton ) {
+            if (this.options.removeButton) {
                 this.removeButton = this.options.removeButton;
             }
         },
 
-        renderPosts: function (){
+        renderPosts: function () {
             var that = this;
             var postsCollection = this.model.get('posts');
 
             _.each(postsCollection, function (idpost) {
-                var  post = new Post({_id: idpost});
-                post.fetch({success:function(){
-                    var postHtml = new viewPost({ model: post }).render().el;
-                    $(postHtml).appendTo('.post'+ that.model.get('_id'));
-                }})
+                var post = new Post({_id: idpost});
+                post.fetch({
+                    success: function () {
+                        var postHtml = new viewPost({model: post}).render().el;
+                        $(postHtml).appendTo('.post' + that.model.get('_id'));
+                    }
+                })
             });
         },
 
-        render: function() {
+        render: function () {
             var postarea;
 
             $(this.el).html(this.template({

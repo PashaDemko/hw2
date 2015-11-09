@@ -1,28 +1,30 @@
 define([
     'text!templates/menu.html',
     'models/authorise'
-    ], function(menuTemplate, Entry) {
+], function (menuTemplate, Entry) {
 
     var menuView = Backbone.View.extend({
 
         el: $('#content'),
 
-        authenticated: false,
+        initialize: function (options) {
+
+            if (options.authenticated) {
+                this.authenticated = options.authenticated;
+            }
+
+        },
 
 
         template: _.template(menuTemplate),
 
-        render: function() {
-            var entry = new Entry();
+        render: function () {
+
             var that = this;
-            entry.fetch({
-                success: function() {
-                    that.$el.html (that.template({authenticated:  true}));
-                }
-            });
-            that.$el.html (that.template({authenticated:  that.authenticated}));
+            this.$el.html(this.template({authenticated: this.authenticated}));
 
         }
+
     });
 
     return menuView;

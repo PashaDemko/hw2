@@ -10,7 +10,7 @@ var _Account = function () {
 
     this.access = function (req, res, next) {
 
-        if ( req.session && req.session.loggedIn ) {
+        if (req.session && req.session.loggedIn) {
             next();
         } else {
             res.sendStatus(401);
@@ -27,15 +27,15 @@ var _Account = function () {
         var email = req.body.email;
         var data;
 
-        if ( !email ||  !lastName || !firstName ) {
+        if (!email || !lastName || !firstName) {
             res.sendStatus(400);
             return;
         }
         data = {
             name: {
-                first : firstName,
-                last : lastName,
-                full : firstName + ' ' + lastName
+                first: firstName,
+                last: lastName,
+                full: firstName + ' ' + lastName
             },
             email: email
         };
@@ -45,8 +45,10 @@ var _Account = function () {
             data.password = shaSum.digest('hex')
         }
 
-        Account.update({_id: req.session.accountId}, {$set : data}, function(err,account){
-            if (err){ return next(err);}
+        Account.update({_id: req.session.accountId}, {$set: data}, function (err, account) {
+            if (err) {
+                return next(err);
+            }
 
             res.status(200).send(account);
         });
@@ -55,16 +57,16 @@ var _Account = function () {
 
     this.profile = function (req, res, next) {
 
-        var accountId =  req.session.accountId;
+        var accountId = req.session.accountId;
 
-        Account.findById(accountId, function(err, account) {
+        Account.findById(accountId, function (err, account) {
 
-        if (err) {
-            return next(err);
-        }
+            if (err) {
+                return next(err);
+            }
             res.status(200).send(account);
-    });
-};
+        });
+    };
 
 };
 

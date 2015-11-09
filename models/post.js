@@ -6,7 +6,7 @@ var PostShema = new Schema({
         type: Schema.ObjectId,
         ref: 'account'
     },
-    content:    { type: String }
+    content: {type: String}
 });
 
 var Status = mongoose.model('post', PostShema);

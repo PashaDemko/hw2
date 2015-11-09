@@ -1,14 +1,17 @@
-<div class="list-group-item show " >
-    <h3 >Edit : <%= model.name.full %> </h3>
+<div class="list-group-item show ">
+    <h3>Edit : <%= model.name.full %> </h3>
     <dl>
         <dd>FirstName</dd>
-        <dt><input type="text" class="form-control"  name="edit_firstName" id="edit_firstName" value="<%=model.name.first %>" ></dt>
+        <dt><input type="text" class="form-control" name="edit_firstName" id="edit_firstName"
+                   value="<%=model.name.first %>"></dt>
         <dd>LastName</dd>
-        <dt> <input type="text" class="form-control"  name="edit_lastName" id="edit_lastName" value="<%=model.name.last %>" ></dt>
+        <dt><input type="text" class="form-control" name="edit_lastName" id="edit_lastName"
+                   value="<%=model.name.last %>"></dt>
         <dd>Password</dd>
-        <dt><input type="password" class="form-control"  name="edit_password" id="edit_password" value="" >
+        <dt><input type="password" class="form-control" name="edit_password" id="edit_password" value="">
         <dd>Email</dd>
-        <dt>  <input type="text" class="form-control"  name="edit_mail" id="edit_mail" value="<%=model.email %>" ></dt></dl>
+        <dt><input type="text" class="form-control" name="edit_mail" id="edit_mail" value="<%=model.email %>"></dt>
+    </dl>
     <button class="btn btn-success" id="saveBtn">Save</button>
 </div>
 

@@ -1,6 +1,6 @@
-define(['router'], function(AppRouter) {
+define(['router'], function (AppRouter) {
 
-    var initialize = function() {
+    var initialize = function () {
 
         var router = new AppRouter();
         var fragment = Backbone.history.fragment;
@@ -8,7 +8,7 @@ define(['router'], function(AppRouter) {
 
         Backbone.history.start();
 
-        if (fragment){
+        if (fragment) {
             Backbone.history.fragment = '';
         } else {
             Backbone.history.navigate(url, {trigger: true});

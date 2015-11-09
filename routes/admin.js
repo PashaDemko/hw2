@@ -1,4 +1,4 @@
-module.exports = (function(){
+module.exports = (function () {
 
     var express = require('express');
     var AdminHandler = require('../handlers/admin');
@@ -6,7 +6,7 @@ module.exports = (function(){
     var adminHandler = new AdminHandler();
 
 
-    adminRouter.use( adminHandler.admin);
+    adminRouter.use(adminHandler.admin);
     adminRouter.get('/', adminHandler.allUsers);
     adminRouter.delete('/:id', adminHandler.deleteUser);
 

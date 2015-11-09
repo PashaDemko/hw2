@@ -1,4 +1,4 @@
-define( function() {
+define(function () {
     var Account = Backbone.Model.extend({
 
         idAttribute: '_id',

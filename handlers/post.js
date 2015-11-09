@@ -7,7 +7,6 @@ var PostShema = mongoose.schemas.Post;
 var Post = mongoose.model('post', PostShema);
 
 
-
 var _Post = function () {
 
     this.create = function (req, res, next) {
@@ -16,7 +15,7 @@ var _Post = function () {
         var body = req.body;
         var post = new Post(body);
 
-        Account.findById(accountId, function(err, account) {
+        Account.findById(accountId, function (err, account) {
             if (!account) {
                 res.sendStatus(404);
                 return;
@@ -45,7 +44,7 @@ var _Post = function () {
 
         var postId = req.params.id;
 
-        Post.findById(postId, function(err, post) {
+        Post.findById(postId, function (err, post) {
             res.send(post);
         });
 
@@ -53,54 +52,55 @@ var _Post = function () {
 
     this.edit = function (req, res, next) {
 
-        Post.findById(req.params.id, function (err, post){
-             if (err) {
+        Post.findById(req.params.id, function (err, post) {
+            if (err) {
                 return next(err);
-             }
-             if (!post)
-                 res.send('Not Found');
-             else
-                 post.content = req.body.content;
-                 post.save(function (err, edited) {
-                     if (err) {
-                        return next(err);
-                     }
-                     res.status(200).send(edited);
-                 });
+            }
+            if (!post)
+                res.send('Not Found');
+            else
+                post.content = req.body.content;
+            post.save(function (err, edited) {
+                if (err) {
+                    return next(err);
+                }
+                res.status(200).send(edited);
+            });
         });
 
     };
 
     this.delete = function (req, res, next) {
 
-         Post.findById(req.params.id, function (err, post){
-             if (!post) {
-                 res.sendStatus(404);
-                 return}
-             Account.findById(post.creator, function (err,user){
+        Post.findById(req.params.id, function (err, post) {
+            if (!post) {
+                res.sendStatus(404);
+                return
+            }
+            Account.findById(post.creator, function (err, user) {
 
-                 var delPost;
+                var delPost;
 
-                 if (!user){
-                     res.send("not found");
-                 } else {
-                     for ( var i = user.posts.length - 1; i >= 0; i-- ){
-                         if (req.params.id == user.posts[i]){
-                             delPost =   user.posts.splice(i, 1);
-                         }
-                     }
-                 }
+                if (!user) {
+                    res.send("not found");
+                } else {
+                    for (var i = user.posts.length - 1; i >= 0; i--) {
+                        if (req.params.id == user.posts[i]) {
+                            delPost = user.posts.splice(i, 1);
+                        }
+                    }
+                }
 
-                 user.save(function (err, user) {
-                     if (err) {
-                         return next(err);
-                     }
-                     post.remove(function (){
-                         res.status(200).send(delPost);
-                     });
-                 });
-             })
-         })
+                user.save(function (err, user) {
+                    if (err) {
+                        return next(err);
+                    }
+                    post.remove(function () {
+                        res.status(200).send(delPost);
+                    });
+                });
+            })
+        })
 
     }
 

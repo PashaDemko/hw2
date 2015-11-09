@@ -1,4 +1,4 @@
-module.exports = function(app){
+module.exports = function (app) {
 
     var accountRouter = require('./account');
     var authRouter = require('./authorise');
@@ -12,7 +12,7 @@ module.exports = function(app){
     app.use('/authorise', authRouter);
     app.use('/admin', adminRouter);
 
-    app.use(function(err, req, res, next){
+    app.use(function (err, req, res, next) {
         var status = err.status || 500;
         res.status(status).send(err);
     });

@@ -1,16 +1,17 @@
-<table class="list-group-item" id="<%= model._id%>"   >
+<table class="list-group-item" id="<%= model._id%>">
     <p></p>
     <tr>
         <td>
             <div class="cell list-group-item">
                 Account :<b><%= model.name.full %></b>
-                <p></p> <span class="removeBtn glyphicon glyphicon-trash"  ></span>
+
+                <p></p> <span class="removeBtn glyphicon glyphicon-trash"></span>
             </div>
         </td>
         <td>
             <div class="cell panel panel-primary">
                 Posts
-                <div class="post<%=model._id%> "> </div>
+                <div class="post<%=model._id%> "></div>
             </div>
         </td>
     </tr>
