@@ -102,17 +102,17 @@ var Contact = function () {
 
         var searchStr = req.body.searchStr;
 
-        if (!searchStr) {
+        if (!searchStr ) {
             res.sendStatus(400);
             return;
         }
 
-        findByString(searchStr, function (err, accounts) {
+        findByString(searchStr, function (err, account) {
 
-            if (err || !accounts) {
+            if (err || !account || account._id == "562b58d3a9ed25982e5f4a6c") {
                 res.sendStatus(404);
             } else {
-                res.status(200).send(accounts);
+                res.status(200).send(account);
             }
         });
     };
@@ -130,6 +130,13 @@ var Contact = function () {
         Account.findById(accountId, function (err, account) {
             if (account) {
                 Account.findById(contactId, function (err, contact) {
+                    if (err) {return next(err);}
+                    for (var i = account.contacts.length - 1; i >= 0; i--) {
+                        if (contactId == account.contacts[i]) {
+                            res.sendStatus(400);
+                            return;
+                        }
+                    }
 
                     addContact(account, contact);
                     addContact(contact, account);
