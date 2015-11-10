@@ -15,8 +15,11 @@ define(['text!templates/posts/editpost.html', 'text!templates/posts/postCreate.h
 
         submit: function (e) {
             e.preventDefault();
-            this.model.save({content: $('#edit_content').val()});
-            $(".postCreate").html (postCreate);
+            this.model.save({content: $('#edit_content').val()}, {
+                success : function (){
+                    $(".postCreate").html (postCreate);
+                }
+            });
         },
 
         cancel: function (e) {
