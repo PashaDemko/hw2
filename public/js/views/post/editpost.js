@@ -1,4 +1,4 @@
-define(['text!templates/posts/editpost.html'], function (editpost) {
+define(['text!templates/posts/editpost.html', 'text!templates/posts/postCreate.html'], function (editpost, postCreate) {
 
     var EditPost = Backbone.View.extend({
 
@@ -9,22 +9,19 @@ define(['text!templates/posts/editpost.html'], function (editpost) {
         },
 
         events: {
-            'submit .edit-post-form': 'submit',
+            'click button.save': 'submit',
             'click button.cancel': 'cancel'
         },
 
         submit: function (e) {
             e.preventDefault();
             this.model.save({content: $('#edit_content').val()});
-
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('#index', {trigger: true})
+            $(".postCreate").html (postCreate);
         },
 
         cancel: function (e) {
             e.preventDefault();
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('#index', {trigger: true});
+            $(".postCreate").html (postCreate);
         },
 
         render: function () {

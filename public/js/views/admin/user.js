@@ -13,7 +13,6 @@ define([
             'click .removeBtn': 'remove'
         },
 
-
         initialize: function(){
 
             this.renderPosts();
@@ -43,10 +42,12 @@ define([
             _.each(postsCollection, function (idpost) {
                 var  post = new Post({_id: idpost});
 
-                post.fetch({success:function(){
-                    var postHtml = new viewPost({removeButton: true, model: post }).render().el;
-                    $(postHtml).appendTo('.post'+ that.model._id);
-                }})
+                post.fetch({
+                    success:function(){
+                        var postHtml = new viewPost({removeButton: true, model: post }).render().el;
+                        $(postHtml).appendTo('.post'+ that.model._id);
+                    }
+                })
             });
         },
 

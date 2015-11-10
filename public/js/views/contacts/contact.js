@@ -23,8 +23,7 @@ define([
             $(".list-group-item").removeClass("active");
 
             db = $(this.el).find(".postarea");
-            db.toggle();
-
+            db.fadeToggle();
         },
 
         addContact: function () {
@@ -34,8 +33,7 @@ define([
 
             contact.fetch({
                 success: function () {
-                    Backbone.history.fragment = '';
-                    Backbone.history.navigate('#index', {trigger: true});
+                    $responseArea.text('Contact added');
                 }, error: function () {
                     $responseArea.text('Could not add contact');
                 }
@@ -45,12 +43,17 @@ define([
         removeContact: function (e) {
 
             var responseArea = this.$('.actionarea');
+            var that = this;
+
+            var targetEl = $(e.target);
+            var delcontact = targetEl.closest('.list-group-item');
             var contact = new Contact({_id: this.model.get('_id')});
 
             contact.destroy({
                 success: function () {
-                    Backbone.history.fragment = '';
-                    Backbone.history.navigate('#index', {trigger: true});
+                    var a = + $(".contactnumber").text()-1;
+                    delcontact.remove();
+                    $(".contactnumber").text(a);
                 },
                 error: function () {
                     responseArea.text('Could not remove contact');

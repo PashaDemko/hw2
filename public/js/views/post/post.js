@@ -20,24 +20,30 @@ define([
             'click .hides': 'hideButtons'
         },
 
-        hideButtons: function () {
-
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('#index', {trigger: true});
-
-        },
-
-        showButtons: function (e) {
-            e.preventDefault();
+        hideButtons: function (e) {
             var targetEl = $(e.target);
             var table = targetEl.closest('table');
             var buttons = $(this.el).find(".buttons");
 
+            e.preventDefault();
+            e.stopPropagation();
+
+            table.removeClass("active");
+            buttons.fadeOut();
+
+        },
+
+        showButtons: function (e) {
+            var targetEl = $(e.target);
+            var table = targetEl.closest('table');
+            var buttons = $(this.el).find(".buttons");
+
+            e.preventDefault();
+
             $("table").removeClass("active");
             $(".buttons").hide();
-
             table.addClass("active");
-            buttons.show();
+            buttons.fadeIn();
         },
 
         initialize: function (options) {
@@ -54,16 +60,18 @@ define([
         },
 
         remove: function (e) {
-
+            var that = this;
             var targetEl = $(e.target);
-            var tr = targetEl.closest('table');
-            var id = tr.attr('id');
+            var table = targetEl.closest('table');
+            var id = table.attr('id');
             var post = new Post({_id: id});
 
             post.destroy({
                 success: function () {
-                    Backbone.history.fragment = '';
-                    Backbone.history.navigate('#index', {trigger: true});
+                    var a = + $(".postnumber").text()- 1;
+
+                    table.remove();
+                    $(".postnumber").text(a);
                 },
                 error: function () {
                     alert('error');
@@ -93,6 +101,7 @@ define([
             }));
             buttons = $(this.el).find(".buttons");
             buttons.hide();
+
 
             return this;
         }

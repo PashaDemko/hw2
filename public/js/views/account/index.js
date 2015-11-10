@@ -1,5 +1,6 @@
 define([
       'text!templates/account/index.html',
+      'text!templates/posts/postCreate.html',
       'models/post',
       'collections/posts',
       'views/post/post',
@@ -7,16 +8,17 @@ define([
       'collections/Contacts',
       'views/contacts/contact'
     ],
-    function(indexTemplate, Post, Posts,  PostView, Entry, ContactCollection, ContactView) {
+    function(indexTemplate, postCreate, Post, Posts,  PostView, Entry, ContactCollection, ContactView) {
 
       var indexView = Backbone.View.extend({
 
         el: '#contents',
+        posts : new Posts(),
 
         template: _.template(indexTemplate),
 
         events: {
-          "submit .add_form": "addPost",
+          "click .create": "addPost",
           "click .editProfileBtn": 'editProfile',
           'click .posts': 'showPosts',
           'click .contacts': 'showContacts'
@@ -56,23 +58,26 @@ define([
 
         },
 
-
         addPost: function() {
+          var that = this;
 
           var data = {
             creator : this.model.get('_id'),
             content : $('#post').val()
           };
 
-          var newPost = new Posts();
+          this.posts.create(data,{
+            success: function(data){
+              var a = + $(that.el).find(".postnumber").text()+1;
+              var postHtml = (new PostView({removeButton: true, editButton: true, model: data })).render().el;
 
-          newPost.create(data,{success: function(){
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('#index', {trigger: true});
-          }});
+              $('.posts_list').prepend(postHtml);
+              $(".postCreate").find("textarea").val("");
+              $(that.el).find(".postnumber").text(a);
+            }
+          });
 
           return false;
-
         },
 
         renderPosts: function (){
@@ -82,11 +87,13 @@ define([
           _.each(postCollection, function (idpost) {
             var postModel = new Post({_id : idpost});
 
-            postModel.fetch({success: function(){
-              var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
+            postModel.fetch({
+              success: function(){
+                var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
 
-              $('.posts_list').prepend(postHtml);
-            }},{wait: true});
+                $('.posts_list').prepend(postHtml);
+              }
+            });
           });
 
         },
@@ -94,14 +101,13 @@ define([
         render: function() {
 
           var model = this.model.toJSON();
-          var db;
-          var dt;
 
           this.$el.html (this.template( {model: model}));
-          db = $(this.el).find(".contacts_list");
-          dt = $(this.el).find(".showcontacts");
-          db.hide();
-          dt.hide();
+          $(".postCreate").html (postCreate);
+          $(this.el).find(".contacts_list").hide();
+          $(this.el).find(".showcontacts").toggle();
+          $(this.el).find(".posts_list").hide();
+          $(this.el).find(".showposts").toggle();
 
           return this;
         }

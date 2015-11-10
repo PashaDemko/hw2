@@ -1,10 +1,11 @@
 <h3>Edit a Post</h3>
-<form class="edit-post-form">
-    <textarea class="form-control" name="edit_content" id="edit_content"><%=model.content %></textarea>
 
-    <p></p>
-    <input class="removeBtn btn btn-success" type="submit" value="Save">
-    <button class="cancel removeBtn btn btn-warning">Cancel</button>
-    <p></p>
-</form>
+<textarea class="form-control" name="edit_content" id="edit_content"><%=model.content %></textarea>
+
+<p></p>
+
+<button class="save btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span></button>
+<button class="cancel btn btn-warning"><span class="glyphicon glyphicon-remove-sign"></span></button>
+<p></p>
+
 

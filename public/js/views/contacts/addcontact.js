@@ -37,6 +37,7 @@ define([
                 if (null != result) {
                     var contactModel = new Contact(result);
                     var contactHtml = (new ContactView({addButton: true, model: contactModel})).render().el;
+
                     $('#results').append(contactHtml);
                 }
 
