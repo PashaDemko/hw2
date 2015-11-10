@@ -28,7 +28,7 @@ define([
                         window.location.hash = 'login';
                     },
                     error: function () {
-                        if (!data.email || !data.firstName || !data.lastName || !data.password) {
+                        if (!data.email && !data.firstName && !data.lastName && !data.password) {
                             alert("fill all fields pls");
                         }
                         else alert('this email is already used')
