@@ -2,19 +2,19 @@
     <div class="container">
         <div class="navbar-header">
             <% if ( authenticated ) { %>
-            <a class="navbar-brand" href="./#index">Vrakoshy</a>
+            <a class="navbar-brand" href="./#index">VR</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <li><a href="./#quit"> <span class="removeBtn glyphicon glyphicon-log-out"></span></a></li>
                 <li><a href="./#editProfile">Edit Profile</a></li>
-                <li><a href="./#quit"> Sign out</a></li>
             </ul>
             <% } else { %>
-            <a class="navbar-brand" href="./#home">Vrakoshy</a>
+            <a class="navbar-brand" href="./#home">VR</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="./#login">Sign In</a></li>
+                <li><a href="./#login"> <span class="removeBtn glyphicon glyphicon-log-in"></span></a></li>
             </ul>
             <% } %>
             </ul>
