@@ -17,14 +17,15 @@ define(['text!templates/posts/editpost.html', 'text!templates/posts/postCreate.h
             e.preventDefault();
             this.model.save({content: $('#edit_content').val()}, {
                 success : function (){
-                    $(".postCreate").html (postCreate);
+                    $(".postCreate").html(postCreate);
+                    $(".showAdd").hide();
                 }
             });
         },
 
-        cancel: function (e) {
-            e.preventDefault();
+        cancel: function () {
             $(".postCreate").html (postCreate);
+            $(".showAdd").hide();
         },
 
         render: function () {

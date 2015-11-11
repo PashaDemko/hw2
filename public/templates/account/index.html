@@ -1,41 +1,40 @@
-<h3 class="label1"> Hello <%= model.name.full %></h3>
+<div class="jumbotron cell">
+    <div class="container">
+        <p style="text-align:left" class="lead"> Profile : <%= model.name.full %></p>
+        <h1></h1>
+        <div class="col-md-6" >
+            <div class="panel panel-primary" >
+                <div class="panel-heading posts">
 
-<div class="panel panel-info " style=" width: 340px;position:absolute;top: 150px;left: 350px;">
-    <div class="panel-heading posts">
-
-        <h3 class="panel-title ">
-            Posts
-            <span class="badge postnumber"><%= model.posts.length %></span>
-            <span class="showposts glyphicon glyphicon-menu-up" > </span>
-            <span class="showposts glyphicon glyphicon-menu-down" style="display: none"> </span>
-
-        </h3>
-
-    </div>
-    <div class="panel-body postCreate">
-
-        <p></p>
-
-    </div>
-    <div class="posts_list list-group"></div>
-
-</div>
-<div class="panel panel-primary " style=" width: 340px;position:absolute;top: 150px;left: 700px;">
-
-    <div class="panel-heading contacts">
-        <h3 class="panel-title">
-            Contacts
-            <span class="badge contactnumber"><%= model.contacts.length %></span>
-            <span class="showcontacts glyphicon glyphicon-menu-up" > </span>
-            <span class="showcontacts glyphicon glyphicon-menu-down" style="display: none"> </span>
-        </h3>
-    </div>
-    <div class="panel-body">
-        <a href="#addcontact"><h3>Add a Contact</h3></a>
-
-        <p></p>
-
-        <div class="contacts_list list-group"></div>
+                    <span class="panel-title label">
+                        Posts
+                        <span class="badge postnumber"><%= model.posts.length %></span>
+                        <span class="showposts glyphicon glyphicon-menu-up" > </span>
+                        <span class="showposts glyphicon glyphicon-menu-down" style="display: none"> </span>
+                    </span>
+                </div>
+                <div class="panel-body">
+                <div class="list-group-item postCreate"></div>
+                <div class="posts_list list-group"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <div class="panel panel-warning " >
+                <div class="panel-heading contacts">
+                    <h3 class="panel-title label">
+                        Contacts
+                        <span class="badge contactnumber"><%= model.contacts.length %></span>
+                        <span class="showcontacts glyphicon glyphicon-menu-up" > </span>
+                        <span class="showcontacts glyphicon glyphicon-menu-down" style="display: none"> </span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                <div class="list-group-item">  <a href="#addcontact"><h3>Add a Contact</h3></a></div>
+                <div class="contacts_list list-group"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

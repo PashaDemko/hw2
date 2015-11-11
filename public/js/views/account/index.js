@@ -19,9 +19,9 @@ define([
 
         events: {
           "click .create": "addPost",
-          "click .editProfileBtn": 'editProfile',
           'click .posts': 'showPosts',
-          'click .contacts': 'showContacts'
+          'click .contacts': 'showContacts',
+          'click .showCreate': 'showAdd'
         },
 
         initialize: function () {
@@ -30,6 +30,12 @@ define([
           this.renderPosts();
 
         },
+
+        showAdd: function() {
+          var dt = $(this.el).find(".showAdd");
+          dt.fadeToggle();
+        },
+
 
         showPosts: function() {
           var db = $(this.el).find(".posts_list");
@@ -104,6 +110,7 @@ define([
 
           this.$el.html (this.template( {model: model}));
           $(".postCreate").html (postCreate);
+          $(this.el).find(".showAdd").hide();
           $(this.el).find(".contacts_list").hide();
           $(this.el).find(".showcontacts").toggle();
           $(this.el).find(".posts_list").hide();

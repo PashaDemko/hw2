@@ -19,11 +19,12 @@ define([
 
         showButtons: function (e) {
             var db;
-
             $(".list-group-item").removeClass("active");
-
+            var targetEl = $(e.target);
+            var contact = targetEl.closest('.list-group-item');
+            contact.toggleClass("well");
             db = $(this.el).find(".postarea");
-            db.fadeToggle();
+            db.toggle();
         },
 
         addContact: function () {

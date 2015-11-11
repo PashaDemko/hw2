@@ -6,12 +6,6 @@ form {
     width: 300px;
 }
 
-h3.label1 {
-    position: absolute;
-    top: 45px;
-    left: 45%;
-}
-
 div {
     text-align: center;
 }
@@ -24,9 +18,11 @@ div.show {
 }
 
 div.cell {
-    text-align: center;
-    width: 190px;
-
+    background: -webkit-linear-gradient(90deg, #c2e59c 10%, #64b3f4 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #c2e59c 10%, #64b3f4 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #c2e59c 10%, #64b3f4 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #c2e59c 10%, #64b3f4 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #c2e59c 10%, #64b3f4 90%); /* W3C */
 }
 
 

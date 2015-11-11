@@ -58,8 +58,9 @@ var _Post = function () {
             }
             if (!post)
                 res.send('Not Found');
-            else
-                post.content = req.body.content;
+
+            else post.content = req.body.content;
+
             post.save(function (err, edited) {
                 if (err) {
                     return next(err);

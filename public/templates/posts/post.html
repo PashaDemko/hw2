@@ -1,20 +1,19 @@
-<table id="<%= model._id%>" cellspacing="5" class="list-group-item">
+<div id="<%= model._id%>" class="list-group-item">
 
-    <td style="width:300px">
 
-        <h4 class="list-group-item-text"><%= model.content %></h4>
 
-        <div class="buttons">
-            <% if ( editButton ) { %>
-            <span class="editBtn glyphicon glyphicon-edit" aria-hidden="true"></span>
+    <p class="list-group-item-text" style="white-space: pre-wrap; text-align:left"><%= model.content %></p>
 
-            <% } %>
-            <% if ( removeButton ) { %>
-            <span class="removeBtn glyphicon glyphicon-trash"></span>
-            <span class="hides glyphicon glyphicon-minus"></span>
-            <% } %>
+    <div class="buttons">
+        <h4>
+        <% if ( editButton ) { %>
+           <span class="editBtn glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <% } %>
+        <% if ( removeButton ) { %>
+        <span class="removeBtn glyphicon glyphicon-trash"></span>
+        <span class="hides glyphicon glyphicon-minus"></span>
+        <% } %>
+        </h4>
+    </div>
 
-        </div>
-    </td>
-
-</table>
+</div>

@@ -3,7 +3,6 @@ define(function () {
 
         url: '/account'
 
-
     });
     return Account;
 });

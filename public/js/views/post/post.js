@@ -16,13 +16,13 @@ define([
         events: {
             'click .removeBtn': 'remove',
             'click .editBtn': 'editPost',
-            'click table': 'showButtons',
+            'click .list-group-item': 'showButtons',
             'click .hides': 'hideButtons'
         },
 
         hideButtons: function (e) {
             var targetEl = $(e.target);
-            var table = targetEl.closest('table');
+            var table = targetEl.closest('.list-group-item');
             var buttons = $(this.el).find(".buttons");
 
             e.preventDefault();
@@ -35,12 +35,12 @@ define([
 
         showButtons: function (e) {
             var targetEl = $(e.target);
-            var table = targetEl.closest('table');
+            var table = targetEl.closest('.list-group-item');
             var buttons = $(this.el).find(".buttons");
 
             e.preventDefault();
 
-            $("table").removeClass("active");
+            $(".list-group-item").removeClass("active");
             $(".buttons").hide();
             table.addClass("active");
             buttons.fadeIn();
@@ -62,7 +62,7 @@ define([
         remove: function (e) {
             var that = this;
             var targetEl = $(e.target);
-            var table = targetEl.closest('table');
+            var table = targetEl.closest('.list-group-item');
             var id = table.attr('id');
             var post = new Post({_id: id});
 

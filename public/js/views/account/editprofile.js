@@ -30,10 +30,11 @@ define(['text!templates/account/editProfile.html'], function (editProfile) {
                     Backbone.history.navigate('#index', {trigger: true});
                 },
                 error: function () {
-                    if (!data.email && !data.firstName && !data.lastName) {
-                        alert("fill all fields pls");
+                    if ( !data.lastname || !data.firstname || !data.email) {
+                        alert("fill fields: FirstName, LastName, Email");
+                        return "Nothing input"
                     }
-                    else alert('this email is already used')
+                        alert('this email is already used')
                 }
             });
 
