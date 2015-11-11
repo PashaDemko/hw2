@@ -6,6 +6,7 @@ form {
     width: 300px;
 }
 
+
 div {
     text-align: center;
 }
@@ -18,13 +19,14 @@ div.show {
 }
 
 div.cell {
-
-
-
-
-    background:         linear-gradient(85deg, #F1F2B5 20%, #61a8f4 100%); /* W3C */
+    text-align: center;
+    width: 190px;
 
 }
 
+div.jumbo {
+    background:         linear-gradient(85deg, #F1F2B5 20%, #64b3f4 100%); /* W3C */
+
+}
 
 
