@@ -1,49 +1,21 @@
-body {
-    font-family: Georgia
-}
-
-form {
-    width: 300px;
-}
-
-
 div {
     text-align: center;
-}
-
-div.show {
-    width: auto;
-    position: absolute;
-    top: 100px;
-    left: 43%;
 }
 
 div.cell {
     text-align: center;
     width: 190px;
-
 }
 
 div.jumbo {
     background:         linear-gradient(85deg, #F1F2B5 20%, #64b3f4 100%);
-    min-height: 600px/* W3C */
-
+    min-height: 600px
 }
 div.grean {
-        background:         linear-gradient(0deg, #c2e59c 10%, #64b3f4 90%); /* W3C */
+        background:         linear-gradient(0deg, #c2e59c 10%, #64b3f4 90%);
 }
 
 div.sand {
-
-
-
-
-
-    background: -webkit-linear-gradient(90deg, #EFEFBB 10%, #D4D3DD 90%); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(90deg, #EFEFBB 10%, #D4D3DD 90%); /* FF3.6+ */
-    background:     -ms-linear-gradient(90deg, #EFEFBB 10%, #D4D3DD 90%); /* IE10 */
-    background:      -o-linear-gradient(90deg, #EFEFBB 10%, #D4D3DD 90%); /* Opera 11.10+ */
-    background:         linear-gradient(0deg, #EFEFBB 10%, #D4D3DD 90%); /* W3C */
-
+    background:         linear-gradient(0deg, #EFEFBB 10%, #D4D3DD 90%);
 }
 
