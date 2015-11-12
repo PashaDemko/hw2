@@ -12,8 +12,6 @@ define([
         },
 
         register: function (e) {
-
-            e.preventDefault();
             var entry = new Entry();
             var data = {
                 firstName: $('#firstName').val(),
@@ -21,6 +19,8 @@ define([
                 email: $('#email').val(),
                 password: $('#password').val()
             };
+
+            e.preventDefault();
 
             entry.create(data,
                 {

@@ -27,8 +27,9 @@ var Admin = function () {
                     Account.findById(id, function (err, contact) {
 
                         var delAccount;
+                        var i;
 
-                        for (var i = contact.contacts.length - 1; i >= 0; i--) {
+                        for ( i = contact.contacts.length - 1; i >= 0; i-- ) {
                             if (Acc == contact.contacts[i]) {
                                 delAccount = contact.contacts.splice(i, 1);
                             }
@@ -43,7 +44,9 @@ var Admin = function () {
                                 Post.find({creator: Acc})
                                     .remove()
                                     .exec(function (err) {
-                                        if (err) return next(err);
+                                        if (err) {
+                                            return next(err);
+                                        }
                                         res.status(200).send(acc);
                                     })
                             }
@@ -54,7 +57,9 @@ var Admin = function () {
                 Post.find({creator: Acc})
                     .remove()
                     .exec(function (err) {
-                        if (err) return next(err);
+                        if (err) {
+                            return next(err);
+                        }
                         res.status(200).send(acc);
                     })
             }

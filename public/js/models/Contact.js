@@ -3,6 +3,7 @@ define(function () {
 
         idAttribute: '_id',
         urlRoot: '/account/contacts'
+
     });
 
     return Contact;

@@ -18,25 +18,23 @@ define([
         },
 
         showButtons: function (e) {
-
-
             var targetEl = $(e.target);
             var contact = targetEl.closest('.list-group-item');
+
             contact.toggleClass("well");
              $(this.el).find(".postarea").fadeToggle();
-
         },
 
         addContact: function () {
 
-            var $responseArea = this.$('.actionarea');
+            var responseArea = this.$('.actionarea');
             var contact = new Contact({_id: this.model.get('_id')});
 
             contact.fetch({
                 success: function () {
-                    $responseArea.text('Contact added');
+                    responseArea.text('Contact added');
                 }, error: function () {
-                    $responseArea.text('Could not add contact');
+                    responseArea.text('Could not add contact');
                 }
             });
         },
@@ -91,15 +89,12 @@ define([
         },
 
         render: function () {
-
             $(this.el).html(this.template({
                 model: this.model.toJSON(),
                 addButton: this.addButton,
                 removeButton: this.removeButton
             }));
             $(this.el).find(".postarea").hide();
-
-
 
             return this;
         }

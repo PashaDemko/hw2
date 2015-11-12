@@ -10,8 +10,9 @@ var login = function (email, password, callback) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
     Account.findOne({email: email, password: shaSum.digest('hex')}, function (err, doc) {
-        if (err) console.log(err);
-
+        if (err) {
+            return next(err);
+        }
         callback(doc);
     });
 

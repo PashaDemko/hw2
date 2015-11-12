@@ -11,10 +11,8 @@ define(['text!templates/account/editProfile.html'], function (editProfile) {
         },
 
         saveItem: function () {
-            var model = this.model.toJSON();
             var that = this;
             var thisEl = this.$el;
-
             var data = {
                 firstname: thisEl.find('#edit_firstName').val(),
                 lastname: thisEl.find('#edit_lastName').val(),
@@ -32,17 +30,12 @@ define(['text!templates/account/editProfile.html'], function (editProfile) {
                 error: function () {
                     if ( !data.lastname || !data.firstname || !data.email) {
                         alert("fill fields: FirstName, LastName, Email");
-                        return "Nothing input"
+                        return "Nothing input";
                     }
                         alert('this email is already used')
                 }
+
             });
-
-        },
-
-        cancel: function () {
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('/', {trigger: true});
         },
 
         render: function () {

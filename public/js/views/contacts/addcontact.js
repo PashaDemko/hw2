@@ -34,7 +34,7 @@ define([
             render: function (result) {
 
                 this.$el.html(_.template(addcontactTemplate));
-                if (null != result) {
+                if (result) {
                     var contactModel = new Contact(result);
                     var contactHtml = (new ContactView({addButton: true, model: contactModel})).render().el;
 

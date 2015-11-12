@@ -102,7 +102,6 @@ define([
             buttons = $(this.el).find(".buttons");
             buttons.hide();
 
-
             return this;
         }
 

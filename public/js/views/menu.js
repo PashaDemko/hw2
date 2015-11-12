@@ -15,12 +15,10 @@ define([
 
         },
 
-
         template: _.template(menuTemplate),
 
         render: function () {
 
-            var that = this;
             this.$el.html(this.template({authenticated: this.authenticated}));
 
         }

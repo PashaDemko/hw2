@@ -76,16 +76,17 @@ var _Post = function () {
         Post.findById(req.params.id, function (err, post) {
             if (!post) {
                 res.sendStatus(404);
-                return
+                return;
             }
             Account.findById(post.creator, function (err, user) {
 
                 var delPost;
+                var i;
 
                 if (!user) {
                     res.send("not found");
                 } else {
-                    for (var i = user.posts.length - 1; i >= 0; i--) {
+                    for ( i = user.posts.length - 1; i >= 0; i-- ) {
                         if (req.params.id == user.posts[i]) {
                             delPost = user.posts.splice(i, 1);
                         }

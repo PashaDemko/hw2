@@ -32,23 +32,18 @@ define([
         },
 
         showAdd: function() {
-          var dt = $(this.el).find(".showAdd");
-          dt.fadeToggle();
+          $(this.el).find(".showAdd").fadeToggle();
         },
 
 
         showPosts: function() {
-          var db = $(this.el).find(".posts_list");
-          var dt = $(this.el).find(".showposts");
-          db.fadeToggle();
-          dt.toggle();
+          $(this.el).find(".posts_list").fadeToggle();
+          $(this.el).find(".showposts").toggle();
         },
 
         showContacts: function() {
-          var db = $(this.el).find(".contacts_list");
-          var dt = $(this.el).find(".showcontacts");
-          db.fadeToggle();
-          dt.toggle();
+          $(this.el).find(".contacts_list").fadeToggle();
+          $(this.el).find(".showcontacts").toggle();
         },
 
         contactCollection: function (){
@@ -74,11 +69,12 @@ define([
 
           this.posts.create(data,{
             success: function(data){
-              var a = + $(that.el).find(".postnumber").text()+1;
+              var a;
               var postHtml = (new PostView({removeButton: true, editButton: true, model: data })).render().el;
 
               $('.posts_list').prepend(postHtml);
               $(".postCreate").find("textarea").val("");
+              a = + $(that.el).find(".postnumber").text()+1;
               $(that.el).find(".postnumber").text(a);
             }
           });
@@ -95,7 +91,12 @@ define([
 
             postModel.fetch({
               success: function(){
-                var postHtml = (new PostView({removeButton: true, editButton: true, model: postModel })).render().el;
+                var postHtml = (new PostView({
+                      removeButton: true,
+                      editButton: true,
+                      model: postModel
+                    }
+                )).render().el;
 
                 $('.posts_list').prepend(postHtml);
               }

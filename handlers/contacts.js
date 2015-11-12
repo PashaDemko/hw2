@@ -20,12 +20,13 @@ var addContact = function (account, addcontact) {
 
 var removeContact = function (account, contactId) {
     var delAccount;
+    var i;
 
     if (!account) {
         res.sendStatus(404);
         return;
     } else {
-        for (var i = account.contacts.length - 1; i >= 0; i--) {
+        for ( i = account.contacts.length - 1; i >= 0; i-- ) {
             if (contactId == account.contacts[i]) {
                 delAccount = account.contacts.splice(i, 1);
             }
@@ -66,6 +67,9 @@ var Contact = function () {
             .lean()
             .populate('contacts')
             .exec(function (err, user) {
+                if (err){
+                    return next(err);
+                }
                 res.status(200).send(user.contacts);
             });
 
@@ -89,10 +93,7 @@ var Contact = function () {
                 removeContact(account, contactId);
                 removeContact(contact, accountId);
 
-                account.save(function () {
-                    res.status(200).send(account);
-                });
-
+                res.status(200).send(account);
             });
         });
 
@@ -130,8 +131,12 @@ var Contact = function () {
         Account.findById(accountId, function (err, account) {
             if (account) {
                 Account.findById(contactId, function (err, contact) {
-                    if (err) {return next(err);}
-                    for (var i = account.contacts.length - 1; i >= 0; i--) {
+                    var i;
+
+                    if (err) {
+                        return next(err);
+                    }
+                    for ( i = account.contacts.length - 1; i >= 0; i-- ) {
                         if (contactId == account.contacts[i]) {
                             res.sendStatus(400);
                             return;

@@ -14,8 +14,11 @@ define(['text!templates/posts/editpost.html', 'text!templates/posts/postCreate.h
         },
 
         submit: function (e) {
+            var content = $('#edit_content').val();
+
             e.preventDefault();
-            this.model.save({content: $('#edit_content').val()}, {
+
+            this.model.save({content: content}, {
                 success : function (){
                     $(".postCreate").html(postCreate);
                     $(".showAdd").hide();

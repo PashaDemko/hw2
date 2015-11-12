@@ -14,10 +14,7 @@ define([
         },
 
         initialize: function(){
-
             this.renderPosts();
-            this.render();
-
         },
 
         remove: function(e){
