@@ -14,17 +14,17 @@ define([
         events: {
             "click .addbutton": "addContact",
             "click .removebutton": "removeContact",
-            'click .list-group-item': "showButtons"
+            'click .showcont': "showButtons"
         },
 
         showButtons: function (e) {
-            var db;
-            $(".list-group-item").removeClass("active");
+
+
             var targetEl = $(e.target);
             var contact = targetEl.closest('.list-group-item');
             contact.toggleClass("well");
-            db = $(this.el).find(".postarea");
-            db.toggle();
+             $(this.el).find(".postarea").fadeToggle();
+
         },
 
         addContact: function () {
@@ -91,15 +91,15 @@ define([
         },
 
         render: function () {
-            var postarea;
 
             $(this.el).html(this.template({
                 model: this.model.toJSON(),
                 addButton: this.addButton,
                 removeButton: this.removeButton
             }));
-            postarea = $(this.el).find(".postarea");
-            postarea.hide();
+            $(this.el).find(".postarea").hide();
+
+
 
             return this;
         }

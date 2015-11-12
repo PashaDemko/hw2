@@ -25,7 +25,8 @@ div.cell {
 }
 
 div.jumbo {
-    background:         linear-gradient(85deg, #F1F2B5 20%, #64b3f4 100%); /* W3C */
+    background:         linear-gradient(85deg, #F1F2B5 20%, #64b3f4 100%);
+    min-height: 600px/* W3C */
 
 }
 div.grean {
