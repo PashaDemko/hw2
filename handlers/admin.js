@@ -22,6 +22,10 @@ var Admin = function () {
 
         Account.findByIdAndRemove(Acc, function (err, acc) {
             if (err) return next(err);
+            if (!acc) {
+                res.sendStatus(404);
+                return;
+            }
             if (acc.contacts.length > 0) {
                 acc.contacts.forEach(function (id) {
                     Account.findById(id, function (err, contact) {

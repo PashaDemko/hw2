@@ -12,6 +12,7 @@ define([
         },
 
         register: function (e) {
+            var that = this;
             var entry = new Entry();
             var data = {
                 firstName: $('#firstName').val(),
@@ -25,7 +26,9 @@ define([
             entry.create(data,
                 {
                     success: function () {
-                        window.location.hash = 'login';
+                        that.undelegateEvents();
+                        Backbone.history.fragment = '';
+                        Backbone.history.navigate('#login', {trigger: true});
                     },
                     error: function () {
                         if (!data.email || !data.firstName || !data.lastName || !data.password) {

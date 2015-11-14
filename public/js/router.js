@@ -110,8 +110,9 @@ define([
                         var Model = model.toJSON();
                         if (Model.admin == true) {
                             that.changeView(new Admin({model: model}))
+                        } else {
+                            that.changeView(new IndexView({model: model}))
                         }
-                        else that.changeView(new IndexView({model: model}))
                     }
                 });
             });
@@ -119,8 +120,9 @@ define([
         },
 
         login: function () {
+            var that = this;
             this.fetchEntry.complete(function () {
-                new LoginView().render();
+                that.changeView(new LoginView());
             });
         },
 

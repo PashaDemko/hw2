@@ -50,6 +50,7 @@ define([
 
           var contactsCollection = new ContactCollection();
 
+
           contactsCollection.fetch({success: function (){
             contactsCollection.each(function(contact){
               var contactHtml = new ContactView({removeButton: true,  model: contact}).render().el;
@@ -106,6 +107,7 @@ define([
         },
 
         render: function() {
+
 
           var model = this.model.toJSON();
 

@@ -32,6 +32,10 @@ define([
             return false;
         },
 
+        contactCollection: function(){
+
+        },
+
         renderPosts: function (){
             var that = this;
             var postsCollection = this.model.posts;

@@ -11,10 +11,6 @@ define([
 
         template: _.template(indexTemplate),
 
-        events: {
-            "click .QuitBtn": 'quit'
-        },
-
         initialize: function () {
             this.renderUsers();
         },
@@ -34,16 +30,8 @@ define([
 
         },
 
-        quit: function () {
-
-            var entry = new Entry({_id: "me"});
-            entry.destroy();
-            Backbone.history.fragment = '';
-            Backbone.history.navigate('#login', {trigger: true});
-
-        },
-
         render: function () {
+
             var model = this.model.toJSON();
             this.$el.html(this.template({model: model}));
         }
