@@ -64,7 +64,12 @@ var _Account = function () {
             if (err) {
                 return next(err);
             }
-            res.status(200).send(account);
+            if (!account) {
+                res.sendStatus(404);
+            } else {
+                res.status(200).send(account);
+            }
+
         });
     };
 

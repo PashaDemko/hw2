@@ -88,7 +88,10 @@ var Contact = function () {
         Account.findById(accountId, function (err, account) {
             Account.findById(contactId, function (err, contact) {
 
-                if (!contact) return;
+                if (!contact) {
+                    res.sendStatus(404);
+                    return;
+                }
 
                 removeContact(account, contactId);
                 removeContact(contact, accountId);

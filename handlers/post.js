@@ -84,7 +84,8 @@ var _Post = function () {
                 var i;
 
                 if (!user) {
-                    res.send("not found");
+                    res.sendStatus(404);
+                    return;
                 } else {
                     for ( i = user.posts.length - 1; i >= 0; i-- ) {
                         if (req.params.id == user.posts[i]) {
