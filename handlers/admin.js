@@ -45,29 +45,19 @@ var Admin = function () {
                                     console.log('Error deleting contact: ' + err);
                                     return next(err);
                                 }
-                                Post.find({creator: Acc})
-                                    .remove()
-                                    .exec(function (err) {
-                                        if (err) {
-                                            return next(err);
-                                        }
-                                        res.status(200).send(acc);
-                                    })
                             }
                         );
                     })
                 })
-            } else {
-                Post.find({creator: Acc})
-                    .remove()
-                    .exec(function (err) {
-                        if (err) {
-                            return next(err);
-                        }
-                        res.status(200).send(acc);
-                    })
             }
-
+            Post.find({creator: Acc})
+                .remove()
+                .exec(function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.status(200).send(acc);
+                })
         })
     };
 
