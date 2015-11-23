@@ -40,13 +40,20 @@ var _Post = function () {
 
     };
 
-    this.post = function (req, res, next) {
 
-        var postId = req.params.id;
+    this.posts = function (req, res, next) {
 
-        Post.findById(postId, function (err, post) {
-            res.send(post);
-        });
+        var accountId = req.params.id;
+
+        Account.findById(accountId)
+            .lean()
+            .populate('posts')
+            .exec(function (err, user) {
+                if (err){
+                    return next(err);
+                }
+                res.status(200).send(user.posts);
+            });
 
     };
 

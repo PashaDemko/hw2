@@ -7,8 +7,8 @@ module.exports = (function () {
 
 
     contactRouter.post('/', contactHandler.findContact);
-    contactRouter.get('/', contactHandler.allcontacts);
-    contactRouter.get('/:id', contactHandler.addcontact);
+    contactRouter.get('/:id', contactHandler.allcontacts);
+    contactRouter.put('/:id', contactHandler.addcontact);
     contactRouter.delete('/:id', contactHandler.delcontact);
 
     return contactRouter;

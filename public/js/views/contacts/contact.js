@@ -1,14 +1,16 @@
 define([
     'text!templates/contacts/contact.html',
     'views/post/post',
-    'models/Post',
+    'models/post',
+    'collections/Posts',
     'models/Contact'
-], function (contactTemplate, viewPost, Post, Contact) {
+], function (contactTemplate, viewPost, Post, Posts, Contact) {
 
     var contactView = Backbone.View.extend({
 
         addButton: false,
-        removeButton: false,
+        admin: false,
+        posts: false,
         template: _.template(contactTemplate),
 
         events: {
@@ -28,9 +30,9 @@ define([
         addContact: function () {
 
             var responseArea = this.$('.actionarea');
-            var contact = new Contact({_id: this.model.get('_id')});
+            var contact = new Contact({_id: "me"});
 
-            contact.fetch({
+            contact.save({id: this.model.get('_id')},{
                 success: function () {
                     responseArea.text('Contact added');
                 }, error: function () {
@@ -62,29 +64,35 @@ define([
         },
 
         initialize: function (options) {
+            var that = this;
             this.model.on('change', this.render, this);
             this.options = options;
-            this.renderPosts();
+
             if (this.options.addButton) {
                 this.addButton = this.options.addButton;
             }
-            if (this.options.removeButton) {
-                this.removeButton = this.options.removeButton;
+            if (this.options.admin) {
+                this.admin = this.options.admin;
+            }
+            if (this.options.posts) {
+                console.log('ahhha');
+                that.renderPosts();
+                this.posts = this.options.posts;
             }
         },
 
         renderPosts: function () {
             var that = this;
-            var postsCollection = this.model.get('posts');
+            var postCollection = new Posts([], {id : this.model.get('_id')});
 
-            _.each(postsCollection, function (idpost) {
-                var post = new Post({_id: idpost});
-                post.fetch({
-                    success: function () {
-                        var postHtml = new viewPost({model: post}).render().el;
+            postCollection.fetch({
+                success: function(){
+                    _.each(postCollection.toJSON(), function (post) {
+                        var postModel = new Post (post);
+                        var postHtml = new viewPost({model: postModel}).render().el;
                         $(postHtml).appendTo('.post' + that.model.get('_id'));
-                    }
-                })
+                    });
+                }
             });
         },
 
@@ -92,7 +100,8 @@ define([
             $(this.el).html(this.template({
                 model: this.model.toJSON(),
                 addButton: this.addButton,
-                removeButton: this.removeButton
+                admin: this.admin,
+                posts: this.posts
             }));
             $(this.el).find(".postarea").hide();
 

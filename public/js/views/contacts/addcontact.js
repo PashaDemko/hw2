@@ -17,7 +17,7 @@ define([
             search: function () {
 
                 var that = this;
-                var findContact = new Contacts();
+                var findContact = new Contacts([], {id : 'me'});
                 var body = {"searchStr": $('#searchStr').val()};
 
                 findContact.create(body, {

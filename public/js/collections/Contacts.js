@@ -2,7 +2,13 @@ define(['models/Contact'], function (Contact) {
     var ContactCollection = Backbone.Collection.extend({
 
         model: Contact,
-        url: '/account/contacts'
+
+        initialize: function(models, options) {
+            this.id = options.id;
+        },
+        url: function() {
+            return '/account/contacts/' + this.id;
+        }
 
     });
 

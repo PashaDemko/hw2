@@ -2,7 +2,7 @@ define([
       'text!templates/account/index.html',
       'text!templates/posts/postCreate.html',
       'models/post',
-      'collections/posts',
+      'collections/Posts',
       'views/post/post',
       'models/authorise',
       'collections/Contacts',
@@ -13,7 +13,6 @@ define([
       var indexView = Backbone.View.extend({
 
         el: '#contents',
-        posts : new Posts(),
 
         template: _.template(indexTemplate),
 
@@ -48,12 +47,12 @@ define([
 
         contactCollection: function (){
 
-          var contactsCollection = new ContactCollection();
+          var contactsCollection = new ContactCollection([], {id : this.model.get('_id')});
 
 
           contactsCollection.fetch({success: function (){
             contactsCollection.each(function(contact){
-              var contactHtml = new ContactView({removeButton: true,  model: contact}).render().el;
+              var contactHtml = new ContactView({posts: true,  model: contact}).render().el;
               $('.contacts_list').append(contactHtml);
             });
           }})
@@ -67,8 +66,8 @@ define([
             creator : this.model.get('_id'),
             content : $('#post').val()
           };
-
-          this.posts.create(data,{
+          var postCollection = new Posts([], {id : 'me'});
+          postCollection.create(data,{
             success: function(data){
               var a;
               var postHtml = (new PostView({removeButton: true, editButton: true, model: data })).render().el;
@@ -85,24 +84,23 @@ define([
 
         renderPosts: function (){
 
-          var postCollection = this.model.get('posts');
+          var postCollection = new Posts([], {id : this.model.get('_id')});
+          postCollection.fetch({
+            success: function(){
+              _.each(postCollection.toJSON(), function (idpost) {
 
-          _.each(postCollection, function (idpost) {
-            var postModel = new Post({_id : idpost});
-
-            postModel.fetch({
-              success: function(){
+                var postmodel = new Post(idpost);
                 var postHtml = (new PostView({
                       removeButton: true,
                       editButton: true,
-                      model: postModel
+                      model: postmodel
                     }
                 )).render().el;
-
                 $('.posts_list').prepend(postHtml);
-              }
-            });
+              });
+            }
           });
+
 
         },
 

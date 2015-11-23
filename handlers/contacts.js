@@ -61,7 +61,7 @@ var Contact = function () {
 
     this.allcontacts = function (req, res, next) {
 
-        var accountId = req.session.accountId;
+        var accountId = req.params.id;
 
         Account.findById(accountId)
             .lean()
@@ -124,7 +124,7 @@ var Contact = function () {
     this.addcontact = function (req, res, next) {
 
         var accountId = req.session.accountId;
-        var contactId = req.params.id;
+        var contactId = req.body.id;
 
         if (!contactId || contactId == accountId) {
             res.sendStatus(400);

@@ -8,7 +8,7 @@ module.exports = (function () {
 
 
     postRouter.post('/', postHandler.create);
-    postRouter.get('/:id', postHandler.post);
+    postRouter.get('/:id', postHandler.posts);
     postRouter.put('/:id', postHandler.edit);
     postRouter.delete('/:id', postHandler.delete);
 

@@ -1,19 +1,24 @@
 <div class="list-group-item">
-    <h3 class="showcont"><%=model.name.full%></h3>
 
     <div class="actionarea">
         <% if ( addButton ) { %>
+        <h3 class="showcont"><%=model.name.full%></h3>
         <button class="addbutton btn btn-success">Add Contact</button>
         <% } %>
-        <div class="postarea">
-            <% if ( removeButton ) { %>
-            <h3>Posts</h3>
 
+        <% if ( posts ) { %>
+        <h3 class="showcont"><%=model.name.full%></h3>
+        <div class="postarea">
+            <h3>Posts</h3>
             <div class="post<%=model._id%> panel panel-primary"></div>
-            <p></p>
             <button class="removebutton btn btn-warning">Remove Contact</button>
-            <% } %>
+            <p></p>
         </div>
+        <% } %>
+        <% if ( admin ) { %>
+        <span class="showcont"><%=model.name.full%></span>
+        <% } %>
+
     </div>
 </div>
 

@@ -2,8 +2,11 @@ define([
     'text!templates/admin/user.html',
     'models/user',
     'views/post/post',
-    'models/Post'
-], function(userTemplate, User, viewPost, Post) {
+    'collections/Posts',
+    'models/post',
+    'collections/Contacts',
+    'views/contacts/contact'
+], function(userTemplate, User, viewPost, Posts, Post, ContactCollection, ContactView) {
 
     var userView = Backbone.View.extend({
 
@@ -15,6 +18,7 @@ define([
 
         initialize: function(){
             this.renderPosts();
+            this.contactCollection();
         },
 
         remove: function(e){
@@ -32,23 +36,37 @@ define([
             return false;
         },
 
-        contactCollection: function(){
+        contactCollection: function (){
+            var that = this;
+            var contactsCollection = new ContactCollection([], {id : this.model._id});
+
+            contactsCollection.fetch({
+
+                    success: function (){
+
+                        contactsCollection.each(function(contact){
+                            var contactHtml = new ContactView({admin: true,  model: contact}).render().el;
+                            $('.contact'+ that.model._id).append(contactHtml);
+
+                        });
+                    }
+                }
+            )
 
         },
 
         renderPosts: function (){
             var that = this;
-            var postsCollection = this.model.posts;
+            var postCollection = new Posts([], {id : this.model._id});
 
-            _.each(postsCollection, function (idpost) {
-                var  post = new Post({_id: idpost});
-
-                post.fetch({
-                    success:function(){
-                        var postHtml = new viewPost({removeButton: true, model: post }).render().el;
-                        $(postHtml).appendTo('.post'+ that.model._id);
-                    }
-                })
+            postCollection.fetch({
+                success: function(){
+                    _.each(postCollection.toJSON(), function (post) {
+                        var postModel = new Post (post);
+                        var postHtml = new viewPost({removeButton: true, model: postModel}).render().el;
+                        $(postHtml).appendTo('.post' + that.model._id);
+                    });
+                }
             });
         },
 
