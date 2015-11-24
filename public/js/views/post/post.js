@@ -16,8 +16,9 @@ define([
         events: {
             'click .removeBtn': 'remove',
             'click .editBtn': 'editPost',
-            'click .list-group-item': 'showButtons',
-            'click .hides': 'hideButtons'
+            'mouseenter .list-group-item': 'showButtons',
+            'mouseleave .list-group-item': 'hideButtons'
+
         },
 
         hideButtons: function (e) {
@@ -29,7 +30,7 @@ define([
             e.stopPropagation();
 
             table.removeClass("active");
-            buttons.fadeOut();
+            buttons.fadeOut('fast');
 
         },
 
@@ -43,7 +44,7 @@ define([
             $(".list-group-item").removeClass("active");
             $(".buttons").hide();
             table.addClass("active");
-            buttons.fadeIn();
+            buttons.fadeIn('fast');
         },
 
         initialize: function (options) {

@@ -9,7 +9,7 @@ div.cell {
 
 div.jumbo {
     background:         linear-gradient(85deg, #F1F2B5 20%, #64b3f4 100%);
-    min-height: 600px
+    min-height: 570px
 }
 div.grean {
         background:         linear-gradient(0deg, #c2e59c 10%, #64b3f4 90%);
@@ -19,3 +19,7 @@ div.sand {
     background:         linear-gradient(0deg, #EFEFBB 10%, #D4D3DD 90%);
 }
 
+div.this_list {
+    max-height: 350px;
+    overflow-y: auto;
+}
