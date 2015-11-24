@@ -31,9 +31,7 @@ define([
         },
 
         render: function () {
-
-            var model = this.model.toJSON();
-            this.$el.html(this.template({model: model}));
+            this.$el.html(this.template());
         }
 
     });

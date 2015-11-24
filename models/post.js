@@ -9,7 +9,7 @@ var PostShema = new Schema({
     content: {type: String}
 });
 
-var Status = mongoose.model('post', PostShema);
+var Post = mongoose.model('post', PostShema);
 
 mongoose.schemas = {};
 mongoose.schemas.Post = PostShema;

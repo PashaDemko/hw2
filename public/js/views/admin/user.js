@@ -22,15 +22,23 @@ define([
         },
 
         remove: function(e){
+            var that = this;
 
             var targetEl = $(e.target);
             var table = targetEl.closest('table');
             var id = table.attr('id');
             var user = new User({_id: id});
+            console.log(id);
 
             user.destroy({
-                success: function(){table.remove();},
-                error: function(){alert('error');}
+                success: function(){
+                    table.remove();
+
+                    $(".friend"+ id).remove();
+                },
+                error: function(){
+                    alert('error');
+                }
             });
 
             return false;

@@ -9,7 +9,6 @@ var AccountSchema = new mongoose.Schema({
         last: {type: String},
         full: {type: String}
     },
-    admin: {type: Boolean, default: false},
     contacts: [{type: Schema.ObjectId, ref: 'account'}],
     posts: [{type: Schema.ObjectId, ref: 'post'}]
 });

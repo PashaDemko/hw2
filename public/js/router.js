@@ -6,10 +6,11 @@ define([
     'models/authorise',
     'views/contacts/addcontact',
     'views/admin/admin',
+    'views/admin/login',
     'views/account/editprofile',
     'views/menu',
     'views/home'
-], function (IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin, editProfile, Menu, Home) {
+], function (IndexView, RegisterView, LoginView, Account, Entry, AddContactView, Admin, LoginAdmin, editProfile, Menu, Home) {
 
     var AppRouter = Backbone.Router.extend({
 
@@ -18,15 +19,20 @@ define([
             'addcontact': 'addContact',
             "index": "index",
             "login": "login",
+            "admin": "admin",
+            "mainAdmin" : "mainAdmin",
             "home": "home",
             "register": "register",
             "quit": "quit",
             "editProfile": "editProfile"
         },
 
+
+
         initialize: function () {
 
             this.entry = new Entry();
+
             this.fetchEntry = this.entry.fetch({
                 success: function () {
                     new Menu({authenticated: true}).render();
@@ -34,8 +40,39 @@ define([
                 error: function () {
                     new Menu({authenticated: false}).render();
                 }
-            });
+        });
 
+        },
+
+        changeView: function (view, that) {
+
+            if (this.currentView) {
+                this.currentView.undelegateEvents();
+            }
+            this.currentView = view;
+            this.currentView.render();
+
+        },
+
+        login: function () {
+            var that = this;
+            this.fetchEntry.complete(function () {
+                that.changeView( new LoginView(), that);
+            });
+        },
+
+        admin : function (){
+            var that = this;
+            this.fetchEntry.complete(function () {
+                that.changeView(new LoginAdmin());
+            });
+        },
+
+        mainAdmin : function(){
+            var that= this;
+            this.fetchEntry.complete(function () {
+                that.changeView(new Admin());
+            });
         },
 
         home: function () {
@@ -79,15 +116,7 @@ define([
             });
         },
 
-        changeView: function (view) {
 
-            if (this.currentView) {
-                this.currentView.undelegateEvents();
-            }
-            this.currentView = view;
-            this.currentView.render();
-
-        },
 
 
         addContact: function () {
@@ -107,24 +136,14 @@ define([
             this.fetchEntry.complete(function () {
                 model.fetch({
                     success: function () {
-                        var Model = model.toJSON();
-                        if (Model.admin == true) {
-                            that.changeView(new Admin({model: model}))
-                        } else {
-                            that.changeView(new IndexView({model: model}))
-                        }
+                        that.changeView(new IndexView({model: model}))
                     }
                 });
             });
 
         },
 
-        login: function () {
-            var that = this;
-            this.fetchEntry.complete(function () {
-                that.changeView(new LoginView());
-            });
-        },
+
 
         register: function () {
             var that = this;

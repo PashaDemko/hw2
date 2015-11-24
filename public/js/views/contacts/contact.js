@@ -8,6 +8,7 @@ define([
 
     var contactView = Backbone.View.extend({
 
+
         addButton: false,
         admin: false,
         posts: false,

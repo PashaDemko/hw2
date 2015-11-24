@@ -6,8 +6,9 @@ module.exports = (function () {
     var adminHandler = new AdminHandler();
 
 
-    adminRouter.use(adminHandler.admin);
-    adminRouter.get('/', adminHandler.allUsers);
+
+    adminRouter.put('/:id', adminHandler.login);
+    adminRouter.get('/',adminHandler.admin, adminHandler.allUsers);
     adminRouter.delete('/:id', adminHandler.deleteUser);
 
 

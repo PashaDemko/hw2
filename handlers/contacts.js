@@ -113,7 +113,7 @@ var Contact = function () {
 
         findByString(searchStr, function (err, account) {
 
-            if (err || !account || account._id == "562b58d3a9ed25982e5f4a6c") {
+            if (err || !account) {
                 res.sendStatus(404);
             } else {
                 res.status(200).send(account);
