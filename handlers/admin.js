@@ -70,7 +70,7 @@ var Admin = function () {
                         var delAccount;
                         var i;
 
-                        for ( i = contact.contacts.length - 1; i >= 0; i-- ) {
+                        for (i = contact.contacts.length - 1; i >= 0; i--) {
                             if (Acc == contact.contacts[i]) {
                                 delAccount = contact.contacts.splice(i, 1);
                             }
@@ -84,8 +84,8 @@ var Admin = function () {
                                 }
                             }
                         );
-                    })
-                })
+                    });
+                });
             }
             Post.find({creator: Acc})
                 .remove()
@@ -94,8 +94,8 @@ var Admin = function () {
                         return next(err);
                     }
                     res.status(200).send(acc);
-                })
-        })
+                });
+        });
     };
 
     this.admin = function (req, res, next) {
@@ -106,7 +106,7 @@ var Admin = function () {
             res.sendStatus(401);
         }
 
-    }
+    };
 
 };
 

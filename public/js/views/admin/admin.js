@@ -1,6 +1,6 @@
 define([
     'text!templates/admin/admin.html',
-    'collections/users',
+    'collections/Admin',
     'views/admin/user',
     'models/authorise'
 ], function (indexTemplate, Users, UserView, Entry) {

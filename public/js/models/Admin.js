@@ -5,5 +5,6 @@ define(function () {
         urlRoot: '/admin'
 
     });
+
     return Account;
 });

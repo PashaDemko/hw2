@@ -1,6 +1,6 @@
 define([
     'text!templates/admin/user.html',
-    'models/user',
+    'models/Admin',
     'views/post/post',
     'collections/Posts',
     'models/post',

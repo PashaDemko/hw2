@@ -1,5 +1,5 @@
 define([
-    'models/user',
+    'models/Admin',
     'text!templates/admin/login.html'
 ], function (Admin, loginTemplate) {
 
