@@ -111,11 +111,8 @@ define([
 
           this.$el.html (this.template( {model: model}));
           $(".postCreate").html (postCreate);
-          $(this.el).find(".showAdd").hide();
-          $(this.el).find(".contacts_list").hide();
-          $(this.el).find(".showcontacts").toggle();
-          $(this.el).find(".posts_list").hide();
-          $(this.el).find(".showposts").toggle();
+          $(this.el).find(".posts_list, .contacts_list, .showAdd").hide();
+          $(this.el).find(".showposts, .showcontacts").toggle();
 
           return this;
         }
