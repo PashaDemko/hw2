@@ -76,7 +76,6 @@ define([
                 this.admin = this.options.admin;
             }
             if (this.options.posts) {
-                console.log('ahhha');
                 that.renderPosts();
                 this.posts = this.options.posts;
             }
