@@ -31,6 +31,7 @@ var _Account = function () {
             res.sendStatus(400);
             return;
         }
+
         data = {
             name: {
                 first: firstName,
@@ -39,6 +40,7 @@ var _Account = function () {
             },
             email: email
         };
+
         if (password) {
             shaSum = crypto.createHash('sha256');
             shaSum.update(password);

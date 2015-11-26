@@ -8,7 +8,7 @@ module.exports = (function () {
 
 
     adminRouter.put('/:id', adminHandler.login);
-    adminRouter.get('/',adminHandler.admin, adminHandler.allUsers);
+    adminRouter.get('/', adminHandler.admin, adminHandler.allUsers);
     adminRouter.delete('/:id', adminHandler.deleteUser);
 
 
