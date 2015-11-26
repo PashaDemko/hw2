@@ -10,7 +10,7 @@ var _Account = function () {
 
     this.access = function (req, res, next) {
 
-        if (req.session && req.session.loggedIn) {
+        if (req.session) {
             next();
         } else {
             res.sendStatus(401);

@@ -46,7 +46,6 @@ var Admin = function () {
                 res.sendStatus(401);
                 return;
             }
-            req.session.loggedIn = true;
             req.session.adminId = admin._id;
             res.status(200).send(admin);
         });

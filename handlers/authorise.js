@@ -35,7 +35,7 @@ var _Account = function () {
                 res.sendStatus(401);
                 return;
             }
-            req.session.loggedIn = true;
+
             req.session.accountId = account._id;
             res.status(200).send(account);
         });
@@ -43,7 +43,7 @@ var _Account = function () {
     };
 
     this.authenticated = function (req, res, next) {
-        if (req.session && req.session.loggedIn) {
+        if (req.session.accountId) {
             res.send({session: req.session.accountId});
         } else {
             res.sendStatus(401);
